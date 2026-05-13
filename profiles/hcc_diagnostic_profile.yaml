@@ -1,0 +1,560 @@
+# HCC Diagnostic Profile v1.0
+# 肝细胞癌诊断配置实例
+# 适配 Meta-Template: DiagnosticAbduction_v1.0
+# 继承: Liver_Base_Profile_v1.0
+
+domain_profile:
+  id: "HCC_Diagnostic_Profile_v1.0"
+  name: "肝细胞癌诊断配置"
+  version: "1.0.0"
+  applicable_meta_template: "DiagnosticAbduction_v1.0"
+  domain: "hepatology"
+  disease_focus: "DOID:684"
+
+  extends: "Liver_Base_Profile_v1.0"
+  overrides:
+    plugins.observation_extractor.config.trigger_logic.threshold: 0.65
+
+  plugins:
+
+    observation_extractor:
+      enabled: true
+      implementation: "rule_based"
+      config:
+        observation_definitions:
+          - id: "afp_elevation"
+            name: "甲胎蛋白升高"
+            entity_type: "biomarker"
+            curie_prefix: "hepato"
+            trigger_conditions:
+              - field: "clinical_observations.biomarker_name"
+                operator: "eq"
+                value: "AFP"
+              - field: "clinical_observations.value"
+                operator: "gt"
+                value: 400
+                unit: "ng/mL"
+            output_template:
+              observation_id: "afp_elevation"
+              entity_id: "hepato:AFP"
+              value: "{{input.value}}"
+              unit: "ng/mL"
+              confidence: 0.95
+
+          - id: "ultrasound_nodule"
+            name: "超声发现肝结节"
+            entity_type: "imaging_finding"
+            curie_prefix: "hepato"
+            trigger_conditions:
+              - field: "imaging_reports.modality"
+                operator: "eq"
+                value: "ultrasound"
+              - field: "imaging_reports.finding"
+                operator: "regex"
+                value: "nodule|lesion|mass"
+            output_template:
+              observation_id: "ultrasound_nodule"
+              entity_id: "hepato:Hepatic_Nodule"
+              value: "{{input.size_cm}}"
+              unit: "cm"
+              confidence: 0.85
+
+          - id: "hbv_history"
+            name: "乙肝病毒感染史"
+            entity_type: "disease_history"
+            curie_prefix: "DOID"
+            trigger_conditions:
+              - field: "patient_history.diagnosis_code"
+                operator: "in"
+                value: ["DOID:2043", "ICD10:B18.1"]
+            output_template:
+              observation_id: "hbv_history"
+              entity_id: "DOID:2043"
+              value: true
+              confidence: 0.90
+
+        trigger_logic:
+          mode: "weighted_sum"
+          threshold: 0.7
+          weights:
+            afp_elevation: 0.5
+            ultrasound_nodule: 0.4
+            hbv_history: 0.3
+      fallback:
+        mode: "pass_through"
+
+    candidate_generator:
+      enabled: true
+      implementation: "hybrid"
+      config:
+        ontology_driven:
+          root_class: "DOID:5082"
+          traversal_depth: 3
+          min_similarity: 0.3
+        rule_driven:
+          rules:
+            - id: "hcc_rule_1"
+              name: "AFP+结节→HCC"
+              observations: ["afp_elevation", "ultrasound_nodule"]
+              candidate_disease: "DOID:684"
+              base_probability: 0.72
+              probability_source:
+                type: "kg_query"
+                query: "SELECT prevalence FROM disease_epidemiology WHERE disease='DOID:684' AND biomarker='hepato:AFP' AND threshold=400"
+                fallback_value: 0.70
+
+            - id: "hcc_rule_2"
+              name: "AFP+HBV→HCC"
+              observations: ["afp_elevation", "hbv_history"]
+              candidate_disease: "DOID:684"
+              base_probability: 0.85
+              probability_source:
+                type: "kg_query"
+                query: "SELECT prevalence FROM disease_epidemiology WHERE disease='DOID:684' AND risk_factor='DOID:2043'"
+                fallback_value: 0.80
+
+            - id: "nodule_differential"
+              name: "结节鉴别"
+              observations: ["ultrasound_nodule"]
+              candidate_disease: "DOID:684"
+              base_probability: 0.30
+              probability_source:
+                type: "static"
+                fallback_value: 0.30
+        candidate_pool:
+          max_candidates: 5
+          min_probability: 0.05
+          exclude_classes: ["DOID:0060089"]
+      fallback:
+        mode: "ontology_only"
+
+    ranking_strategy:
+      enabled: true
+      implementation: "rule_based"
+      config:
+        ranking_factors:
+          - id: "afp_specificity"
+            name: "AFP特异性"
+            weight: 0.35
+            calculator:
+              type: "kg_query"
+              query: "SELECT specificity FROM biomarker_diagnostics WHERE biomarker='hepato:AFP' AND disease=?"
+
+          - id: "imaging_characteristic"
+            name: "影像特征匹配度"
+            weight: 0.25
+            calculator:
+              type: "kg_query"
+              query: "SELECT match_score FROM imaging_guidelines WHERE finding=? AND disease=?"
+
+          - id: "risk_factor_alignment"
+            name: "风险因素匹配"
+            weight: 0.20
+            calculator:
+              type: "kg_query"
+              query: "SELECT odds_ratio FROM risk_factors WHERE factor=? AND disease=?"
+
+          - id: "epidemiology_fit"
+            name: "流行病学匹配"
+            weight: 0.20
+            calculator:
+              type: "kg_query"
+              query: "SELECT prevalence FROM disease_epidemiology WHERE disease=? AND region=?"
+
+        differential_matrix:
+          - disease_a: "DOID:684"
+            disease_b: "DOID:4906"
+            differentiators:
+              - feature: "afp_elevation"
+                direction: "favors_a"
+                weight: 0.8
+                evidence_query:
+                  type: "kg_query"
+                  query: "SELECT specificity FROM biomarker_diagnostics WHERE biomarker='hepato:AFP' AND disease IN ('DOID:684', 'DOID:4906')"
+              - feature: "ca19_9_elevation"
+                direction: "favors_b"
+                weight: 0.7
+                evidence_query:
+                  type: "kg_query"
+                  query: "SELECT specificity FROM biomarker_diagnostics WHERE biomarker='hepato:CA19_9' AND disease IN ('DOID:684', 'DOID:4906')"
+              - feature: "hbv_history"
+                direction: "favors_a"
+                weight: 0.6
+                evidence_query:
+                  type: "kg_query"
+                  query: "SELECT odds_ratio FROM risk_factors WHERE factor='DOID:2043' AND disease IN ('DOID:684', 'DOID:4906')"
+
+          - disease_a: "DOID:684"
+            disease_b: "DOID:0050730"
+            differentiators:
+              - feature: "oral_contraceptive_history"
+                direction: "favors_b"
+                weight: 0.9
+                evidence_query:
+                  type: "kg_query"
+                  query: "SELECT odds_ratio FROM risk_factors WHERE factor='hepato:Oral_Contraceptives' AND disease='DOID:0050730'"
+              - feature: "male_gender"
+                direction: "favors_a"
+                weight: 0.5
+                evidence_query:
+                  type: "kg_query"
+                  query: "SELECT sex_ratio FROM disease_epidemiology WHERE disease IN ('DOID:684', 'DOID:0050730')"
+        output:
+          sort_order: "descending"
+          include_probability: true
+          include_explanation: true
+      fallback:
+        mode: "probability_only"
+
+    evidence_query_builder:
+      enabled: true
+      implementation: "hybrid"
+      config:
+        evidence_dimensions:
+          - id: "literature"
+            name: "文献证据"
+            source_db: "pubmed"
+            kg_mapping:
+              entity_query: "SELECT pmid,title,abstract FROM literature WHERE entity=? AND entity_type=?"
+              relation_query: "SELECT pmid,relation_type,confidence FROM literature_relations WHERE subject=? AND object=?"
+              attribute_mapping:
+                - db_field: "publication_year"
+                  std_field: "temporal_context"
+                  transform: "year_to_stage"
+                - db_field: "journal_impact_factor"
+                  std_field: "quality_indicator"
+                  transform: null
+            tesg_dimension_id: "pubmed_mining"
+            query_params:
+              max_results: 20
+              min_confidence: 0.5
+              temporal_filter: false
+
+          - id: "ontology"
+            name: "本体证据"
+            source_db: "hepato_ontology"
+            kg_mapping:
+              entity_query: "SELECT * FROM ontology_entities WHERE curie=?"
+              relation_query: "SELECT * FROM ontology_relations WHERE subject=? AND object=?"
+              attribute_mapping:
+                - db_field: "relation_type"
+                  std_field: "causal_direction"
+                  transform: "obo_to_causal"
+            tesg_dimension_id: "obo_semantic"
+            query_params:
+              max_results: 10
+              min_confidence: 0.9
+              temporal_filter: false
+
+          - id: "association"
+            name: "关联证据"
+            source_db: "disgenet_string_ctd"
+            kg_mapping:
+              entity_query: "SELECT * FROM entities WHERE name=?"
+              relation_query: |
+                SELECT source_db, relation_type, score, pmid_list 
+                FROM edge_semantic_facets 
+                WHERE edge_id IN (
+                  SELECT id FROM edges WHERE source=? AND target=?
+                )
+              attribute_mapping:
+                - db_field: "source_db"
+                  std_field: "provenance"
+                  transform: null
+                - db_field: "score"
+                  std_field: "normalized_confidence"
+                  transform: "source_specific_normalize"
+            tesg_dimension_id: "association_network"
+            query_params:
+              max_results: 50
+              min_confidence: 0.3
+              temporal_filter: false
+
+          - id: "clinical"
+            name: "临床证据"
+            source_db: "ehr_cohort"
+            kg_mapping:
+              entity_query: "SELECT * FROM patients WHERE diagnosis=?"
+              relation_query: "SELECT * FROM cohort_outcomes WHERE disease=? AND biomarker=?"
+              attribute_mapping:
+                - db_field: "patient_count"
+                  std_field: "sample_size"
+                  transform: null
+                - db_field: "confirmed_rate"
+                  std_field: "clinical_confidence"
+                  transform: null
+            tesg_dimension_id: "ehr_semantic"
+            query_params:
+              max_results: 5
+              min_confidence: 0.6
+              temporal_filter: false
+
+        dimension_combination:
+          mode: "union"
+
+        per_hypothesis_requirements:
+          - disease_category: "default"
+            required_dimensions: ["literature", "association"]
+            optional_dimensions: ["ontology", "clinical"]
+            min_evidence_count: 3
+      fallback:
+        mode: "single_dimension"
+
+    evaluation_criteria:
+      enabled: true
+      implementation: "rule_based"
+      config:
+        quality_dimensions:
+          - id: "literature_quality"
+            name: "文献质量"
+            weight: 0.4
+            evaluator:
+              type: "formula"
+              formula: "journal_impact_factor * log(citation_count + 1) / 10"
+              data_source:
+                table: "literature"
+                fields: ["journal_impact_factor", "citation_count"]
+
+          - id: "study_design"
+            name: "研究设计等级"
+            weight: 0.3
+            evaluator:
+              type: "threshold"
+              data_source:
+                table: "literature"
+                fields: ["study_design"]
+              mapping:
+                RCT: 1.0
+                cohort: 0.8
+                case_control: 0.6
+                case_report: 0.3
+
+        temporal_validity:
+          half_life_years: 5
+          max_age_years: 10
+          decay_function: "exponential"
+
+        consistency_check:
+          enabled: true
+          rule_based:
+            - id: "directional_conflict"
+              name: "方向性冲突"
+              condition: "same_entity_pair AND opposite_causal_direction"
+              action: "flag_conflict"
+            - id: "magnitude_gap"
+              name: "强度差异过大"
+              condition: "same_entity_pair AND confidence_ratio > 3"
+              action: "reduce_confidence"
+          tesg_based: null
+      fallback:
+        mode: "static_weights"
+
+    fusion_weights:
+      enabled: true
+      implementation: "weighted_sum"
+      config:
+        base_weights:
+          literature: 0.4
+          ontology: 0.2
+          association: 0.1
+          clinical: 0.3
+        dynamic_adjustment:
+          enabled: true
+          rules:
+            - id: "hbv_context_boost"
+              condition: "patient.has_risk_factor('DOID:2043')"
+              adjustment:
+                clinical: +0.1
+                literature: -0.1
+        conflict_strategy:
+          mode: "priority"
+          priority_order: ["clinical", "literature", "ontology", "association"]
+        normalization:
+          method: "softmax"
+      fallback:
+        mode: "equal_weights"
+
+    conflict_rules:
+      enabled: true
+      implementation: "hybrid"
+      config:
+        conflict_types:
+          - id: "temporal_flip"
+            name: "时序语义翻转"
+            detection_rule:
+              type: "temporal_flip"
+              condition: "same_entity_pair AND different_disease_stage AND opposite_effect"
+            tesg_detection:
+              enabled: false
+              query_template: null
+            resolution_strategy:
+              type: "stage_stratified"
+              parameters:
+                confidence_decay: 0.5
+                preserve_both: true
+
+          - id: "directional_opposite"
+            name: "方向性相反"
+            detection_rule:
+              type: "directional_opposite"
+              condition: "same_entity_pair AND opposite_causal_direction"
+            tesg_detection:
+              enabled: false
+              query_template: null
+            resolution_strategy:
+              type: "flag_for_human"
+              parameters:
+                confidence_decay: 0.5
+                preserve_both: true
+
+        global_strategy:
+          max_conflicts_before_human: 3
+          default_action: "flag"
+      fallback:
+        mode: "simple_flag"
+
+    conclusion_formatter:
+      enabled: true
+      implementation: "rule_based"
+      config:
+        conclusion_types:
+          - id: "definitive"
+            condition: "confidence > 0.9 AND evidence_count > 5 AND no_conflicts"
+            parameters:
+              min_confidence: 0.9
+          - id: "probabilistic"
+            condition: "confidence > 0.6 AND confidence <= 0.9"
+            parameters:
+              min_confidence: 0.6
+          - id: "differential"
+            condition: "confidence > 0.3 AND top_2_confidence_gap < 0.2"
+            parameters:
+              min_confidence: 0.3
+          - id: "insufficient_evidence"
+            condition: "confidence < 0.3 OR evidence_count < 2"
+            parameters:
+              min_confidence: 0.0
+
+        ranking_output:
+          max_diagnoses: 3
+          min_confidence: 0.05
+          include_excluded: true
+
+        enhancements:
+          - id: "bclc_staging"
+            type: "stage_recommendation"
+            condition: "primary_diagnosis == 'DOID:684'"
+            template: "如确诊HCC，建议进行BCLC分期评估（肿瘤负荷/肝功能/体能状态）"
+          - id: "li_rads"
+            type: "follow_up"
+            condition: "observations.contains('ultrasound_nodule') AND !observations.contains('contrast_ct')"
+            template: "建议行增强CT/MRI进行LI-RADS分类（当前超声发现结节但缺少增强特征）"
+          - id: "hepatology_referral"
+            type: "referral"
+            condition: "confidence > 0.7"
+            template: "建议转诊至肝胆外科或肿瘤科进一步评估"
+      fallback:
+        mode: "simple_ranking"
+
+    report_generator:
+      enabled: true
+      implementation: "template_engine"
+      config:
+        templates:
+          - id: "clinical_report"
+            format: "markdown"
+            structure:
+              header: "patient_info + timestamp"
+              differential: "conclusion_ranker.output"
+              evidence_chain: "inference_engine.evidence_chain"
+              uncertainties: "conflict_resolution.uncertainties"
+              recommendations: "conclusion_formatter.enhancements"
+        required_sections:
+          - id: "differential_diagnosis"
+            name: "鉴别诊断"
+            source_node: "ConclusionRanker"
+            required: true
+          - id: "evidence_chain"
+            name: "证据链"
+            source_node: "InferenceEngine"
+            required: true
+          - id: "uncertainties"
+            name: "不确定性说明"
+            source_node: "ConflictResolution"
+            required: true
+        citation_format:
+          style: "vancouver"
+          custom_template: null
+        uncertainty_display:
+          mode: "full"
+          max_items: 10
+      fallback:
+        mode: "json_only"
+
+  tesg_interface:
+    enabled: false
+    endpoint: null
+    timeout_ms: 5000
+    retry_count: 3
+    fallback:
+      mode: "static_semantic_tags"
+      semantic_tag_library: "hepato_semantic_tags_v1.0"
+
+  data_source_mapping:
+    available_sources:
+      - id: "sqlite_main"
+        type: "sqlite"
+        path: "hepato_kg.db"
+        tables:
+          - name: "entities"
+            fields: ["id", "name", "type", "curie", "source_db"]
+          - name: "edges"
+            fields: ["id", "source", "target", "relation", "weight"]
+          - name: "edge_semantic_facets"
+            fields: ["facet_id", "edge_id", "dimension_id", "raw_predicate", "raw_attributes", "normalized_confidence", "provenance"]
+          - name: "clinical_observations"
+            fields: ["patient_id", "biomarker_name", "value", "unit", "timestamp"]
+          - name: "imaging_reports"
+            fields: ["patient_id", "modality", "finding", "size_cm", "timestamp"]
+          - name: "patient_history"
+            fields: ["patient_id", "diagnosis_code", "diagnosis_name", "onset_date"]
+
+      - id: "disgenet_import"
+        type: "sqlite"
+        path: "hepato_kg.db"
+        tables:
+          - name: "disgenet_gene_disease"
+            fields: ["gene_id", "disease_id", "score", "pmid_list", "source"]
+
+      - id: "string_import"
+        type: "sqlite"
+        path: "hepato_kg.db"
+        tables:
+          - name: "string_ppi"
+            fields: ["protein_a", "protein_b", "combined_score", "experimental", "database"]
+
+    field_mappings:
+      - profile_field: "clinical_observations.biomarker_name"
+        db_source: "sqlite_main"
+        db_table: "clinical_observations"
+        db_field: "biomarker_name"
+      - profile_field: "clinical_observations.value"
+        db_source: "sqlite_main"
+        db_table: "clinical_observations"
+        db_field: "value"
+      - profile_field: "edge_semantic_facets.source_db"
+        db_source: "sqlite_main"
+        db_table: "edge_semantic_facets"
+        db_field: "dimension_id"
+      - profile_field: "biomarker_diagnostics.specificity"
+        db_source: "sqlite_main"
+        db_table: "edge_semantic_facets"
+        db_field: "normalized_confidence"
+        status: "pending_schema_extension"
+
+  runtime:
+    max_reasoning_time_ms: 30000
+    max_candidates: 10
+    log_level: "INFO"
+    enable_provenance: true
+    enable_uncertainty_quantification: true

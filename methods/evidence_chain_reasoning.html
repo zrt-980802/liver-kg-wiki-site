@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>evidence_chain_reasoning</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Liver KG Wiki"/><meta property="og:title" content="evidence_chain_reasoning"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="evidence_chain_reasoning"/><meta name="twitter:description" content="证据链推理方法 — 方向三详细展开 肝病知识图谱核心方法贡献之一 创建日期: 2026-05-08 最后更新: 2026-05-11 (Meta-Template v1.0 设计完成) 状态: ✅ Layer 1 设计完成 (等待 Layer 2) 1."/><meta property="og:description" content="证据链推理方法 — 方向三详细展开 肝病知识图谱核心方法贡献之一 创建日期: 2026-05-08 最后更新: 2026-05-11 (Meta-Template v1.0 设计完成) 状态: ✅ Layer 1 设计完成 (等待 Layer 2) 1."/><meta property="og:image:alt" content="证据链推理方法 — 方向三详细展开 肝病知识图谱核心方法贡献之一 创建日期: 2026-05-08 最后更新: 2026-05-11 (Meta-Template v1.0 设计完成) 状态: ✅ Layer 1 设计完成 (等待 Layer 2) 1."/><meta property="og:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta name="twitter:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="zrt-980802.github.io/liver-kg-wiki-site"/><meta property="og:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/methods/evidence_chain_reasoning"/><meta property="twitter:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/methods/evidence_chain_reasoning"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="证据链推理方法 — 方向三详细展开 肝病知识图谱核心方法贡献之一 创建日期: 2026-05-08 最后更新: 2026-05-11 (Meta-Template v1.0 设计完成) 状态: ✅ Layer 1 设计完成 (等待 Layer 2) 1."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvYW5kb25nXzA4MDIvcHJvamVjdHMvbGl2ZXJfZGlzZWFzZV9rZy9saXZlci1rZy1xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><script src="../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://zrt-980802.github.io/liver-kg-wiki-site/index.xml"/></head><body data-slug="methods/evidence_chain_reasoning"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Liver KG Wiki</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-85"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-85" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../methods/">methods</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>evidence_chain_reasoning</a></div></nav><h1 class="article-title">evidence_chain_reasoning</h1><p show-comma="true" class="content-meta"><time datetime="2026-05-13T07:16:35.327Z">May 13, 2026</time><span>24 min read</span></p></div></div><article class="popover-hint"><h1 id="证据链推理方法--方向三详细展开">证据链推理方法 — 方向三详细展开<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#证据链推理方法--方向三详细展开" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>肝病知识图谱核心方法贡献之一<br/>
+创建日期: 2026-05-08
+最后更新: 2026-05-11 (Meta-Template v1.0 设计完成)
+状态: ✅ Layer 1 设计完成 (等待 Layer 2)</p>
+</blockquote>
+<hr/>
+<h2 id="1-问题定义为什么需要证据链推理">1. 问题定义：为什么需要证据链推理？<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-问题定义为什么需要证据链推理" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="11-当前知识图谱的黑箱问题">1.1 当前知识图谱的”黑箱”问题<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-当前知识图谱的黑箱问题" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>现有的知识图谱能回答”是什么”的问题：</p>
+<ul>
+<li>Q: “TP53 与肝癌相关吗？” → A: “是的，有关系”</li>
+</ul>
+<p>但临床医生和科学家需要的不是这个，而是：</p>
+<ul>
+<li>Q: “TP53 为什么与肝癌相关？有什么证据？”</li>
+<li>→ A: “基于3篇文献（PMID: xxx, yyy, zzz），其中1篇是2023年的临床试验，表明TP53突变在肝细胞癌中发生率约30%……”</li>
+</ul>
+<p><strong>关键洞察</strong>：知识图谱的用户需要的不是”关系”（Relationship），而是”叙事”（Narrative）——一个从证据到结论的可追踪路径。</p>
+<h3 id="12-与场景层的关系">1.2 与场景层的关系<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-与场景层的关系" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>临床场景层</strong>解决的是”用户的思维路径 vs 图谱的拓扑结构”之间的鸿沟</li>
+<li><strong>证据链推理</strong>解决的是”图谱输出的结果 vs 用户需要的决策依据”之间的鸿沟</li>
+</ul>
+<p>两者互补：场景层把用户需求翻译成图谱查询，证据链把查询结果翻译回用户可理解的推理过程。</p>
+<h3 id="13-知识图谱的定位转变">1.3 知识图谱的定位转变<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-知识图谱的定位转变" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>在我们的架构中，知识图谱不再是”推理引擎”，而是作为<strong>数据源</strong>存在。证据链推理是一个<strong>独立系统</strong>，知识图谱只是其多个数据源之一（与其他数据源如文献数据库、临床数据集并列）。</p>
+<pre><code>┌──────────────────────────────────────────────────┐
+│                  证据链引擎                         │
+├──────────────────────────────────────────────────┤
+│                                                    │
+│  模板系统（推理路径引导） ──→ 多源证据聚合            │
+│       │                                  │         │
+│       ↓                                  ↓         │
+│   Layer 1/2/3 模板         ┌──────┬──────┬──...    │
+│                           │ KG   │ PubMed│ 临床    │
+│                           └──────┴──────┴──...    │
+└──────────────────────────────────────────────────┘
+</code></pre>
+<hr/>
+<h2 id="2-证据链的定义">2. 证据链的定义<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-证据链的定义" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="21-什么是证据链">2.1 什么是证据链？<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-什么是证据链" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>证据链是一个有向无环图（DAG），其中：</p>
+<ul>
+<li><strong>节点</strong> = 证据项（文献引用、数据库记录、本体定义、临床数据）</li>
+<li><strong>边</strong> = 推理关系（支持、反对、条件触发）</li>
+<li><strong>起点</strong> = 用户输入（症状、基因名、疾病名）</li>
+<li><strong>终点</strong> = 推理结论（诊断建议、分子机制假设、治疗方案）</li>
+</ul>
+<h3 id="22-证据类型">2.2 证据类型<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-证据类型" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>证据类型</th><th>来源</th><th>可信度</th><th>示例</th></tr></thead><tbody><tr><td><strong>文献证据</strong></td><td>PubMed</td><td>高（经同行评议）</td><td>“XXX 研究表明 YY 基因与肝癌相关”</td></tr><tr><td><strong>本体证据</strong></td><td>HepatoOntology</td><td>高（专家定义）</td><td>“肝硬化是肝癌的危险因素”（is-a 关系）</td></tr><tr><td><strong>关联证据</strong></td><td>CTD / DisGeNET</td><td>中（统计关联）</td><td>“ZZZ 化学物质与肝癌有统计关联，p&lt;0.05”</td></tr><tr><td><strong>临床证据</strong></td><td>临床数据集</td><td>高（真实数据）</td><td>“患者队列中，AFP>400 对 HCC 诊断敏感性为 80%“</td></tr></tbody></table></div>
+<h3 id="23-推理模式">2.3 推理模式<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-推理模式" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>模式一：演绎推理</strong></p>
+<pre><code>前提: 所有肝细胞癌(HCC)患者中约70% AFP升高（文献证据）
+事实: 该患者AFP升高
+结论: 该患者可能患有HCC（置信度: 70% × 证据质量权重）
+</code></pre>
+<p><strong>模式二：溯因推理</strong></p>
+<pre><code>观察: 患者AFP升高 + 肝脏超声发现结节
+候选解释1: 肝细胞癌
+候选解释2: 肝内胆管癌
+候选解释3: 肝腺瘤
+最优选择: 结合更多证据（乙肝病史、增强CT模式）缩小范围
+</code></pre>
+<p><strong>模式三：类比推理</strong></p>
+<pre><code>已知: 索拉非尼对HCC有效，机制是抑制VEGFR/PDGFR
+新观察: 新药物AA与索拉非尼结构类似
+推论: 新药物AA可能对HCC有效
+</code></pre>
+<p><strong>模式四：时序推理</strong></p>
+<pre><code>时序1: 患者长期HCV感染
+时序2: 发展到肝硬化（发病后10年）
+时序3: 诊断HCC（发病后20年）
+推理: HCV感染→肝硬化→HCC是合理的疾病进展路径
+           ↑ 需要文献证据支持每一步的关联
+</code></pre>
+<hr/>
+<h2 id="3-方法设计三层模板架构">3. 方法设计：三层模板架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-方法设计三层模板架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>本方案吸收自 Kimi 分析建议，结合我们的证据链引擎设计。</p>
+</blockquote>
+<h3 id="31-设计原则">3.1 设计原则<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-设计原则" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>模板不携带领域事实</strong> → 领域事实由知识图谱动态供给</li>
+<li><strong>推理拓扑与领域知识分离</strong> → 模板只引导推理方向</li>
+<li><strong>运行时动态绑定</strong> → 通过插件机制实现模板到实例的绑定</li>
+</ol>
+<h3 id="32-三层模板架构">3.2 三层模板架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-三层模板架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><code>┌────────────────────────────────────────────────────────┐
+│   Layer 1: Meta-Template (元模板)                        │
+│   ───────────────────────────────────────────────       │
+│   定义推理拓扑的 DAG 结构（T-Box 级别）                   │
+│   跨疾病通用，不包含任何领域特定内容                      │
+│                                                         │
+│   e.g. &quot;诊断推理拓扑&quot;:                                    │
+│   ┌Symptom┐ → ┌Candidate Diseases┐ → ┌Evidence┐ → ┌Conclusion┐│
+└──────────────────────┬───────────────────────────────────┘
+                       │ 在运行时加载
+                       ↓
+┌────────────────────────────────────────────────────────┐
+│   Layer 2: Domain Template (领域模板)                   │
+│   ───────────────────────────────────────────────       │
+│   某类疾病的参数化配置（T-Box 与 A-Box 的交界）          │
+│   配置 biomarker cutoff、影像学规则、分期系统等           │
+│                                                         │
+│   e.g. &quot;HCC 诊断配置&quot;:                                   │
+│     - AFP cutoff: 400 ng/mL                             │
+│     - 影像学规则: LI-RADS 分类                          │
+│     - 风险因素: HBV/HCV/酒精性肝病                      │
+└──────────────────────┬───────────────────────────────────┘
+                       │ 运行时通过图谱查询实例化
+                       ↓
+┌────────────────────────────────────────────────────────┐
+│   Layer 3: Instance Template (实例模板)                 │
+│   ───────────────────────────────────────────────       │
+│   具体患者/场景的上下文绑定（A-Box 级别）                 │
+│   运行时动态实例化，通过图谱查询获得                       │
+│                                                         │
+│   e.g. &quot;患者张三的 HCC 诊断链&quot;:                           │
+│     - 患者症状: [AFP 450 ng/mL, 腹部不适]                │
+│     - 影像学: LI-RADS 5类                               │
+│     - 病史: 乙肝表面抗原阳性 20年                        │
+└────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="33-机制说明">3.3 机制说明<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-机制说明" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>运行时驱动流程：</strong></p>
+<pre><code>1. 用户查询 → 场景解析器识别场景类型
+
+2. 选择 Layer 1 元模板（根据场景类型）
+   └─ e.g. &quot;诊断推理模板&quot;
+
+3. 加载领域插件（Domain Plugin）
+   └─ 通过插件配置绑定 Layer 2 领域模板
+   └─ e.g. &quot;HCC 诊断配置插件&quot;
+
+4. 领域插件向知识图谱发送查询
+   └─ 获取 Layer 3 实例数据（患者特定的 A-Box 事实）
+
+5. 模板实例化，填充推理路径
+   └─ 每一步从图谱/文献/临床数据收集证据
+
+6. 生成可解释性输出
+   └─ 带引用和置信度的推理报告
+</code></pre>
+<h3 id="34-三种粒度的决策三层架构解答了模板粒度问题">3.4 三种粒度的决策：三层架构解答了模板粒度问题<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#34-三种粒度的决策三层架构解答了模板粒度问题" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>之前我们讨论的”粗粒度 vs 细粒度 vs 折中”问题，在三层架构下自然消解：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>粒度问题</th><th>三层架构的答案</th></tr></thead><tbody><tr><td><strong>粗粒度</strong>（诊断模板/治疗模板）</td><td>→ Layer 1 元模板，跨疾病通用</td></tr><tr><td><strong>中粒度</strong>（HCC 诊断模板）</td><td>→ Layer 2 领域模板，通过插件配置</td></tr><tr><td><strong>细粒度</strong>（具体患者的诊断链）</td><td>→ Layer 3 实例模板，运行时动态绑定</td></tr></tbody></table></div>
+<p><strong>实施策略</strong>：先定义 Layer 1 的元模板 DAG 拓扑（约 3-5 种推理拓扑），再创建 2-3 个”样板间”来验证 Layer 2 的领域配置格式的可表达性。</p>
+<h3 id="35-与-alicoco-方法的对比">3.5 与 AliCoCo 方法的对比<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#35-与-alicoco-方法的对比" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>AliCoCo 场景层</th><th>我们的证据链引擎</th></tr></thead><tbody><tr><td>核心问题</td><td>搜索意图 vs 分类体系的匹配</td><td>决策需求 vs 图谱结果的可解释性匹配</td></tr><tr><td>输出类型</td><td>推荐结果列表</td><td>带推理过程的结构化报告</td></tr><tr><td>模板结构</td><td>扁平场景模板</td><td>三层递进式模板（元→领域→实例）</td></tr><tr><td>领域知识绑定</td><td>模板内建</td><td>知识图谱动态供给（分离设计）</td></tr><tr><td>不确定性处理</td><td>不涉及</td><td>核心问题（证据有强弱、矛盾）</td></tr><tr><td>时序维度</td><td>不涉及</td><td>重要维度（证据时效性、事件顺序）</td></tr></tbody></table></div>
+<hr/>
+<h2 id="4-整体系统架构">4. 整体系统架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-整体系统架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-证据链引擎架构">4.1 证据链引擎架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-证据链引擎架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><code>┌──────────────────────────────────────────────────────────────┐
+│                      证据链引擎 (独立系统)                      │
+│                                                              │
+│  ┌───────────┐   ┌──────────┐   ┌─────────────┐            │
+│  │ 场景解析器  │ → │ 模板选择器 │ → │ 推理路径规划器 │            │
+│  │ (识别意图)  │   │ (Load L1) │   │ (实例化L2+L3)│            │
+│  └───────────┘   └──────────┘   └──────┬──────┘            │
+│                                        ↓                    │
+│                           ┌────────────────────────┐        │
+│                           │  领域插件执行引擎         │        │
+│                           │  (加载 Layer 2 配置)     │        │
+│                           └────────┬───────────────┘        │
+│                                    ↓                        │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │              多源证据聚合引擎                         │   │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐│   │
+│  │  │ 图谱查询  │  │文献检索  │  │临床数据  │  │本体验证 ││   │
+│  │  └─────────┘  └─────────┘  └─────────┘  └─────────┘│   │
+│  └─────────────────────────────────────────────────────┘   │
+│                                    ↓                        │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │          证据融合评估引擎                              │   │
+│  │  (证据质量 × 类型权重 × 时效性 → 置信度分数)         │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                                    ↓                        │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │          可解释性输出生成器                            │   │
+│  │  (结构化推理报告 + 引用轨迹 + 不确定性说明)           │   │
+│  └─────────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────────┘
+         ↑                   ↑                    ↑
+         │                   │                    │
+    ┌────┴────┐        ┌────┴────┐          ┌────┴────┐
+    │ 知识图谱  │        │ 文献数据库 │          │ 临床数据  │
+    │(数据源1) │        │(数据源2) │          │(数据源3) │
+    └─────────┘        └─────────┘          └─────────┘
+</code></pre>
+<h3 id="42-关键模块">4.2 关键模块<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-关键模块" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="模块a场景解析器">模块A：场景解析器<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#模块a场景解析器" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li>输入：用户查询（自然语言）</li>
+<li>输出：场景类型（诊断/治疗/机制探索/预后评估）</li>
+<li>方法：与临床场景层的接口对接，利用场景层解析结果</li>
+</ul>
+<h4 id="模块b模板选择器">模块B：模板选择器<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#模块b模板选择器" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li>输入：场景类型</li>
+<li>输出：对应的 Layer 1 元模板 DAG</li>
+<li>实现：预定义的推理拓扑库（约 3-5 种）</li>
+</ul>
+<h4 id="模块c领域插件执行引擎">模块C：领域插件执行引擎<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#模块c领域插件执行引擎" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li>输入：元模板 + 领域标识（如 “HCC”）</li>
+<li>输出：实例化的 Layer 2 配置</li>
+<li>关键：插件是参数配置的载体，不包含推理逻辑</li>
+</ul>
+<h4 id="模块d多源证据聚合引擎">模块D：多源证据聚合引擎<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#模块d多源证据聚合引擎" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li>对推理路径中的每一步，从多个数据源收集证据</li>
+<li>图谱查询：知识图谱中的实体-关系数据</li>
+<li>文献检索：PubMed 等文献数据库</li>
+<li>临床数据：患者队列数据（如有）</li>
+<li>本体验证：检查是否符合已知的分类/关系</li>
+</ul>
+<h4 id="模块e证据融合评估引擎">模块E：证据融合评估引擎<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#模块e证据融合评估引擎" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>证据分数 = Σ(证据项质量 × 证据类型权重 × 时效性因子) / 证据总数
+</code></pre>
+<ul>
+<li>证据质量：期刊影响因子、引用数、实验类型（RCT > 队列研究 > 病例报告）</li>
+<li>证据类型权重：文献 > 本体 > 关联数据</li>
+<li>时效性因子：近 5 年文献权重更高</li>
+</ul>
+<h4 id="模块f可解释性输出生成器">模块F：可解释性输出生成器<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#模块f可解释性输出生成器" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>┌─ 推理结论 ──────────────────────────────────────┐
+│  TP53与肝细胞癌(HCC)高度相关                      │
+│  总置信度: 0.87 (高)                              │
+├─ 证据链 ────────────────────────────────────────┤
+│  Step 1: TP53是重要的抑癌基因                     │
+│    ├─ 本体证据: HepatoOntology分类确认            │
+│    └─ 文献证据: PMID 123456 (2022, Nature Reviews) │
+│  Step 2: TP53突变在HCC中常见                      │
+│    ├─ 关联证据: DisGeNET score 0.85              │
+│    ├─ 文献证据: PMID 234567 (2023, Hepatology)    │
+│    └─ 文献证据: PMID 345678 (2024, JCO)           │
+│  Step 3: TP53突变通过影响细胞周期促进HCC          │
+│    ├─ 通路证据: p53 signaling pathway             │
+│    └─ 文献证据: PMID 456789 (2021, Cell)           │
+├─ 不确定性说明 ───────────────────────────────────┤
+│  - 有1篇文献(PMID 567890)提出TP53在某些亚型中     │
+│    表达下调与预后无显著关联（低质量证据）          │
+│  - 种族差异：亚洲人群中TP53突变率更高             │
+└──────────────────────────────────────────────────┘
+</code></pre>
+<hr/>
+<h2 id="5-实施策略">5. 实施策略<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-实施策略" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-第一阶段模板系统建设">5.1 第一阶段：模板系统建设<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-第一阶段模板系统建设" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>
+<p><strong>定义 Layer 1 元模板</strong>（3-5 种推理拓扑）</p>
+<ul>
+<li>诊断推理模板</li>
+<li>治疗推理模板</li>
+<li>机制探索模板</li>
+<li>预后评估模板</li>
+<li>疾病关联模板</li>
+</ul>
+</li>
+<li>
+<p><strong>设计 Layer 2 领域配置格式</strong></p>
+<ul>
+<li>确定配置项的结构化 Schema</li>
+<li>创建配置加载机制（Domain Plugin）</li>
+</ul>
+</li>
+<li>
+<p><strong>创建 2-3 个”样板间”</strong></p>
+<ul>
+<li>HCC 诊断配置</li>
+<li>肝癌治疗配置</li>
+<li>HBV→肝硬化→HCC 机制探索配置</li>
+</ul>
+</li>
+</ol>
+<h3 id="52-第二阶段证据聚合">5.2 第二阶段：证据聚合<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-第二阶段证据聚合" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>实现多源证据检索接口</li>
+<li>实现证据质量量化机制</li>
+<li>实现证据融合评估算法</li>
+</ol>
+<h3 id="53-第三阶段交互与迭代">5.3 第三阶段：交互与迭代<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-第三阶段交互与迭代" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>实现可解释性输出生成</li>
+<li>半自动到交互式模式（系统推荐 + 用户修正）</li>
+<li>与临床场景层集成测试</li>
+</ol>
+<hr/>
+<h2 id="6-开放问题待探索">6. 开放问题（待探索）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-开放问题待探索" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li><strong>推理路径的自动生成</strong>：Layer 2 领域配置是否需要支持动态推断，还是完全预定义？</li>
+<li><strong>证据质量的跨源对齐</strong>：不同数据源的证据质量如何统一量化标准？</li>
+<li><strong>矛盾证据的呈现策略</strong>：当不同来源证据结论相反时，如何呈现给用户？</li>
+<li><strong>领域插件的复用性</strong>：如何设计领域配置格式，使得不同疾病之间能复用部分配置？</li>
+<li><strong>评估方法</strong>：如何验证证据链推理的质量？用户实验？专家评审？回溯验证？</li>
+</ol>
+<hr/>
+<h2 id="7-参考工作">7. 参考工作<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-参考工作" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>开放证据链 (Open Evidence Chain)</strong>：类似的法律/科学证据推理框架</li>
+<li><strong>生物医学推理系统</strong>：如 IBM Watson for Oncology 的证据回溯</li>
+<li><strong>可解释 AI (XAI)</strong>：图神经网络的解释方法（GNNExplainer、PGExplainer）</li>
+<li><strong>Kimi 分析建议</strong>：三层模板架构（元模板-领域模板-实例模板），模板与领域知识分离</li>
+</ul>
+<p>|-</p>
+<h2 id="9-与-tesg-的接口约定">9. 与 TESG 的接口约定<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-与-tesg-的接口约定" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>更新日期：2026-05-11
+来源：方向二（跨模态语义对齐）与方向三（证据链推理）合并讨论
+状态：📋 约定已确定，待实现时对齐</p>
+</blockquote>
+<h3 id="91-模块关系">9.1 模块关系<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#91-模块关系" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>推理引擎（方向三）在上，TESG（方向二）在下。推理引擎<strong>调用</strong> TESG 的语义查询接口。</p>
+<pre><code>┌─────────────────────────────┐
+│    推理引擎（方向三）          │
+│  Layer 1/2/3                │
+│      ↓ 调用                   │
+├─────────────────────────────┤
+│    TESG 语义坐标系（方向二）    │
+│  时序轴(T) / 因果轴(C) / 证据轴(E)│
+└─────────────────────────────┘
+</code></pre>
+<h3 id="92-核心原则分层保留按需融合">9.2 核心原则：分层保留，按需融合<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#92-核心原则分层保留按需融合" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>红线原则</strong>：TESG 的核心输出永远是<strong>分层语义棱镜（Semantic Prism）</strong>，即 T/C/E 三个维度各自保留独立语义；融合只是上层调用的一个可选函数，且融合结果必须可拆解。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>#</th><th>原则</th><th>说明</th></tr></thead><tbody><tr><td>1</td><td><strong>分层是默认，融合是可选</strong></td><td>TESG 默认输出 T/C/E 各自的结构化语义；融合由上层按需调用</td></tr><tr><td>2</td><td><strong>融合必须可拆解</strong></td><td>任何融合查询返回 <code>decomposition</code> 字段，标注融合值来源比例</td></tr><tr><td>3</td><td><strong>冲突在融合前检测</strong></td><td>T/C/E 维度间的方向性冲突必须在融合层之前标记，不靠融合”抹平”</td></tr><tr><td>4</td><td><strong>维度查询优先于融合查询</strong></td><td>Layer 2 的 Domain Profile 主要使用分层查询，只在最终输出阶段可选融合</td></tr></tbody></table></div>
+<h3 id="93-两类查询接口">9.3 两类查询接口<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#93-两类查询接口" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>TESG 应提供两类接口，推理引擎根据不同阶段选择调用：</p>
+<h4 id="a-分层语义查询推理引擎主要使用">A. 分层语义查询（推理引擎<strong>主要使用</strong>）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#a-分层语义查询推理引擎主要使用" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">tesg.query_semantic_prism(</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">    entity_pair</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;hepato:TGFB1&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;DOID:684&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">    temporal_stages</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;cirrhosis&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;early_hcc&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;advanced_hcc&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">    causal_layers</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;molecular&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;clinical&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 返回结构化语义，每个(T,C,E)组合独立：</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   &quot;cirrhosis&quot;: {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#     &quot;molecular&quot;: {&quot;direction&quot;: &quot;protective&quot;, &quot;magnitude&quot;: 0.85, &quot;evidence&quot;: [...]},</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#     &quot;clinical&quot;: {&quot;direction&quot;: &quot;protective&quot;, &quot;magnitude&quot;: 0.60, &quot;evidence&quot;: [...]}</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   },</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   &quot;advanced_hcc&quot;: {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#     &quot;molecular&quot;: {&quot;direction&quot;: &quot;oncogenic&quot;, &quot;magnitude&quot;: 0.75, &quot;evidence&quot;: [...]},</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#     &quot;clinical&quot;: {&quot;direction&quot;: &quot;oncogenic&quot;, &quot;magnitude&quot;: 0.82, &quot;evidence&quot;: [...]}</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   }</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># }</span></span></code></pre></figure>
+<p>调用方：<code>EvidenceCollector</code> 和 <code>ConflictResolution</code> 节点。</p>
+<h4 id="b-融合语义查询推理引擎最终输出阶段可选调用">B. 融合语义查询（推理引擎<strong>最终输出阶段</strong>可选调用）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#b-融合语义查询推理引擎最终输出阶段可选调用" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">tesg.query_fused_semantic(</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">    entity_pair</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;hepato:TGFB1&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;DOID:684&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">    fusion_strategy</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;weighted_sum&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 或 &quot;dempster_shafer&quot;</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">    weights</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;temporal&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0.3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;causal&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0.4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;evidential&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0.3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">},</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">    include_decomposition</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">True</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">       # 必须返回拆解</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># 返回融合值 + 分层拆解：</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   &quot;fused&quot;: {&quot;direction&quot;: &quot;oncogenic&quot;, &quot;magnitude&quot;: 0.68},</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   &quot;decomposition&quot;: {</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#     &quot;temporal_contribution&quot;: 0.22,</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#     &quot;causal_contribution&quot;: 0.35,</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#     &quot;evidential_contribution&quot;: 0.11</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   },</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   &quot;conflict_detected&quot;: True,</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#   &quot;conflict_details&quot;: [...]</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># }</span></span></code></pre></figure>
+<p>调用方：<code>InferenceEngine</code> 和 <code>ExplanationGenerator</code> 节点（生成最终置信度和推理报告时使用）。</p>
+<h3 id="94-与-layer-2-配置的协作">9.4 与 Layer 2 配置的协作<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#94-与-layer-2-配置的协作" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Layer 2 的 Domain Profile 中，<code>evidence_query_builder</code> 的证据维度应映射到 TESG 的分层查询接口：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Domain Profile 维度</th><th>TESG 语义维度</th><th>调用接口</th></tr></thead><tbody><tr><td>literature</td><td>pubmed_mining</td><td><code>query_semantic_prism</code>（E轴为主）</td></tr><tr><td>ontology</td><td>obo_semantic</td><td><code>query_semantic_prism</code>（C轴为主）</td></tr><tr><td>association</td><td>association_network</td><td><code>query_semantic_prism</code>（E轴+C轴）</td></tr><tr><td>clinical</td><td>ehr_semantic</td><td><code>query_semantic_prism</code>（T轴+C轴）</td></tr><tr><td>综合评分</td><td>—</td><td><code>query_fused_semantic</code>（可选）</td></tr></tbody></table></div>
+<h3 id="95-降级策略">9.5 降级策略<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#95-降级策略" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>TESG 未实现时，推理引擎使用降级策略：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>级别</th><th>TESG 状态</th><th>策略</th></tr></thead><tbody><tr><td>Level 1</td><td>完整实现</td><td>调用 <code>query_semantic_prism</code> 获取分层语义</td></tr><tr><td>Level 2</td><td>仅结构化标注</td><td>使用 edge_semantic_facets 表中的静态标签，无动态融合</td></tr><tr><td>Level 3</td><td>未实现</td><td>纯规则驱动（基于 Layer 2 conflict_rules 配置）</td></tr></tbody></table></div>
+<p>降级粒度：<strong>每个查询独立降级</strong>。TESG 查询超时（如 5 秒）→ 自动降为 Level 2 → 记录降级事件。</p>
+<hr/>
+<blockquote>
+<p>此文档为方案设计阶段，三层模板架构已吸收 Kimi 建议。
+下一步：设计 Layer 2 Domain Profile Schema，开始 Python 框架实现。</p>
+</blockquote>
+<hr/>
+<h2 id="8-meta-template-v10-设计完成">8. Meta-Template v1.0 设计完成<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-meta-template-v10-设计完成" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote>
+<p>设计日期：2026-05-08（由外部模型完成完整设计）
+同步日期：2026-05-11（同步回 Wiki）
+设计版本：DiagnosticAbduction_v1.0</p>
+</blockquote>
+<h3 id="81-模板标识">8.1 模板标识<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#81-模板标识" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>字段</th><th>值</th></tr></thead><tbody><tr><td>模板 ID</td><td><code>DiagnosticAbduction_v1.0</code></td></tr><tr><td>名称</td><td>Diagnostic Abduction Meta-Template</td></tr><tr><td>描述</td><td>基于观察生成候选疾病，通过证据收集与评估进行鉴别诊断的通用推理拓扑</td></tr><tr><td>范围</td><td>所有需要鉴别诊断的临床场景</td></tr><tr><td>适用领域</td><td>hepatology, oncology, general_medicine</td></tr></tbody></table></div>
+<h3 id="82-dag-拓扑9节点">8.2 DAG 拓扑（9节点）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#82-dag-拓扑9节点" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><code>                                            ┌─────────────────────────┐
+                                            │  反馈: 证据质量不足      │
+                                            │  EvidenceEvaluator →    │
+                                            │  EvidenceCollector      │
+                                            └──────────┬──────────────┘
+                                                       │
+[用户输入] → [ObservationParser] → [CandidateGenerator]
+                ↓                           ↓
+         [DifferentialRanker] ← [反馈: 冲突需临床信息]
+                ↓                      ConflictResolution
+         [EvidenceCollector] ←───────┐  ↑
+                ↓                    │  │
+         [EvidenceEvaluator] ────────┘  │
+                ↓                       │
+         [InferenceEngine] ─────────────┘
+                ↓
+         [ConflictResolution] ←── TESG时序语义查询
+                ↓
+         [ConclusionRanker]
+                ↓
+         [ExplanationGenerator] → [推理报告]
+</code></pre>
+<p><strong>边类型</strong>：</p>
+<ul>
+<li><code>sequential</code>：主推理路径</li>
+<li><code>feedback</code>：回退路径（EvidenceEvaluator → EvidenceCollector，当质量阈值以下时触发）</li>
+<li><code>feedback</code>：回退路径（ConflictResolution → ObservationParser，当冲突需要额外临床信息时触发）</li>
+</ul>
+<h3 id="83-节点插件槽位">8.3 节点插件槽位<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#83-节点插件槽位" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>每个节点声明其对外部领域知识的依赖，通过 Layer 2 Domain Profile 的插件机制注入：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>节点</th><th>类型</th><th>插件槽</th><th>功能</th></tr></thead><tbody><tr><td>ObservationParser</td><td>input_processor</td><td><code>observation_extractor</code></td><td>解析用户输入，提取结构化观察</td></tr><tr><td>CandidateGenerator</td><td>generator</td><td><code>candidate_generator</code></td><td>基于观察生成候选疾病列表</td></tr><tr><td>DifferentialRanker</td><td>ranker</td><td><code>ranking_strategy</code></td><td>对候选疾病进行鉴别排序</td></tr><tr><td>EvidenceCollector</td><td>collector</td><td><code>evidence_query_builder</code></td><td>为每个假设收集多维度证据</td></tr><tr><td>EvidenceEvaluator</td><td>evaluator</td><td><code>evaluation_criteria</code></td><td>评估证据质量、时效性、一致性</td></tr><tr><td>InferenceEngine</td><td>synthesizer</td><td><code>fusion_weights</code></td><td>综合评估，生成置信度</td></tr><tr><td>ConflictResolution</td><td>arbiter</td><td><code>conflict_rules</code></td><td>检测并标记证据冲突</td></tr><tr><td>ConclusionRanker</td><td>ranker</td><td><code>conclusion_formatter</code></td><td>最终排序，生成鉴别诊断</td></tr><tr><td>ExplanationGenerator</td><td>output_processor</td><td><code>report_generator</code></td><td>生成可解释推理报告</td></tr></tbody></table></div>
+<h3 id="84-推理模式嵌入">8.4 推理模式嵌入<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#84-推理模式嵌入" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>推理模式</th><th>激活节点</th><th>说明</th></tr></thead><tbody><tr><td><strong>Abduction</strong>（溯因）</td><td>CandidateGenerator, DifferentialRanker</td><td>从观察生成最佳解释</td></tr><tr><td><strong>Deduction</strong>（演绎）</td><td>EvidenceCollector, EvidenceEvaluator, InferenceEngine</td><td>基于证据验证假设</td></tr><tr><td><strong>Temporal</strong>（时序）</td><td>ConflictResolution</td><td>时序语义冲突检测（需 TESG）</td></tr></tbody></table></div>
+<h3 id="85-输出结构核心字段">8.5 输出结构核心字段<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#85-输出结构核心字段" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="json" data-theme="github-light github-dark"><code data-language="json" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;template_id&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;DiagnosticAbduction_v1.0&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;inference_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;abduction+deduction+temporal&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;conclusion&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;primary_diagnosis&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;diagnosis_code&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;conclusion_type&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> },</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;confidence&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0.0</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">~</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;evidence_chain&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;step_id&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;node_name&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;description&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;evidence&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [], </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;confidence&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;reasoning_mode&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;differential_diagnosis&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;rank&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;disease&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;confidence&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;supporting_evidence&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;opposing_evidence&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;key_differentiators&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;uncertainties&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;uncertainty_type&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;description&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;impact_on_conclusion&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;suggested_action&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;missing_information&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;field&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;importance&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;reason&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;suggested_source&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;conflicts&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;conflict_id&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;entity_pair&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;temporal_context&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;conflicting_evidence&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;resolution_status&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;recommendations&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [{ </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;recommendation_type&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;priority&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;description&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;rationale&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;provenance&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;template_version&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;domain_profile&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;knowledge_graph_version&quot;</span><span style="--shiki-light:#B31D28;--shiki-light-font-style:italic;--shiki-dark:#FDAEB7;--shiki-dark-font-style:italic;">,</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> &quot;execution_timestamp&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<h3 id="86-边界条件处理">8.6 边界条件处理<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#86-边界条件处理" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>场景</th><th>检测条件</th><th>处理策略</th></tr></thead><tbody><tr><td>零证据</td><td>evidence_collected == 0</td><td>返回 <code>insufficient_evidence</code>，列出缺失信息</td></tr><tr><td>单一来源</td><td>仅一类证据来源</td><td>置信度 ×0.6 衰减，标记 <code>low_quality_evidence</code></td></tr><tr><td>方向矛盾</td><td>冲突检测触发</td><td>TESG 检查时序翻转；标记 <code>requires_clinical_judgment</code></td></tr><tr><td>输入不完整</td><td>completeness &lt; 50%</td><td>拒绝推理，返回缺失字段列表</td></tr></tbody></table></div>
+<h3 id="87-图谱交互接口">8.7 图谱交互接口<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#87-图谱交互接口" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>定义了 4 个查询方法（由 Layer 2 Domain Profile 实现具体适配器）：</p>
+<ul>
+<li><code>query_candidates(observations, ontology_scope)</code> → 候选疾病列表（CandidateGenerator）</li>
+<li><code>query_evidence(entity_pair, evidence_types, temporal_context)</code> → 多维度证据面（EvidenceCollector）</li>
+<li><code>query_temporal_semantic(entity_pair, disease_stage)</code> → 时序语义向量（ConflictResolution / TESG 接口）</li>
+<li><code>query_disease_hierarchy(disease_ids)</code> → 疾病层级关系（ConclusionRanker）</li>
+</ul>
+<hr/></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-55" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#证据链推理方法--方向三详细展开" data-for="证据链推理方法--方向三详细展开">证据链推理方法 — 方向三详细展开</a></li><li class="depth-1"><a href="#1-问题定义为什么需要证据链推理" data-for="1-问题定义为什么需要证据链推理">1. 问题定义：为什么需要证据链推理？</a></li><li class="depth-2"><a href="#11-当前知识图谱的黑箱问题" data-for="11-当前知识图谱的黑箱问题">1.1 当前知识图谱的”黑箱”问题</a></li><li class="depth-2"><a href="#12-与场景层的关系" data-for="12-与场景层的关系">1.2 与场景层的关系</a></li><li class="depth-2"><a href="#13-知识图谱的定位转变" data-for="13-知识图谱的定位转变">1.3 知识图谱的定位转变</a></li><li class="depth-1"><a href="#2-证据链的定义" data-for="2-证据链的定义">2. 证据链的定义</a></li><li class="depth-2"><a href="#21-什么是证据链" data-for="21-什么是证据链">2.1 什么是证据链？</a></li><li class="depth-2"><a href="#22-证据类型" data-for="22-证据类型">2.2 证据类型</a></li><li class="depth-2"><a href="#23-推理模式" data-for="23-推理模式">2.3 推理模式</a></li><li class="depth-1"><a href="#3-方法设计三层模板架构" data-for="3-方法设计三层模板架构">3. 方法设计：三层模板架构</a></li><li class="depth-2"><a href="#31-设计原则" data-for="31-设计原则">3.1 设计原则</a></li><li class="depth-2"><a href="#32-三层模板架构" data-for="32-三层模板架构">3.2 三层模板架构</a></li><li class="depth-2"><a href="#33-机制说明" data-for="33-机制说明">3.3 机制说明</a></li><li class="depth-2"><a href="#34-三种粒度的决策三层架构解答了模板粒度问题" data-for="34-三种粒度的决策三层架构解答了模板粒度问题">3.4 三种粒度的决策：三层架构解答了模板粒度问题</a></li><li class="depth-2"><a href="#35-与-alicoco-方法的对比" data-for="35-与-alicoco-方法的对比">3.5 与 AliCoCo 方法的对比</a></li><li class="depth-1"><a href="#4-整体系统架构" data-for="4-整体系统架构">4. 整体系统架构</a></li><li class="depth-2"><a href="#41-证据链引擎架构" data-for="41-证据链引擎架构">4.1 证据链引擎架构</a></li><li class="depth-2"><a href="#42-关键模块" data-for="42-关键模块">4.2 关键模块</a></li><li class="depth-1"><a href="#5-实施策略" data-for="5-实施策略">5. 实施策略</a></li><li class="depth-2"><a href="#51-第一阶段模板系统建设" data-for="51-第一阶段模板系统建设">5.1 第一阶段：模板系统建设</a></li><li class="depth-2"><a href="#52-第二阶段证据聚合" data-for="52-第二阶段证据聚合">5.2 第二阶段：证据聚合</a></li><li class="depth-2"><a href="#53-第三阶段交互与迭代" data-for="53-第三阶段交互与迭代">5.3 第三阶段：交互与迭代</a></li><li class="depth-1"><a href="#6-开放问题待探索" data-for="6-开放问题待探索">6. 开放问题（待探索）</a></li><li class="depth-1"><a href="#7-参考工作" data-for="7-参考工作">7. 参考工作</a></li><li class="depth-1"><a href="#9-与-tesg-的接口约定" data-for="9-与-tesg-的接口约定">9. 与 TESG 的接口约定</a></li><li class="depth-2"><a href="#91-模块关系" data-for="91-模块关系">9.1 模块关系</a></li><li class="depth-2"><a href="#92-核心原则分层保留按需融合" data-for="92-核心原则分层保留按需融合">9.2 核心原则：分层保留，按需融合</a></li><li class="depth-2"><a href="#93-两类查询接口" data-for="93-两类查询接口">9.3 两类查询接口</a></li><li class="depth-2"><a href="#94-与-layer-2-配置的协作" data-for="94-与-layer-2-配置的协作">9.4 与 Layer 2 配置的协作</a></li><li class="depth-2"><a href="#95-降级策略" data-for="95-降级策略">9.5 降级策略</a></li><li class="depth-1"><a href="#8-meta-template-v10-设计完成" data-for="8-meta-template-v10-设计完成">8. Meta-Template v1.0 设计完成</a></li><li class="depth-2"><a href="#81-模板标识" data-for="81-模板标识">8.1 模板标识</a></li><li class="depth-2"><a href="#82-dag-拓扑9节点" data-for="82-dag-拓扑9节点">8.2 DAG 拓扑（9节点）</a></li><li class="depth-2"><a href="#83-节点插件槽位" data-for="83-节点插件槽位">8.3 节点插件槽位</a></li><li class="depth-2"><a href="#84-推理模式嵌入" data-for="84-推理模式嵌入">8.4 推理模式嵌入</a></li><li class="depth-2"><a href="#85-输出结构核心字段" data-for="85-输出结构核心字段">8.5 输出结构核心字段</a></li><li class="depth-2"><a href="#86-边界条件处理" data-for="86-边界条件处理">8.6 边界条件处理</a></li><li class="depth-2"><a href="#87-图谱交互接口" data-for="87-图谱交互接口">8.7 图谱交互接口</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="../Evidence-Chain-Reasoning" class="internal">Evidence Chain Reasoning</a></li><li><a href="../" class="internal">肝病知识图谱 Wiki</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="../postscript.js" type="module" data-persist="true"></script></html>

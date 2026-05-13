@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>clinical_scenario_layer</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Liver KG Wiki"/><meta property="og:title" content="clinical_scenario_layer"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="clinical_scenario_layer"/><meta name="twitter:description" content="临床场景层设计文档 肝病知识图谱临床场景层设计 — 弥合专业知识图谱与临床医生使用习惯之间的鸿沟 1."/><meta property="og:description" content="临床场景层设计文档 肝病知识图谱临床场景层设计 — 弥合专业知识图谱与临床医生使用习惯之间的鸿沟 1."/><meta property="og:image:alt" content="临床场景层设计文档 肝病知识图谱临床场景层设计 — 弥合专业知识图谱与临床医生使用习惯之间的鸿沟 1."/><meta property="og:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta name="twitter:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="zrt-980802.github.io/liver-kg-wiki-site"/><meta property="og:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/clinical_scenario_layer"/><meta property="twitter:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/clinical_scenario_layer"/><link rel="icon" href="./static/icon.png"/><meta name="description" content="临床场景层设计文档 肝病知识图谱临床场景层设计 — 弥合专业知识图谱与临床医生使用习惯之间的鸿沟 1."/><meta name="generator" content="Quartz"/><link href="./index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvYW5kb25nXzA4MDIvcHJvamVjdHMvbGl2ZXJfZGlzZWFzZV9rZy9saXZlci1rZy1xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><script src="./prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("./static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://zrt-980802.github.io/liver-kg-wiki-site/index.xml"/></head><body data-slug="clinical_scenario_layer"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href=".">Liver KG Wiki</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-54"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-54" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="./">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>clinical_scenario_layer</a></div></nav><h1 class="article-title">clinical_scenario_layer</h1><p show-comma="true" class="content-meta"><time datetime="2026-05-13T07:16:35.315Z">May 13, 2026</time><span>19 min read</span></p></div></div><article class="popover-hint"><h1 id="临床场景层设计文档">临床场景层设计文档<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#临床场景层设计文档" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>肝病知识图谱临床场景层设计 — 弥合专业知识图谱与临床医生使用习惯之间的鸿沟</p>
+</blockquote>
+<hr/>
+<h2 id="1-设计背景">1. 设计背景<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-设计背景" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="11-核心问题">1.1 核心问题<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-核心问题" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>专业知识图谱与临床医生使用习惯之间的鸿沟</strong>：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>临床医生思维</th><th>知识图谱结构</th></tr></thead><tbody><tr><td><strong>认知方式</strong></td><td>基于症状、体征、检查结果的临床推理</td><td>基于实体、关系、属性的网络结构</td></tr><tr><td><strong>决策过程</strong></td><td>病史采集 → 体格检查 → 辅助检查 → 诊断 → 治疗</td><td>实体查询 → 关系分析 → 路径推理 → 结果输出</td></tr><tr><td><strong>知识组织</strong></td><td>按疾病、症状、检查、治疗分类</td><td>按实体类型、关系类型分类</td></tr><tr><td><strong>使用场景</strong></td><td>诊疗工作流中的具体决策点</td><td>独立的知识查询和分析</td></tr></tbody></table></div>
+<h3 id="12-alicoco-启示">1.2 AliCoCo 启示<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-alicoco-启示" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>AliCoCo 的核心创新是在用户心智场景需求与 CPV 分类体系之间增加<strong>临床场景层</strong>：</p>
+<ul>
+<li><strong>用户需求</strong>：医生需要解决具体的临床问题</li>
+<li><strong>CPV 分类</strong>：产品-价值-价格的标准化分类</li>
+<li><strong>场景层</strong>：将标准化分类映射到具体使用场景</li>
+</ul>
+<p><strong>对肝病知识图谱的启示</strong>：</p>
+<ul>
+<li><strong>知识图谱</strong>：相当于 CPV 分类体系（标准化的知识结构）</li>
+<li><strong>临床医生</strong>：相当于用户（需要解决具体临床问题）</li>
+<li><strong>临床场景层</strong>：将知识图谱映射到临床工作场景</li>
+</ul>
+<hr/>
+<h2 id="2-设计理念">2. 设计理念<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-设计理念" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="21-核心目标">2.1 核心目标<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-核心目标" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>将知识图谱的”网络结构”转换为临床医生可理解的”场景化知识”</strong></p>
+<h3 id="22-设计原则">2.2 设计原则<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-设计原则" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>场景驱动</strong>：以临床工作场景为中心组织知识</li>
+<li><strong>工作流集成</strong>：无缝集成到医生的诊疗工作流中</li>
+<li><strong>证据可视化</strong>：循证医学证据的直观呈现</li>
+<li><strong>决策支持</strong>：在关键决策点提供知识支持</li>
+</ol>
+<h3 id="23-架构定位">2.3 架构定位<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-架构定位" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><code>┌─────────────────────────────────────────┐
+│           临床应用层                      │
+│  智能诊疗 · 药物预警 · 预后预测          │
+├─────────────────────────────────────────┤
+│         临床场景层 ⭐ 核心创新            │
+│  场景化知识组织 · 临床工作流支持         │
+├─────────────────────────────────────────┤
+│         知识图谱层                        │
+│  疾病-基因-蛋白-通路关系网络             │
+├─────────────────────────────────────────┤
+│         知识融合层                        │
+│  实体对齐 · 关系合并 · 冲突解决          │
+├─────────────────────────────────────────┤
+│         数据源层                          │
+│  HepatoOntology · PubMed · 多组学数据    │
+└─────────────────────────────────────────┘
+</code></pre>
+<hr/>
+<h2 id="3-场景层架构">3. 场景层架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-场景层架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="31-整体架构">3.1 整体架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-整体架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><code>临床场景层 = 场景定义 + 知识映射 + 工作流支持
+
+┌─────────────────────────────────────────────────────┐
+│                  临床场景层                          │
+├─────────────────────────────────────────────────────┤
+│  场景定义模块      │  知识映射模块      │ 工作流支持模块 │
+├─────────────────────────────────────────────────────┤
+│ • 临床场景库      │ • 实体映射        │ • 诊疗流程     │
+│ • 场景模板        │ • 关系映射        │ • 决策节点     │
+│ • 场景演化        │ • 证据映射        │ • 证据展示     │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="32-场景定义模块">3.2 场景定义模块<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-场景定义模块" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="321-临床场景库">3.2.1 临床场景库<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#321-临床场景库" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>预定义常见临床场景，覆盖肝病诊疗全过程：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>场景类别</th><th>具体场景</th><th>用户角色</th><th>核心需求</th></tr></thead><tbody><tr><td><strong>诊断场景</strong></td><td>肝癌诊断支持</td><td>临床医生</td><td>鉴别诊断、检查推荐</td></tr><tr><td><strong>治疗场景</strong></td><td>治疗方案推荐</td><td>临床医生</td><td>个性化治疗、疗效预测</td></tr><tr><td><strong>用药场景</strong></td><td>药物相互作用预警</td><td>临床药师</td><td>风险评估、替代建议</td></tr><tr><td><strong>预后场景</strong></td><td>疾病进展预测</td><td>临床医生</td><td>预后评估、随访计划</td></tr><tr><td><strong>科研场景</strong></td><td>研究热点分析</td><td>科研人员</td><td>趋势分析、合作网络</td></tr></tbody></table></div>
+<h4 id="322-场景模板">3.2.2 场景模板<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#322-场景模板" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>标准化的场景描述结构：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">场景ID</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">SC-001</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">场景名称</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">肝癌诊断支持</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">场景描述</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">基于患者症状、检查结果支持肝癌诊断</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">输入要素</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">患者症状</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">黄疸、腹痛、体重下降等</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">检查结果</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">AFP、影像学检查、肝功能等</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">病史信息</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">乙肝病史、饮酒史等</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">输出要素</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">诊断建议</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">可能的诊断列表</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">鉴别诊断</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">需要排除的疾病</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">检查推荐</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">进一步检查建议</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">知识映射</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">症状 → 疾病实体</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">检查结果 → 分子标记物</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">病史 → 风险因素</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">决策节点</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">是否需要进一步影像学检查</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">是否需要肝活检</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">诊断置信度评估</span></span></code></pre></figure>
+<h4 id="323-场景演化">3.2.3 场景演化<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#323-场景演化" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>基于新证据的场景更新机制：</p>
+<ul>
+<li><strong>证据收集</strong>：定期收集新发表的文献证据</li>
+<li><strong>证据评估</strong>：评估证据质量和临床相关性</li>
+<li><strong>场景更新</strong>：基于证据更新场景模板和映射规则</li>
+</ul>
+<h3 id="33-知识映射模块">3.3 知识映射模块<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-知识映射模块" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="331-实体映射">3.3.1 实体映射<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#331-实体映射" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>将知识图谱实体映射到临床概念：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>知识图谱实体</th><th>临床概念</th><th>映射规则</th></tr></thead><tbody><tr><td>疾病实体 (如：肝细胞癌)</td><td>临床诊断</td><td>直接映射</td></tr><tr><td>基因实体 (如：TP53)</td><td>分子标记物</td><td>功能关联映射</td></tr><tr><td>蛋白实体 (如：AFP)</td><td>检查指标</td><td>直接映射</td></tr><tr><td>药物实体 (如：索拉非尼)</td><td>治疗方案</td><td>适应症映射</td></tr></tbody></table></div>
+<h4 id="332-关系映射">3.3.2 关系映射<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#332-关系映射" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>将图谱关系映射到临床推理路径：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>图谱关系</th><th>临床推理</th><th>应用场景</th></tr></thead><tbody><tr><td>疾病-基因关联</td><td>疾病的分子机制</td><td>诊断支持</td></tr><tr><td>基因-药物关联</td><td>药物作用靶点</td><td>治疗选择</td></tr><tr><td>疾病-症状关联</td><td>疾病临床表现</td><td>鉴别诊断</td></tr><tr><td>药物-药物相互作用</td><td>用药风险</td><td>药物预警</td></tr></tbody></table></div>
+<h4 id="333-证据映射">3.3.3 证据映射<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#333-证据映射" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>将文献证据映射到临床推荐等级：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>证据等级</th><th>临床推荐</th><th>知识图谱证据</th></tr></thead><tbody><tr><td>A级证据</td><td>强烈推荐</td><td>多篇高质量文献支持</td></tr><tr><td>B级证据</td><td>推荐</td><td>有限文献支持</td></tr><tr><td>C级证据</td><td>可考虑</td><td>个案报告或专家意见</td></tr><tr><td>D级证据</td><td>不推荐</td><td>反面证据或缺乏证据</td></tr></tbody></table></div>
+<h3 id="34-工作流支持模块">3.4 工作流支持模块<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#34-工作流支持模块" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="341-诊疗流程">3.4.1 诊疗流程<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#341-诊疗流程" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>标准化的临床工作流程：</p>
+<pre><code>患者就诊
+  ↓
+病史采集 → 知识支持：相关疾病、风险因素
+  ↓
+体格检查 → 知识支持：体征与疾病关联
+  ↓
+辅助检查 → 知识支持：检查项目推荐、结果解读
+  ↓
+诊断决策 → 知识支持：鉴别诊断、诊断标准
+  ↓
+治疗方案 → 知识支持：治疗选择、疗效预测
+  ↓
+随访计划 → 知识支持：预后评估、监测指标
+</code></pre>
+<h4 id="342-决策节点">3.4.2 决策节点<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#342-决策节点" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>关键决策点的知识支持：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>决策节点</th><th>支持知识</th><th>输出形式</th></tr></thead><tbody><tr><td>是否需要进一步检查</td><td>检查项目推荐、诊断价值</td><td>检查清单</td></tr><tr><td>诊断选择</td><td>鉴别诊断、诊断标准</td><td>诊断建议列表</td></tr><tr><td>治疗方案选择</td><td>治疗方案、疗效对比</td><td>治疗方案推荐</td></tr><tr><td>药物选择</td><td>药物作用、相互作用</td><td>用药建议</td></tr></tbody></table></div>
+<h4 id="343-证据展示">3.4.3 证据展示<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#343-证据展示" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>循证医学证据的可视化呈现：</p>
+<ul>
+<li><strong>证据强度</strong>：用颜色或图标表示证据等级</li>
+<li><strong>证据来源</strong>：显示文献来源和发表时间</li>
+<li><strong>证据数量</strong>：显示支持文献数量</li>
+<li><strong>证据质量</strong>：显示研究设计类型（RCT、队列研究等）</li>
+</ul>
+<hr/>
+<h2 id="4-具体场景设计">4. 具体场景设计<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-具体场景设计" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-场景1肝癌诊断支持">4.1 场景1：肝癌诊断支持<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-场景1肝癌诊断支持" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="411-场景描述">4.1.1 场景描述<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#411-场景描述" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>目标</strong>：基于患者症状、检查结果支持肝癌诊断</p>
+<p><strong>用户</strong>：临床医生</p>
+<p><strong>输入</strong>：</p>
+<ul>
+<li>患者症状：黄疸、腹痛、体重下降、乏力等</li>
+<li>检查结果：AFP、影像学检查、肝功能等</li>
+<li>病史信息：乙肝病史、饮酒史、家族史等</li>
+</ul>
+<p><strong>输出</strong>：</p>
+<ul>
+<li>诊断建议：可能的诊断列表（肝癌、肝硬化、肝炎等）</li>
+<li>鉴别诊断：需要排除的疾病</li>
+<li>检查推荐：进一步检查建议（增强CT、MRI、肝活检等）</li>
+</ul>
+<h4 id="412-知识映射">4.1.2 知识映射<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#412-知识映射" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>临床输入 → 知识图谱实体 → 临床输出
+
+患者症状：
+  黄疸 → 疾病实体：肝细胞癌、胆管癌、肝硬化
+  腹痛 → 疾病实体：肝癌、肝脓肿、胆囊炎
+  体重下降 → 疾病实体：肝癌、消化系统肿瘤
+
+检查结果：
+  AFP升高 → 分子标记物：肝癌特异性标记物
+  影像学异常 → 疾病实体：肝脏占位性病变
+  肝功能异常 → 疾病实体：肝功能损害
+
+病史信息：
+  乙肝病史 → 风险因素：肝癌高危人群
+  饮酒史 → 风险因素：肝硬化风险
+</code></pre>
+<h4 id="413-决策支持">4.1.3 决策支持<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#413-决策支持" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>决策节点1：是否需要进一步影像学检查</strong></p>
+<ul>
+<li><strong>支持知识</strong>：影像学检查对肝癌诊断的敏感性、特异性</li>
+<li><strong>输出</strong>：推荐增强CT或MRI检查</li>
+</ul>
+<p><strong>决策节点2：是否需要肝活检</strong></p>
+<ul>
+<li><strong>支持知识</strong>：肝活检的适应症、风险、诊断价值</li>
+<li><strong>输出</strong>：根据影像学结果决定是否活检</li>
+</ul>
+<p><strong>决策节点3：诊断置信度评估</strong></p>
+<ul>
+<li><strong>支持知识</strong>：诊断标准、鉴别诊断要点</li>
+<li><strong>输出</strong>：诊断置信度（高、中、低）</li>
+</ul>
+<h3 id="42-场景2药物相互作用预警">4.2 场景2：药物相互作用预警<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-场景2药物相互作用预警" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="421-场景描述">4.2.1 场景描述<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#421-场景描述" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>目标</strong>：检测药物之间的相互作用风险</p>
+<p><strong>用户</strong>：临床医生、临床药师</p>
+<p><strong>输入</strong>：患者用药清单</p>
+<p><strong>输出</strong>：</p>
+<ul>
+<li>相互作用风险等级：高、中、低</li>
+<li>相互作用机制：药代动力学、药效学</li>
+<li>替代药物建议：安全的替代药物</li>
+</ul>
+<h4 id="422-知识映射">4.2.2 知识映射<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#422-知识映射" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>临床输入 → 知识图谱实体 → 临床输出
+
+患者用药：
+  索拉非尼 → 药物实体：索拉非尼
+  华法林 → 药物实体：华法林
+
+相互作用：
+  索拉非尼-华法林 → 药物-药物相互作用
+  机制：CYP450酶抑制 → 药代动力学相互作用
+  风险：出血风险增加 → 临床风险等级
+</code></pre>
+<h4 id="423-决策支持">4.2.3 决策支持<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#423-决策支持" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>决策节点1：相互作用风险评估</strong></p>
+<ul>
+<li><strong>支持知识</strong>：药物相互作用机制、临床证据</li>
+<li><strong>输出</strong>：风险等级（高、中、低）</li>
+</ul>
+<p><strong>决策节点2：用药调整建议</strong></p>
+<ul>
+<li><strong>支持知识</strong>：替代药物、剂量调整方案</li>
+<li><strong>输出</strong>：用药调整建议</li>
+</ul>
+<h3 id="43-场景3治疗方案推荐">4.3 场景3：治疗方案推荐<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-场景3治疗方案推荐" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="431-场景描述">4.3.1 场景描述<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#431-场景描述" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>目标</strong>：基于疾病诊断和患者特征推荐治疗方案</p>
+<p><strong>用户</strong>：临床医生</p>
+<p><strong>输入</strong>：</p>
+<ul>
+<li>疾病诊断：肝癌分期、病理类型</li>
+<li>患者特征：年龄、肝功能、合并症等</li>
+</ul>
+<p><strong>输出</strong>：</p>
+<ul>
+<li>治疗方案：手术、介入、靶向治疗、免疫治疗等</li>
+<li>预期效果：生存期、缓解率等</li>
+<li>风险评估：不良反应、并发症等</li>
+</ul>
+<h4 id="432-知识映射">4.3.2 知识映射<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#432-知识映射" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>临床输入 → 知识图谱实体 → 临床输出
+
+疾病诊断：
+  肝细胞癌 → 疾病实体：肝细胞癌
+  BCLC分期 → 分期系统：早期、中期、晚期
+
+患者特征：
+  年龄 → 患者属性：年龄分组
+  肝功能 → 患者属性：Child-Pugh分级
+  合并症 → 患者属性：合并症列表
+
+治疗方案：
+  手术治疗 → 治疗实体：肝切除术
+  靶向治疗 → 药物实体：索拉非尼、仑伐替尼
+  免疫治疗 → 药物实体：PD-1抑制剂
+</code></pre>
+<h4 id="433-决策支持">4.3.3 决策支持<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#433-决策支持" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>决策节点1：治疗方案选择</strong></p>
+<ul>
+<li><strong>支持知识</strong>：治疗方案的适应症、疗效、风险</li>
+<li><strong>输出</strong>：治疗方案推荐列表</li>
+</ul>
+<p><strong>决策节点2：预期效果评估</strong></p>
+<ul>
+<li><strong>支持知识</strong>：治疗方案的生存期、缓解率数据</li>
+<li><strong>输出</strong>：预期效果评估</li>
+</ul>
+<p><strong>决策节点3：风险评估</strong></p>
+<ul>
+<li><strong>支持知识</strong>：不良反应、并发症发生率</li>
+<li><strong>输出</strong>：风险评估报告</li>
+</ul>
+<hr/>
+<h2 id="5-技术实现">5. 技术实现<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-技术实现" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-场景知识库构建">5.1 场景知识库构建<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-场景知识库构建" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="511-数据来源">5.1.1 数据来源<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#511-数据来源" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>临床指南</strong>：NCCN、ESMO、中国肝癌诊疗指南</li>
+<li><strong>专家经验</strong>：肝病专家访谈、临床病例讨论</li>
+<li><strong>文献证据</strong>：PubMed、ClinicalTrials.gov</li>
+<li><strong>临床数据</strong>：医院电子病历、临床研究数据</li>
+</ul>
+<h4 id="512-构建流程">5.1.2 构建流程<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#512-构建流程" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>指南/专家经验 → 场景提取 → 场景模板化 → 知识映射 → 场景验证
+</code></pre>
+<h3 id="52-映射规则引擎">5.2 映射规则引擎<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-映射规则引擎" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="521-规则类型">5.2.1 规则类型<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#521-规则类型" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>实体映射规则</strong>：将知识图谱实体映射到临床概念</li>
+<li><strong>关系映射规则</strong>：将图谱关系映射到临床推理路径</li>
+<li><strong>证据映射规则</strong>：将文献证据映射到临床推荐等级</li>
+</ul>
+<h4 id="522-规则引擎架构">5.2.2 规则引擎架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#522-规则引擎架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>输入：临床场景 + 知识图谱查询
+  ↓
+规则匹配：匹配相关的映射规则
+  ↓
+知识转换：将图谱知识转换为场景知识
+  ↓
+输出：场景化知识 + 决策支持
+</code></pre>
+<h3 id="53-推理引擎">5.3 推理引擎<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-推理引擎" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="531-推理类型">5.3.1 推理类型<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#531-推理类型" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>诊断推理</strong>：基于症状、检查结果的诊断推理</li>
+<li><strong>治疗推理</strong>：基于疾病特征的治疗方案推理</li>
+<li><strong>预后推理</strong>：基于分子特征的预后推理</li>
+</ul>
+<h4 id="532-推理算法">5.3.2 推理算法<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#532-推理算法" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>规则推理</strong>：基于临床指南的规则推理</li>
+<li><strong>案例推理</strong>：基于相似病例的推理</li>
+<li><strong>机器学习</strong>：基于数据的预测模型</li>
+</ul>
+<h3 id="54-用户界面">5.4 用户界面<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#54-用户界面" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="541-界面设计原则">5.4.1 界面设计原则<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#541-界面设计原则" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>场景化</strong>：以临床场景为中心的界面设计</li>
+<li><strong>工作流集成</strong>：无缝集成到医生工作流</li>
+<li><strong>证据可视化</strong>：直观呈现循证医学证据</li>
+<li><strong>决策支持</strong>：在关键决策点提供支持</li>
+</ul>
+<h4 id="542-界面组件">5.4.2 界面组件<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#542-界面组件" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>场景选择器</strong>：选择当前临床场景</li>
+<li><strong>输入面板</strong>：患者信息、检查结果输入</li>
+<li><strong>知识展示区</strong>：场景化知识呈现</li>
+<li><strong>决策支持区</strong>：决策建议和证据展示</li>
+</ul>
+<hr/>
+<h2 id="6-应用价值">6. 应用价值<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-应用价值" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="61-临床价值">6.1 临床价值<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-临床价值" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>提高诊断准确性</strong>：基于完整知识的诊断支持</li>
+<li><strong>优化治疗方案</strong>：个性化治疗方案推荐</li>
+<li><strong>降低用药风险</strong>：药物相互作用预警</li>
+<li><strong>改善预后评估</strong>：基于分子特征的预后预测</li>
+</ol>
+<h3 id="62-效率价值">6.2 效率价值<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-效率价值" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>缩短诊疗时间</strong>：快速获取相关知识</li>
+<li><strong>减少信息检索</strong>：场景化知识组织</li>
+<li><strong>提高决策质量</strong>：基于证据的决策支持</li>
+</ol>
+<h3 id="63-教育价值">6.3 教育价值<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#63-教育价值" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>临床培训</strong>：标准化的诊疗流程培训</li>
+<li><strong>知识更新</strong>：基于新证据的知识更新</li>
+<li><strong>经验传承</strong>：专家经验的标准化传承</li>
+</ol>
+<hr/>
+<h2 id="7-实施计划">7. 实施计划<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-实施计划" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="71-第一阶段场景定义1-2个月">7.1 第一阶段：场景定义（1-2个月）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#71-第一阶段场景定义1-2个月" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>收集临床指南和专家经验</li>
+<li>定义核心临床场景</li>
+<li>构建场景模板</li>
+</ul>
+<h3 id="72-第二阶段知识映射2-3个月">7.2 第二阶段：知识映射（2-3个月）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#72-第二阶段知识映射2-3个月" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>建立实体映射规则</li>
+<li>建立关系映射规则</li>
+<li>建立证据映射规则</li>
+</ul>
+<h3 id="73-第三阶段系统开发3-4个月">7.3 第三阶段：系统开发（3-4个月）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#73-第三阶段系统开发3-4个月" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>开发映射规则引擎</li>
+<li>开发推理引擎</li>
+<li>开发用户界面</li>
+</ul>
+<h3 id="74-第四阶段测试优化1-2个月">7.4 第四阶段：测试优化（1-2个月）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#74-第四阶段测试优化1-2个月" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>临床测试</li>
+<li>用户反馈</li>
+<li>系统优化</li>
+</ul>
+<hr/>
+<h2 id="8-总结">8. 总结<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-总结" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>临床场景层是肝病知识图谱的核心创新，通过在知识图谱层和应用层之间增加场景化知识组织，有效弥合了专业知识图谱与临床医生使用习惯之间的鸿沟。</p>
+<p><strong>核心价值</strong>：</p>
+<ol>
+<li><strong>场景化知识组织</strong>：将网络结构转换为临床可理解的场景化知识</li>
+<li><strong>工作流集成</strong>：无缝集成到医生的诊疗工作流中</li>
+<li><strong>决策支持</strong>：在关键决策点提供基于证据的知识支持</li>
+<li><strong>效率提升</strong>：大幅缩短信息检索和决策时间</li>
+</ol>
+<p><strong>实施路径</strong>：分阶段实施，从场景定义到系统开发，逐步完善临床场景层功能。</p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-24" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#临床场景层设计文档" data-for="临床场景层设计文档">临床场景层设计文档</a></li><li class="depth-1"><a href="#1-设计背景" data-for="1-设计背景">1. 设计背景</a></li><li class="depth-2"><a href="#11-核心问题" data-for="11-核心问题">1.1 核心问题</a></li><li class="depth-2"><a href="#12-alicoco-启示" data-for="12-alicoco-启示">1.2 AliCoCo 启示</a></li><li class="depth-1"><a href="#2-设计理念" data-for="2-设计理念">2. 设计理念</a></li><li class="depth-2"><a href="#21-核心目标" data-for="21-核心目标">2.1 核心目标</a></li><li class="depth-2"><a href="#22-设计原则" data-for="22-设计原则">2.2 设计原则</a></li><li class="depth-2"><a href="#23-架构定位" data-for="23-架构定位">2.3 架构定位</a></li><li class="depth-1"><a href="#3-场景层架构" data-for="3-场景层架构">3. 场景层架构</a></li><li class="depth-2"><a href="#31-整体架构" data-for="31-整体架构">3.1 整体架构</a></li><li class="depth-2"><a href="#32-场景定义模块" data-for="32-场景定义模块">3.2 场景定义模块</a></li><li class="depth-2"><a href="#33-知识映射模块" data-for="33-知识映射模块">3.3 知识映射模块</a></li><li class="depth-2"><a href="#34-工作流支持模块" data-for="34-工作流支持模块">3.4 工作流支持模块</a></li><li class="depth-1"><a href="#4-具体场景设计" data-for="4-具体场景设计">4. 具体场景设计</a></li><li class="depth-2"><a href="#41-场景1肝癌诊断支持" data-for="41-场景1肝癌诊断支持">4.1 场景1：肝癌诊断支持</a></li><li class="depth-2"><a href="#42-场景2药物相互作用预警" data-for="42-场景2药物相互作用预警">4.2 场景2：药物相互作用预警</a></li><li class="depth-2"><a href="#43-场景3治疗方案推荐" data-for="43-场景3治疗方案推荐">4.3 场景3：治疗方案推荐</a></li><li class="depth-1"><a href="#5-技术实现" data-for="5-技术实现">5. 技术实现</a></li><li class="depth-2"><a href="#51-场景知识库构建" data-for="51-场景知识库构建">5.1 场景知识库构建</a></li><li class="depth-2"><a href="#52-映射规则引擎" data-for="52-映射规则引擎">5.2 映射规则引擎</a></li><li class="depth-2"><a href="#53-推理引擎" data-for="53-推理引擎">5.3 推理引擎</a></li><li class="depth-2"><a href="#54-用户界面" data-for="54-用户界面">5.4 用户界面</a></li><li class="depth-1"><a href="#6-应用价值" data-for="6-应用价值">6. 应用价值</a></li><li class="depth-2"><a href="#61-临床价值" data-for="61-临床价值">6.1 临床价值</a></li><li class="depth-2"><a href="#62-效率价值" data-for="62-效率价值">6.2 效率价值</a></li><li class="depth-2"><a href="#63-教育价值" data-for="63-教育价值">6.3 教育价值</a></li><li class="depth-1"><a href="#7-实施计划" data-for="7-实施计划">7. 实施计划</a></li><li class="depth-2"><a href="#71-第一阶段场景定义1-2个月" data-for="71-第一阶段场景定义1-2个月">7.1 第一阶段：场景定义（1-2个月）</a></li><li class="depth-2"><a href="#72-第二阶段知识映射2-3个月" data-for="72-第二阶段知识映射2-3个月">7.2 第二阶段：知识映射（2-3个月）</a></li><li class="depth-2"><a href="#73-第三阶段系统开发3-4个月" data-for="73-第三阶段系统开发3-4个月">7.3 第三阶段：系统开发（3-4个月）</a></li><li class="depth-2"><a href="#74-第四阶段测试优化1-2个月" data-for="74-第四阶段测试优化1-2个月">7.4 第四阶段：测试优化（1-2个月）</a></li><li class="depth-1"><a href="#8-总结" data-for="8-总结">8. 总结</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="./08_pubchem_mapping_and_classification" class="internal">08_pubchem_mapping_and_classification</a></li><li><a href="./11_project_status" class="internal">11_project_status</a></li><li><a href="./13_project_positioning" class="internal">13_project_positioning</a></li><li><a href="./14_phase_3_4_core_functions" class="internal">14_phase_3_4_core_functions</a></li><li><a href="./" class="internal">肝病知识图谱 Wiki</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="./postscript.js" type="module" data-persist="true"></script></html>

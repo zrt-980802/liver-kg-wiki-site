@@ -1,0 +1,283 @@
+# Liver Base Profile v1.0
+# 肝病诊断基础配置（疾病无关部分）
+# 适配 Meta-Template: DiagnosticAbduction_v1.0
+# 用途: 作为 HCC/ICC/肝硬化等子 Profile 的继承基类
+
+domain_profile:
+  id: "Liver_Base_Profile_v1.0"
+  name: "肝病诊断基础配置"
+  version: "1.0.0"
+  applicable_meta_template: "DiagnosticAbduction_v1.0"
+  domain: "hepatology"
+  disease_focus: null
+
+  extends: null
+  overrides: {}
+
+  plugins:
+
+    evidence_query_builder:
+      enabled: true
+      implementation: "hybrid"
+      config:
+        evidence_dimensions:
+          - id: "literature"
+            name: "文献证据"
+            source_db: "pubmed"
+            query_params:
+              max_results: 20
+              min_confidence: 0.5
+              temporal_filter: false
+          - id: "ontology"
+            name: "本体证据"
+            source_db: "hepato_ontology"
+            query_params:
+              max_results: 10
+              min_confidence: 0.9
+              temporal_filter: false
+          - id: "association"
+            name: "关联证据"
+            source_db: "disgenet_string_ctd"
+            query_params:
+              max_results: 50
+              min_confidence: 0.3
+              temporal_filter: false
+          - id: "clinical"
+            name: "临床证据"
+            source_db: "ehr_cohort"
+            query_params:
+              max_results: 5
+              min_confidence: 0.6
+              temporal_filter: false
+        dimension_combination:
+          mode: "union"
+        per_hypothesis_requirements:
+          - disease_category: "default"
+            required_dimensions: ["literature", "association"]
+            optional_dimensions: ["ontology", "clinical"]
+            min_evidence_count: 3
+      fallback:
+        mode: "single_dimension"
+
+    evaluation_criteria:
+      enabled: true
+      implementation: "rule_based"
+      config:
+        quality_dimensions:
+          - id: "literature_quality"
+            name: "文献质量"
+            weight: 0.4
+          - id: "study_design"
+            name: "研究设计等级"
+            weight: 0.3
+        temporal_validity:
+          half_life_years: 5
+          max_age_years: 10
+          decay_function: "exponential"
+        consistency_check:
+          enabled: true
+          rule_based:
+            - id: "directional_conflict"
+              name: "方向性冲突"
+              condition: "same_entity_pair AND opposite_causal_direction"
+              action: "flag_conflict"
+            - id: "magnitude_gap"
+              name: "强度差异过大"
+              condition: "same_entity_pair AND confidence_ratio > 3"
+              action: "reduce_confidence"
+          tesg_based: null
+      fallback:
+        mode: "static_weights"
+
+    fusion_weights:
+      enabled: true
+      implementation: "weighted_sum"
+      config:
+        base_weights:
+          literature: 0.4
+          ontology: 0.2
+          association: 0.1
+          clinical: 0.3
+        dynamic_adjustment:
+          enabled: false
+          rules: []
+        conflict_strategy:
+          mode: "priority"
+          priority_order: ["clinical", "literature", "ontology", "association"]
+        normalization:
+          method: "softmax"
+      fallback:
+        mode: "equal_weights"
+
+    conflict_rules:
+      enabled: true
+      implementation: "hybrid"
+      config:
+        conflict_types:
+          - id: "temporal_flip"
+            name: "时序语义翻转"
+            detection_rule:
+              type: "temporal_flip"
+              condition: "same_entity_pair AND different_disease_stage AND opposite_effect"
+            tesg_detection:
+              enabled: false
+              query_template: null
+            resolution_strategy:
+              type: "stage_stratified"
+              parameters:
+                confidence_decay: 0.5
+                preserve_both: true
+          - id: "directional_opposite"
+            name: "方向性相反"
+            detection_rule:
+              type: "directional_opposite"
+              condition: "same_entity_pair AND opposite_causal_direction"
+            tesg_detection:
+              enabled: false
+              query_template: null
+            resolution_strategy:
+              type: "flag_for_human"
+              parameters:
+                confidence_decay: 0.5
+                preserve_both: true
+        global_strategy:
+          max_conflicts_before_human: 3
+          default_action: "flag"
+      fallback:
+        mode: "simple_flag"
+
+    conclusion_formatter:
+      enabled: true
+      implementation: "rule_based"
+      config:
+        conclusion_types:
+          - id: "definitive"
+            condition: "confidence > 0.9 AND evidence_count > 5 AND no_conflicts"
+            parameters:
+              min_confidence: 0.9
+          - id: "probabilistic"
+            condition: "confidence > 0.6 AND confidence <= 0.9"
+            parameters:
+              min_confidence: 0.6
+          - id: "differential"
+            condition: "confidence > 0.3 AND top_2_confidence_gap < 0.2"
+            parameters:
+              min_confidence: 0.3
+          - id: "insufficient_evidence"
+            condition: "confidence < 0.3 OR evidence_count < 2"
+            parameters:
+              min_confidence: 0.0
+        ranking_output:
+          max_diagnoses: 3
+          min_confidence: 0.05
+          include_excluded: true
+        enhancements: []
+      fallback:
+        mode: "simple_ranking"
+
+    report_generator:
+      enabled: true
+      implementation: "template_engine"
+      config:
+        templates:
+          - id: "clinical_report"
+            format: "markdown"
+            structure:
+              header: "patient_info + timestamp"
+              differential: "conclusion_ranker.output"
+              evidence_chain: "inference_engine.evidence_chain"
+              uncertainties: "conflict_resolution.uncertainties"
+              recommendations: "conclusion_formatter.enhancements"
+        required_sections:
+          - id: "differential_diagnosis"
+            name: "鉴别诊断"
+            source_node: "ConclusionRanker"
+            required: true
+          - id: "evidence_chain"
+            name: "证据链"
+            source_node: "InferenceEngine"
+            required: true
+          - id: "uncertainties"
+            name: "不确定性说明"
+            source_node: "ConflictResolution"
+            required: true
+        citation_format:
+          style: "vancouver"
+          custom_template: null
+        uncertainty_display:
+          mode: "full"
+          max_items: 10
+      fallback:
+        mode: "json_only"
+
+    # 以下插件槽位由于疾病特异性，不在基础配置中定义
+    observation_extractor:
+      enabled: false
+      implementation: "rule_based"
+      config: {}
+      fallback:
+        mode: "pass_through"
+
+    candidate_generator:
+      enabled: false
+      implementation: "hybrid"
+      config:
+        ontology_driven:
+          root_class: "DOID:5082"
+          traversal_depth: 3
+          min_similarity: 0.3
+        rule_driven:
+          rules: []
+        candidate_pool:
+          max_candidates: 10
+          min_probability: 0.05
+          exclude_classes: []
+      fallback:
+        mode: "ontology_only"
+
+    ranking_strategy:
+      enabled: false
+      implementation: "rule_based"
+      config:
+        ranking_factors: []
+        differential_matrix: []
+        output:
+          sort_order: "descending"
+          include_probability: true
+          include_explanation: false
+      fallback:
+        mode: "probability_only"
+
+  tesg_interface:
+    enabled: false
+    endpoint: null
+    timeout_ms: 5000
+    retry_count: 3
+    fallback:
+      mode: "static_semantic_tags"
+      semantic_tag_library: "hepato_semantic_tags_v1.0"
+
+  data_source_mapping:
+    available_sources:
+      - id: "sqlite_main"
+        type: "sqlite"
+        path: "hepato_kg.db"
+        tables:
+          - name: "entities"
+            fields: ["id", "name", "type", "curie", "source_db"]
+          - name: "edges"
+            fields: ["id", "source", "target", "relation", "weight"]
+          - name: "edge_semantic_facets"
+            fields: ["facet_id", "edge_id", "dimension_id", "raw_predicate", "raw_attributes", "normalized_confidence", "provenance"]
+    field_mappings:
+      - profile_field: "edge_semantic_facets.source_db"
+        db_source: "sqlite_main"
+        db_table: "edge_semantic_facets"
+        db_field: "dimension_id"
+
+  runtime:
+    max_reasoning_time_ms: 30000
+    max_candidates: 10
+    log_level: "INFO"
+    enable_provenance: true
+    enable_uncertainty_quantification: true

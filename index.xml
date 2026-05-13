@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Liver KG Wiki</title>
+      <link>https://zrt-980802.github.io/liver-kg-wiki-site</link>
+      <description>Last 10 notes on Liver KG Wiki</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>domain_profile_schema_design_prompt</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/domain_profile_schema_design_prompt</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/domain_profile_schema_design_prompt</guid>
+    <description><![CDATA[ 任务：设计 Layer 2 Domain Profile Schema（领域配置 Schema） 此任务属于肝病知识图谱项目 — 证据链推理引擎（方向三） 的一部分。 前置条件：Layer 1 Meta-Template DiagnosticAbduction_v1.0 已完成设计。 请阅读以下完整背景，然后完成具体任务。 一、项目背景（必读） 本项目是一个生物医学知识图谱项目，核心命题是弥合知识图谱构建者与使用者之间的认知鸿沟。 三大方法贡献： 方法状态说明临床场景层✅ 设计完成把图谱的”网络结构”翻译成医生能理解的”场景化知识”跨模态语义对齐🚧 待实现多源数据语义颗粒度差异的对齐与融合证... ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>instance_template_design_prompt</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/instance_template_design_prompt</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/instance_template_design_prompt</guid>
+    <description><![CDATA[ 任务：设计 Layer 3 推理执行引擎（Instance Template + Reasoning Engine） 此任务属于肝病知识图谱项目 — 证据链推理引擎（方向三） 的一部分。 前置条件：Layer 1 推理拓扑层 + Layer 2 领域配置层 均已设计完成。 请阅读以下完整背景，然后完成具体任务。 ⚠️ 重要说明：本任务经过外部审查后修正了范围。 Layer 3 不是”模板”，它是第一个运行时系统。 产出分为两部分：Instance Data Schema（数据结构）+ Reasoning Engine Architecture（执行引擎） 一、项目背景（必读） 本项目是一个生物... ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>meta_template_design_prompt</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/meta_template_design_prompt</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/meta_template_design_prompt</guid>
+    <description><![CDATA[ 任务：设计第一条 Layer 1 Meta-Template（元模板） 此任务属于肝病知识图谱项目 — 证据链推理引擎（方向三） 的一部分。 请阅读以下完整背景，然后完成具体任务。 一、项目背景（必读） 本项目是一个生物医学知识图谱项目，核心命题是弥合知识图谱构建者与使用者之间的认知鸿沟。 三大方法贡献： 临床场景层（✅ 设计完成）— 把图谱的”网络结构”翻译成医生能理解的”场景化知识” 跨模态语义对齐（🚧 待实现）— 多源数据语义颗粒度差异的对齐与融合 证据链推理（🧪 当前任务）— 把图谱输出的”关系”变成可追踪的”推理路径” 三者关系：跨模态对齐为底层（数据怎么融）→ 场景层为桥梁（需... ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>openclaw_cross_modal_alignment_prompt</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/openclaw_cross_modal_alignment_prompt</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/tasks/openclaw_cross_modal_alignment_prompt</guid>
+    <description><![CDATA[ OpenClaw 任务启动 Prompt — 跨模态语义对齐 将此 prompt 发送给 OpenClaw，附上参考文档后让它开始工作。 任务：跨模态语义对齐方法（方向二） OpenClaw，请开始执行以下任务。详细的设计文档在 /mnt/e/shared/llm_wiki/docs/20_cross_modal_semantic_alignment.md，请先阅读完整内容后再动手。 项目背景（必读） 本项目围绕”弥合知识图谱构建者与使用者之间的认知鸿沟”这一核心命题展开。当前知识图谱存在三个层次的方法贡献： 临床场景层（已完成设计）— 弥合构建者-使用者视角鸿沟 跨模态语义对齐（本任务）— ... ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>实体数据清单</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/%E5%AE%9E%E4%BD%93%E6%95%B0%E6%8D%AE%E6%B8%85%E5%8D%95</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/%E5%AE%9E%E4%BD%93%E6%95%B0%E6%8D%AE%E6%B8%85%E5%8D%95</guid>
+    <description><![CDATA[ 肝病知识图谱实体数据清单 生成时间: 2026-04-27 11:32:00 检查版本: v1.0 📊 实体类型定义 1. ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>状态报告</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/%E7%8A%B6%E6%80%81%E6%8A%A5%E5%91%8A</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/%E7%8A%B6%E6%80%81%E6%8A%A5%E5%91%8A</guid>
+    <description><![CDATA[ 项目状态与路线图 肝病知识图谱项目当前状态、已完成事项、待办任务和优先级规划 最后更新: 2026-05-06 (v0.5.1) 1. ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>关系类型详细说明</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/relations/relationship_types</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/relations/relationship_types</guid>
+    <description><![CDATA[ 关系类型详细说明 最后更新: 2026-04-29 15:20 1. ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>Discussion and Outlook</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/research/Discussion-and-Outlook</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/research/Discussion-and-Outlook</guid>
+    <description><![CDATA[ 讨论与展望 1. ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>Experimental Results</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/research/Experimental-Results</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/research/Experimental-Results</guid>
+    <description><![CDATA[ 实验结果 1. 数据集 1.1 训练数据 基因-蛋白质映射表：~4,554 个基因 疾病关联数据：~56 个肝病相关疾病 蛋白质数据：~40 个蛋白质 1.2 测试数据 独立测试集：20% 的数据用于测试 交叉验证：5-fold 交叉验证 2. ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item><item>
+    <title>Methodology</title>
+    <link>https://zrt-980802.github.io/liver-kg-wiki-site/research/Methodology</link>
+    <guid>https://zrt-980802.github.io/liver-kg-wiki-site/research/Methodology</guid>
+    <description><![CDATA[ 方法论 1. 总体架构 本项目采用多层架构，包括多源数据层、知识抽取层、知识融合层、知识图谱层和应用层。 多源数据层 → 知识抽取层 → 知识融合层 → 知识图谱层 → 应用层 2. ]]></description>
+    <pubDate>Wed, 13 May 2026 07:16:35 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>

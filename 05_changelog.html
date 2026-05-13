@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>05_changelog</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Liver KG Wiki"/><meta property="og:title" content="05_changelog"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="05_changelog"/><meta name="twitter:description" content="变更日志 LLM Wiki 的版本变更记录 格式: [日期] [类型] 变更内容 v2.3.0 — 2026-05-08 ✨ 新增: 肝病子图三阶段扩展 P1 药物补充: 47 个新药（丙肝抗病毒/乙肝抗病毒/干扰素/NASH）+ 58 条 Drug→Target 机制边 P2 桥接: Drug→Target→Gene→Disease 四维链路打通（PPARA、IFNAR1 等关键基因） P3 分子机制: +711 GO 实体（468 BP + 131 MF + 93 CC），+958 关系 最终子图: 22,102 实体，210,186 关系（详见 19_liver_subgraph_exp..."/><meta property="og:description" content="变更日志 LLM Wiki 的版本变更记录 格式: [日期] [类型] 变更内容 v2.3.0 — 2026-05-08 ✨ 新增: 肝病子图三阶段扩展 P1 药物补充: 47 个新药（丙肝抗病毒/乙肝抗病毒/干扰素/NASH）+ 58 条 Drug→Target 机制边 P2 桥接: Drug→Target→Gene→Disease 四维链路打通（PPARA、IFNAR1 等关键基因） P3 分子机制: +711 GO 实体（468 BP + 131 MF + 93 CC），+958 关系 最终子图: 22,102 实体，210,186 关系（详见 19_liver_subgraph_exp..."/><meta property="og:image:alt" content="变更日志 LLM Wiki 的版本变更记录 格式: [日期] [类型] 变更内容 v2.3.0 — 2026-05-08 ✨ 新增: 肝病子图三阶段扩展 P1 药物补充: 47 个新药（丙肝抗病毒/乙肝抗病毒/干扰素/NASH）+ 58 条 Drug→Target 机制边 P2 桥接: Drug→Target→Gene→Disease 四维链路打通（PPARA、IFNAR1 等关键基因） P3 分子机制: +711 GO 实体（468 BP + 131 MF + 93 CC），+958 关系 最终子图: 22,102 实体，210,186 关系（详见 19_liver_subgraph_exp..."/><meta property="og:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta name="twitter:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="zrt-980802.github.io/liver-kg-wiki-site"/><meta property="og:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/05_changelog"/><meta property="twitter:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/05_changelog"/><link rel="icon" href="./static/icon.png"/><meta name="description" content="变更日志 LLM Wiki 的版本变更记录 格式: [日期] [类型] 变更内容 v2.3.0 — 2026-05-08 ✨ 新增: 肝病子图三阶段扩展 P1 药物补充: 47 个新药（丙肝抗病毒/乙肝抗病毒/干扰素/NASH）+ 58 条 Drug→Target 机制边 P2 桥接: Drug→Target→Gene→Disease 四维链路打通（PPARA、IFNAR1 等关键基因） P3 分子机制: +711 GO 实体（468 BP + 131 MF + 93 CC），+958 关系 最终子图: 22,102 实体，210,186 关系（详见 19_liver_subgraph_exp..."/><meta name="generator" content="Quartz"/><link href="./index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvYW5kb25nXzA4MDIvcHJvamVjdHMvbGl2ZXJfZGlzZWFzZV9rZy9saXZlci1rZy1xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><script src="./prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("./static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://zrt-980802.github.io/liver-kg-wiki-site/index.xml"/></head><body data-slug="05_changelog"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href=".">Liver KG Wiki</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-14"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-14" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="./">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>05_changelog</a></div></nav><h1 class="article-title">05_changelog</h1><p show-comma="true" class="content-meta"><time datetime="2026-05-13T07:16:35.311Z">May 13, 2026</time><span>12 min read</span></p></div></div><article class="popover-hint"><h1 id="变更日志">变更日志<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#变更日志" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>LLM Wiki 的版本变更记录<br/>
+格式: [日期] [类型] 变更内容</p>
+</blockquote>
+<h2 id="v230--2026-05-08">v2.3.0 — 2026-05-08<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v230--2026-05-08" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-肝病子图三阶段扩展">✨ 新增: 肝病子图三阶段扩展<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-肝病子图三阶段扩展" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>P1 药物补充</strong>: 47 个新药（丙肝抗病毒/乙肝抗病毒/干扰素/NASH）+ 58 条 Drug→Target 机制边</li>
+<li><strong>P2 桥接</strong>: Drug→Target→Gene→Disease 四维链路打通（PPARA、IFNAR1 等关键基因）</li>
+<li><strong>P3 分子机制</strong>: +711 GO 实体（468 BP + 131 MF + 93 CC），+958 关系</li>
+<li><strong>最终子图</strong>: 22,102 实体，210,186 关系（详见 <code>19_liver_subgraph_expansion.md</code>）</li>
+</ul>
+<hr/>
+<h2 id="v220--2026-05-07">v2.2.0 — 2026-05-07<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v220--2026-05-07" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="phase-4-数据清洗与标准化">Phase 4: 数据清洗与标准化<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-4-数据清洗与标准化" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>P0 - Unknown 实体分类</strong></p>
+<ul>
+<li>22,719 个 Unknown 被重新分类
+<ul>
+<li>14,370 → Literature（文献实体，ID 以 LIT_ 开头）</li>
+<li>8,349 → MeshTerm（MeSH 术语，ID 以 MESH_ 开头）</li>
+<li>仅 17 个维持 Unknown</li>
+</ul>
+</li>
+</ul>
+<p><strong>P1 - 同名异类型消歧</strong></p>
+<ul>
+<li>6,241 组名称冲突（同名的不同数据库实体）</li>
+<li>10,729 个实体的 properties 中添加了 conflict_types 标注</li>
+<li>注意：这些确实是不同实体，不做合并（如 ADA 同时存在于 Gene、chebi、mondo）</li>
+</ul>
+<p><strong>P2 - 关系类型标准化</strong></p>
+<ul>
+<li>103,441 条 OBO 风格关系映射为可读名称：
+<ul>
+<li>RO:0000087 → has_role</li>
+<li>BFO:0000050 → part_of</li>
+<li>BFO:0000051 → has_part</li>
+<li>RO:0018033 → has_component</li>
+<li>RO:0018034 → has_component_active</li>
+<li>RO:0018036 → in_taxon</li>
+<li>RO:0018037 → is_active_in</li>
+<li>RO:0018038 → is_active_in_taxon</li>
+<li>RO:0018039 → acted_on_by</li>
+<li>RO:0018040 → act_upon</li>
+</ul>
+</li>
+<li>7,281 条其他 OBO 前缀（RO_/BFO_/IAO_）自动转换</li>
+<li>所有关系的 original_type 保留在 properties 中</li>
+<li>标准化后关系类型种类从 363 → ~210</li>
+</ul>
+<p><strong>P3 - Protein ↔ Protein_Target 桥接</strong></p>
+<ul>
+<li>1,107 个 Protein_Target 匹配到 Protein 实体</li>
+<li>新增 1,107 条 is_target_of + 1,107 条 has_protein_target 边</li>
+<li>9,030 个 Protein_Target 未匹配（RNA 靶点、复合物靶点，无可对应 Protein）</li>
+</ul>
+<p><strong>P4 - Drug ↔ ChEBI 桥接</strong></p>
+<ul>
+<li>3,302 个 Drug 匹配到 ChEBI 实体</li>
+<li>新增 3,302 条 has_chebi + 3,302 条 is_chebi_for 边</li>
+<li>匹配方式：Drug ID (CHEBI:) / Drug name / ChEBI synonym</li>
+</ul>
+<h3 id="数据状态">数据状态<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#数据状态" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>v8.0</strong> — 658,247 实体 / 1,583,064 关系 (730.8 MB)</li>
+<li>新实体类型：Literature (14,370), MeshTerm (8,349)</li>
+<li>新关系类型：is_target_of, has_protein_target, has_chebi, is_chebi_for</li>
+<li>关系类型数量大幅精简</li>
+</ul>
+<hr/>
+<h2 id="v210--2026-05-06">v2.1.0 — 2026-05-06<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v210--2026-05-06" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="新增">新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#新增" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Phase 3 Step B 完成：ClinVar Gene→MONDO 桥接
+<ul>
+<li>20,650 个 Gene 实体（~18,874 高质量）</li>
+<li>163,788 条 associated_with + 163,788 条 has_gene 边</li>
+<li>匹配 8,792 个 MONDO 疾病实体 (100% ClinVar MONDO 覆盖率)</li>
+</ul>
+</li>
+<li>四维关联全面打通：Drug→Protein→Gene→Disease</li>
+</ul>
+<h3 id="数据状态-1">数据状态<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#数据状态-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>v7.1</strong> — 658,247 实体 / 1,574,346 关系</li>
+<li>Gene 成为图谱中第五大实体类型</li>
+</ul>
+<hr/>
+<h2 id="v200--2026-05-06-phase-3-里程碑">v2.0.0 — 2026-05-06 (Phase 3 里程碑)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v200--2026-05-06-phase-3-里程碑" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="新增-1">新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#新增-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Reactome Pathway 桥接</strong>
+<ul>
+<li>334 个 Pathway 实体 (R-HSA-xxxxx 格式)</li>
+<li>1,218 条 Protein→Pathway (in_pathway) 边</li>
+<li>桥接了 121 个 Gene/Protein 实体到 Reactome 通路</li>
+</ul>
+</li>
+<li><strong>UniProt 亚细胞定位</strong>
+<ul>
+<li>128,547 个 Protein 实体获得 subcellular_location 属性</li>
+<li>覆盖 62.7% 的 Protein 实体</li>
+</ul>
+</li>
+<li><strong>ChEMBL 分子数据扩充</strong>
+<ul>
+<li>16,754 个 Drug 获得 max_phase 属性</li>
+<li>3,789 个 Drug 获得 first_approval (获批年份)</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据状态-2">数据状态<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#数据状态-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>v7.0</strong> — 637,931 实体 / 1,247,988 关系</li>
+<li>新增实体类型: Pathway</li>
+<li>新增关系类型: in_pathway</li>
+</ul>
+<hr/>
+<h2 id="v110--2026-05-06">v1.1.0 — 2026-05-06<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v110--2026-05-06" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="新增-2">新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#新增-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Phase 2 完成：ChEMBL 靶点数据再发现
+<ul>
+<li>859 个 Drug 从 auto_inferred 机制数据找回靶点</li>
+<li>新增 3,972 条关系边</li>
+<li>Drug target 覆盖率提升至 83.3%</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2 id="v100--2026-05-06-里程碑">v1.0.0 — 2026-05-06 (里程碑)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v100--2026-05-06-里程碑" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="新增-3">新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#新增-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Phase 1 完成：ENSG Gene ID → Protein 实体桥接
+<ul>
+<li>创建 43 个 Protein 实体（Ensembl Gene ID 格式）</li>
+<li>新增 152 条关系边（76 个 Drug 获得 Protein 桥接）</li>
+<li>所有 43 个 ENSG ID 100% 被桥接到现有 Protein_Target</li>
+</ul>
+</li>
+<li>Drug→target→Protein 桥接网络覆盖率达 100%</li>
+</ul>
+<h3 id="数据状态-3">数据状态<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#数据状态-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>v6.1</strong> — 637,640 实体 / 1,246,922 关系</li>
+<li>Drug 级别 target 覆盖率：82%（52,027/63,475）</li>
+</ul>
+<hr/>
+<h2 id="v090--2026-05-06">v0.9.0 — 2026-05-06<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v090--2026-05-06" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="新增-4">新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#新增-4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>ChEMBL Drug→Target 桥接（v6 版本）</li>
+<li>Drug→Protein 关系边 18,498 条（按 UniProt）</li>
+<li>Protein_Target→Drug 反向边 52,027 条</li>
+<li>补充计划文档（Phase 1-4）</li>
+<li>文档 12: 12_chembl_drug_target_bridge.md</li>
+</ul>
+<h3 id="变更">变更<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#变更" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>v5 已有 INHIBITOR 边 195,174 条，全部保留</li>
+<li>总 Drug-target 关系边约 265,699 条</li>
+</ul>
+<hr/>
+<h2 id="v080-2026-05-06">v0.8.0 (2026-05-06)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v080-2026-05-06" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>STITCH 桥接完成</strong>: ChEMBL → PubChem CID → STITCH 完整链路打通</li>
+<li><strong>Unified v5</strong>: <code>unified_all_data_v5.json</code>（596.1MB）— v4 + STITCH 药物互作网络</li>
+<li><strong>STITCH 子图文件</strong>:
+<ul>
+<li><code>stitch_subgraph.json</code>（1,138MB）— 完整 377 万条匹配边</li>
+<li><code>stitch_high_confidence.json</code>（56MB）— 185,968 条高置信度边（score ≥ 700）</li>
+<li><code>stitch_medium_confidence.json</code>（136MB）— 452,298 条中置信度边（score 400-699）</li>
+</ul>
+</li>
+<li><strong>集成策略</strong>: 仅高置信度边（score ≥ 700）写入 v5，完整子图保持独立文件</li>
+</ul>
+<h3 id="-stitch-桥接数据">📊 STITCH 桥接数据<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-stitch-桥接数据" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>High-confidence 子图: <strong>185,968 条边</strong>, <strong>46.8% database 证据</strong>, <strong>12.4% 实验证据</strong></li>
+<li>覆盖 <strong>4,989 个 PubChem CID</strong> 连接 <strong>21,821 个邻居化合物</strong></li>
+<li>v5 中: <strong>1,800 个 Drug 实体</strong> 含 <strong>34,258 条 STITCH 互作关系</strong></li>
+<li>平均每个 Drug 连接 19 个邻居</li>
+</ul>
+<h3 id="-技术细节">📝 技术细节<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-技术细节" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>STITCH 格式转换: CID → <code>CIDsNNNNNNNN</code>（8位零填充）</li>
+<li>扫描 678MB STITCH 源文件（1,770 万行）：22 秒</li>
+<li>整合脚本: <code>E:\shared\stitch_bridge_extract.py</code></li>
+<li>子集文件: <code>E:\shared\stitch_write_subsets.py</code></li>
+</ul>
+<h3 id="-网络分析结果">📊 网络分析结果<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-网络分析结果" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>网络规模</strong>: 23,395 节点, 71,779 边（清理前缀后）</li>
+<li><strong>枢纽发现</strong>: Top 5 = HYDROGEN(6,968), OXYGEN(3,421), NAD+(1,950), CO2(1,877), ATP(1,740)</li>
+<li><strong>社区发现</strong>: 1,363 个社区, 最大社区 5,724 节点（基础代谢核心）</li>
+<li><strong>关键洞察</strong>: 网络中心多为内源性代谢物而非外源药物, STITCH 化学-化学网络更多反映代谢通路</li>
+<li><strong>新文档</strong>: <code>10_stitch_network_analysis.md</code> — 完整分析报告</li>
+</ul>
+<h3 id="️-已知问题">⚠️ 已知问题<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#️-已知问题" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>STITCH 蛋白-化学互作文件 (<code>9606.protein.links.v5.0.txt.gz</code>) 需要重新下载，STITCH 服务器当前不可达（522/403）</li>
+</ul>
+<hr/>
+<h2 id="v070-2026-05-06">v0.7.0 (2026-05-06)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v070-2026-05-06" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-1">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Unified v4</strong>: <code>unified_all_data_v4.json</code>（591.4MB）— v3 + ChEMBL 分子类型分类</li>
+<li><strong>分子类型分类</strong>: 基于 <code>chembl_molecules.json</code>（16,754 个唯—药物分子）的 <code>molecule_type</code> 标注
+<ul>
+<li>12,713 个 Small molecule、1,016 个 Antibody、921 个 Protein 等 11 类</li>
+<li>非小分子药物额外标注 <code>biologic_type</code>（1,809 个实体的子类别）</li>
+</ul>
+</li>
+<li><strong>新文档</strong>: <code>08_pubchem_mapping_and_classification.md</code> — 完整的数据处理记录</li>
+<li><strong>分类规则表</strong>: 明确 Antibody→antibody、Protein→biologic、Oligonucleotide→oligonucleotide 等</li>
+</ul>
+<h3 id="-数据处理状态">📊 数据处理状态<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-数据处理状态" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>PubChem CID 写入: <strong>4,346 个 Drug 实体</strong>（v3→v4 保持一致）</li>
+<li>分子类型标注: <strong>5,875 个 Drug 实体</strong>（覆盖所有 chembl_molecules 中有记录的药物）</li>
+<li>未标注: 46,714 个实体（chembl_id 不在分子清单中，属正常数据分布）</li>
+<li>文件版本链: v2 (590MB) → v3 (560MB, +CID) → v4 (591MB, +类型)</li>
+</ul>
+<h3 id="-技术细节-1">📝 技术细节<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-技术细节-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>流式处理：两轮脚本均在 6 秒内完成，避免 590MB 全量内存加载</li>
+<li>分类源文件: <code>C:\Users\29557\HepatoOntology\drug_target_data\data\raw\chembl\chembl_molecules.json</code></li>
+<li>处理脚本: <code>E:\shared\classify_drugs_to_v4.py</code></li>
+</ul>
+<hr/>
+<h2 id="v060-2026-05-06">v0.6.0 (2026-05-06)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v060-2026-05-06" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-2">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>PubChem CID 映射已完成</strong>: 4,346 个 Drug 实体获得 <code>properties.pubchem_cid</code> 字段</li>
+<li><strong>Unified v3</strong>: <code>unified_all_data_v3.json</code>（560.8MB）— v2 + PubChem CID 整合</li>
+<li>映射覆盖率达 100%（从 ChEMBL 药物层面），共 13,390 个惟一的 ChEMBL→CID 映射</li>
+</ul>
+<h3 id="-映射进度">📊 映射进度<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-映射进度" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>ChEMBL Drug→PubChem CID: <strong>4,346/52,589 Drug entries</strong>（每个条目为一个 Drug-Mechanism 记录）
+<ul>
+<li>13,390 个唯一 ChEMBL ID 被映射</li>
+<li>50 个不可映射：抗体 (334)、生物制品 (35)、放射性药物 (17)、其他可补救 (1,102)</li>
+</ul>
+</li>
+<li>PubChem→STITCH 桥接基础已奠定</li>
+</ul>
+<hr/>
+<h2 id="v051-2026-05-06">v0.5.1 (2026-05-06)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v051-2026-05-06" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-3">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>中文疾病名手工 DOID 映射表</strong>: <code>12_manual_doid_mapping.md</code> — 48 个中文疾病名的 DOID 候选映射</li>
+<li>已验证 22 个映射可通过 DOID 数据库确认</li>
+<li>标记 18 个待人工确认、5 个占位符实体跳过、6 个非 CM3KG 实体补充</li>
+</ul>
+<h3 id="-映射进度-1">📊 映射进度<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-映射进度-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>中文疾病名 DOID 映射建议已就绪，等待确认后写回</li>
+</ul>
+<hr/>
+<h2 id="v050-2026-05-05">v0.5.0 (2026-05-05)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v050-2026-05-05" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-4">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-4" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>CHEBI 本体下载 &amp; 解析</strong>: 19MB (OBO 格式), <strong>20,942</strong> 化学物质标签</li>
+<li><strong>MeSH → DOID 桥接</strong>: 通过 MONDO 中介映射, <strong>280 个 MeSH 实体</strong>获得 DOID 关联</li>
+<li><strong>中文疾病名细粒度匹配</strong>: 手动策展 21 个实体映射（含 ChinaNet/CMeKG 兼容性改进）</li>
+<li><strong>DOID 层级关系扩建</strong>: 250 条新 <code>disease_subtype_of</code> / <code>disease_supertype_of</code> 关系</li>
+<li>Key 癌症实体映射修复: <code>HCC→DOID:684</code> (hepatocellular carcinoma), <code>Pancreatic Cancer→DOID:1793</code>, <code>Gallbladder Cancer→DOID:4948</code></li>
+</ul>
+<h3 id="-技术改进">🔧 技术改进<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-技术改进" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>CHEBI OBO 解析器: 正则分 Stanza, <strong>20,942 标签</strong>, 559 同义词, 20,942 父类关系</li>
+<li>MeSH ID 桥接: 利用关系中的 <code>mesh_ui</code> 字段 (4,848 unique) + MONDO 3,098 条映射</li>
+<li>层级关系生成: 双向 (subtype_of + supertype_of), 从 DOID 层级树自动计算</li>
+<li>DOID 伪迹清理: 移除错误映射 (DOID:3184, DOID:3122 等 obsolete 标签)</li>
+</ul>
+<h3 id="-映射状态">📊 映射状态<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-映射状态" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Disease→DOID: <strong>82/97</strong> (84.5%) — 含手动策展</li>
+<li>Symptom→HP: <strong>34/46</strong> (73.9%)</li>
+<li>MeSH→DOID: <strong>280/9,494</strong> (通过 MONDO 桥接)</li>
+<li>层级关系: <strong>250 条</strong> (双向, 基于 DOID parents)</li>
+<li>CHEBI: 已解析但 KG 中 7 个药物实体为 hash ID 无匹配</li>
+</ul>
+<h3 id="-技术细节-2">📝 技术细节<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-技术细节-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>CHEBI 下载: <code>obolibrary.org/obo/chebi.obo</code> (19MB, 因 OWL 775MB 无法下载改为 OBO 格式)</li>
+<li>增强脚本: <code>step2_enrich_kg.py</code>, <code>step3_refine_matching.py</code>, <code>step3b_curate.py</code></li>
+<li>输出: <code>entities_enriched.json</code> (含 <code>ontology_ids</code> + <code>ontology_label</code> + <code>curated</code> 标记)</li>
+</ul>
+<hr/>
+<h2 id="v040-2026-05-05">v0.4.0 (2026-05-05)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v040-2026-05-05" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-5">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-5" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>OBO 本体下载替代 UMLS API</strong>: DOID (27MB), HP (73MB), MONDO (231MB)</li>
+<li><strong>实体-本体 ID 映射</strong>: 82/97 Disease→DOID, 34/46 Symptom→HP</li>
+<li>综合本体查找索引: 77,686 条（combined_ontology_lookup.json）</li>
+<li>DOID 疾病层级树（doid_hierarchy.json）</li>
+<li>映射写回 KG: <code>entities_enriched.json</code> + <code>relationships_enriched.json</code></li>
+<li>新文档: <code>10_ontology_mapping.md</code> — OBO 下载与映射详情</li>
+</ul>
+<h3 id="-技术细节-3">📝 技术细节<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-技术细节-3" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>下载脚本: <code>download_ontologies.py</code>, <code>parse_ontologies.py</code></li>
+<li>解析脚本: OWL → JSON（含 labels, synonyms, alt_ids, parents）</li>
+<li>映射方法: 名称匹配 + 同义词匹配（纯本地，无需 API Key）</li>
+<li>输出位置: <code>workspace/ontology_data/parsed/</code></li>
+</ul>
+<hr/>
+<h2 id="v030-2026-04-27">v0.3.0 (2026-04-27)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v030-2026-04-27" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-6">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-6" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>跨源数据映射分析（07_cross_source_mapping.md）</li>
+<li>桥接注册表：3条已确认 + 5条未打通</li>
+<li>CM3KG 数据修复：14,959 实体（+6,152 新增症状实体）</li>
+<li>Unified JSON v2.0：637,597 实体</li>
+<li>PubChem CID 全量映射脚本（定期检查）</li>
+</ul>
+<h3 id="-修复">🐛 修复<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-修复" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>CM3KG Disease.csv 键值对格式正确解析</li>
+</ul>
+<hr/>
+<h2 id="v020-2026-04-27">v0.2.0 (2026-04-27)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v020-2026-04-27" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-7">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-7" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>完整 Wiki 目录结构搭建（docs, templates, scripts, data, workflows, issues）</li>
+<li>5 个核心文档：项目概览、数据源说明、知识图谱分析、工作流、变更日志</li>
+<li>数据字典模板</li>
+<li>自动化脚本：数据清单生成、链接验证</li>
+<li>所有文档从长期记忆中的数据填充</li>
+</ul>
+<h3 id="-修复-1">🐛 修复<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-修复-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>统一 README 为 Claw 的 LLM Wiki 风格</li>
+<li>工作流添加进度追踪</li>
+</ul>
+<h3 id="-其他">📝 其他<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-其他" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>共享空间打通（E:\shared → WSL）</li>
+<li>Hermes Agent 集成技能创建</li>
+</ul>
+<hr/>
+<h2 id="v010-2026-04-13">v0.1.0 (2026-04-13)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#v010-2026-04-13" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="-新增-8">✨ 新增<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-新增-8" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>项目工作流文档 (<code>workflow.md</code>)</li>
+<li>数据源清单 (<code>inventory.md</code>)</li>
+<li>技术架构文档 (<code>tech_architecture.md</code>)</li>
+<li>数据合并完成（22,860 实体, 175,328 关系）</li>
+<li>质量验证通过（99.97/100）</li>
+</ul>
+<hr/>
+<blockquote>
+<p>由 🦞 Claw 维护 · 语义版本: MAJOR.MINOR.PATCH</p>
+</blockquote></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-4" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#变更日志" data-for="变更日志">变更日志</a></li><li class="depth-1"><a href="#v230--2026-05-08" data-for="v230--2026-05-08">v2.3.0 — 2026-05-08</a></li><li class="depth-2"><a href="#-新增-肝病子图三阶段扩展" data-for="-新增-肝病子图三阶段扩展">✨ 新增: 肝病子图三阶段扩展</a></li><li class="depth-1"><a href="#v220--2026-05-07" data-for="v220--2026-05-07">v2.2.0 — 2026-05-07</a></li><li class="depth-2"><a href="#phase-4-数据清洗与标准化" data-for="phase-4-数据清洗与标准化">Phase 4: 数据清洗与标准化</a></li><li class="depth-2"><a href="#数据状态" data-for="数据状态">数据状态</a></li><li class="depth-1"><a href="#v210--2026-05-06" data-for="v210--2026-05-06">v2.1.0 — 2026-05-06</a></li><li class="depth-2"><a href="#新增" data-for="新增">新增</a></li><li class="depth-2"><a href="#数据状态-1" data-for="数据状态-1">数据状态</a></li><li class="depth-1"><a href="#v200--2026-05-06-phase-3-里程碑" data-for="v200--2026-05-06-phase-3-里程碑">v2.0.0 — 2026-05-06 (Phase 3 里程碑)</a></li><li class="depth-2"><a href="#新增-1" data-for="新增-1">新增</a></li><li class="depth-2"><a href="#数据状态-2" data-for="数据状态-2">数据状态</a></li><li class="depth-1"><a href="#v110--2026-05-06" data-for="v110--2026-05-06">v1.1.0 — 2026-05-06</a></li><li class="depth-2"><a href="#新增-2" data-for="新增-2">新增</a></li><li class="depth-1"><a href="#v100--2026-05-06-里程碑" data-for="v100--2026-05-06-里程碑">v1.0.0 — 2026-05-06 (里程碑)</a></li><li class="depth-2"><a href="#新增-3" data-for="新增-3">新增</a></li><li class="depth-2"><a href="#数据状态-3" data-for="数据状态-3">数据状态</a></li><li class="depth-1"><a href="#v090--2026-05-06" data-for="v090--2026-05-06">v0.9.0 — 2026-05-06</a></li><li class="depth-2"><a href="#新增-4" data-for="新增-4">新增</a></li><li class="depth-2"><a href="#变更" data-for="变更">变更</a></li><li class="depth-1"><a href="#v080-2026-05-06" data-for="v080-2026-05-06">v0.8.0 (2026-05-06)</a></li><li class="depth-2"><a href="#-新增" data-for="-新增">✨ 新增</a></li><li class="depth-2"><a href="#-stitch-桥接数据" data-for="-stitch-桥接数据">📊 STITCH 桥接数据</a></li><li class="depth-2"><a href="#-技术细节" data-for="-技术细节">📝 技术细节</a></li><li class="depth-2"><a href="#-网络分析结果" data-for="-网络分析结果">📊 网络分析结果</a></li><li class="depth-2"><a href="#️-已知问题" data-for="️-已知问题">⚠️ 已知问题</a></li><li class="depth-1"><a href="#v070-2026-05-06" data-for="v070-2026-05-06">v0.7.0 (2026-05-06)</a></li><li class="depth-2"><a href="#-新增-1" data-for="-新增-1">✨ 新增</a></li><li class="depth-2"><a href="#-数据处理状态" data-for="-数据处理状态">📊 数据处理状态</a></li><li class="depth-2"><a href="#-技术细节-1" data-for="-技术细节-1">📝 技术细节</a></li><li class="depth-1"><a href="#v060-2026-05-06" data-for="v060-2026-05-06">v0.6.0 (2026-05-06)</a></li><li class="depth-2"><a href="#-新增-2" data-for="-新增-2">✨ 新增</a></li><li class="depth-2"><a href="#-映射进度" data-for="-映射进度">📊 映射进度</a></li><li class="depth-1"><a href="#v051-2026-05-06" data-for="v051-2026-05-06">v0.5.1 (2026-05-06)</a></li><li class="depth-2"><a href="#-新增-3" data-for="-新增-3">✨ 新增</a></li><li class="depth-2"><a href="#-映射进度-1" data-for="-映射进度-1">📊 映射进度</a></li><li class="depth-1"><a href="#v050-2026-05-05" data-for="v050-2026-05-05">v0.5.0 (2026-05-05)</a></li><li class="depth-2"><a href="#-新增-4" data-for="-新增-4">✨ 新增</a></li><li class="depth-2"><a href="#-技术改进" data-for="-技术改进">🔧 技术改进</a></li><li class="depth-2"><a href="#-映射状态" data-for="-映射状态">📊 映射状态</a></li><li class="depth-2"><a href="#-技术细节-2" data-for="-技术细节-2">📝 技术细节</a></li><li class="depth-1"><a href="#v040-2026-05-05" data-for="v040-2026-05-05">v0.4.0 (2026-05-05)</a></li><li class="depth-2"><a href="#-新增-5" data-for="-新增-5">✨ 新增</a></li><li class="depth-2"><a href="#-技术细节-3" data-for="-技术细节-3">📝 技术细节</a></li><li class="depth-1"><a href="#v030-2026-04-27" data-for="v030-2026-04-27">v0.3.0 (2026-04-27)</a></li><li class="depth-2"><a href="#-新增-6" data-for="-新增-6">✨ 新增</a></li><li class="depth-2"><a href="#-修复" data-for="-修复">🐛 修复</a></li><li class="depth-1"><a href="#v020-2026-04-27" data-for="v020-2026-04-27">v0.2.0 (2026-04-27)</a></li><li class="depth-2"><a href="#-新增-7" data-for="-新增-7">✨ 新增</a></li><li class="depth-2"><a href="#-修复-1" data-for="-修复-1">🐛 修复</a></li><li class="depth-2"><a href="#-其他" data-for="-其他">📝 其他</a></li><li class="depth-1"><a href="#v010-2026-04-13" data-for="v010-2026-04-13">v0.1.0 (2026-04-13)</a></li><li class="depth-2"><a href="#-新增-8" data-for="-新增-8">✨ 新增</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="./" class="internal">肝病知识图谱 Wiki</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="./postscript.js" type="module" data-persist="true"></script></html>

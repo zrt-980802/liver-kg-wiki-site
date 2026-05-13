@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>project_motivation</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Liver KG Wiki"/><meta property="og:title" content="project_motivation"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="project_motivation"/><meta name="twitter:description" content="项目动机 - 临床发现与科研发现 肝病蛋白分子基因知识图谱项目 — 核心动机与价值主张 最后更新: 2026-05-08 1."/><meta property="og:description" content="项目动机 - 临床发现与科研发现 肝病蛋白分子基因知识图谱项目 — 核心动机与价值主张 最后更新: 2026-05-08 1."/><meta property="og:image:alt" content="项目动机 - 临床发现与科研发现 肝病蛋白分子基因知识图谱项目 — 核心动机与价值主张 最后更新: 2026-05-08 1."/><meta property="og:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta name="twitter:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="zrt-980802.github.io/liver-kg-wiki-site"/><meta property="og:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/project_motivation"/><meta property="twitter:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/project_motivation"/><link rel="icon" href="./static/icon.png"/><meta name="description" content="项目动机 - 临床发现与科研发现 肝病蛋白分子基因知识图谱项目 — 核心动机与价值主张 最后更新: 2026-05-08 1."/><meta name="generator" content="Quartz"/><link href="./index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvYW5kb25nXzA4MDIvcHJvamVjdHMvbGl2ZXJfZGlzZWFzZV9rZy9saXZlci1rZy1xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><script src="./prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("./static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://zrt-980802.github.io/liver-kg-wiki-site/index.xml"/></head><body data-slug="project_motivation"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href=".">Liver KG Wiki</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-91"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-91" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="./">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>project_motivation</a></div></nav><h1 class="article-title">project_motivation</h1><p show-comma="true" class="content-meta"><time datetime="2026-05-13T07:16:35.327Z">May 13, 2026</time><span>25 min read</span></p></div></div><article class="popover-hint"><h1 id="项目动机---临床发现与科研发现">项目动机 - 临床发现与科研发现<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#项目动机---临床发现与科研发现" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>肝病蛋白分子基因知识图谱项目 — 核心动机与价值主张<br/>
+最后更新: 2026-05-08</p>
+</blockquote>
+<hr/>
+<h2 id="1--核心动机框架">1. 🎯 核心动机框架<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1--核心动机框架" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>本项目围绕两大核心场景设计，分别解决临床和科研领域的关键痛点。但核心出发点并非单纯的数据整合，而是<strong>弥合知识图谱构建者与使用者之间的认知鸿沟</strong>。</p>
+<h3 id="11-核心问题认知鸿沟">1.1 核心问题：认知鸿沟<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-核心问题认知鸿沟" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>知识图谱领域长期存在一个被忽视的结构性矛盾：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>构建者视角</th><th>使用者视角（临床医生/科学家）</th></tr></thead><tbody><tr><td><strong>知识组织方式</strong></td><td>实体-关系-属性的标准化网络</td><td>按临床场景/科研假设组织的思维流</td></tr><tr><td><strong>查询需求</strong></td><td>”疾病X的关联基因有哪些？&quot;</td><td>&quot;这个患者的情况像不像肝癌？下一步做什么检查？“</td></tr><tr><td><strong>价值判断</strong></td><td>数据的完整性、一致性</td><td>信息的可操作性、决策相关性</td></tr><tr><td><strong>使用场景</strong></td><td>系统查询、数据分析</td><td>临床决策、实验设计、文献调研</td></tr></tbody></table></div>
+<p><strong>关键洞察</strong>：知识图谱按”实体→关系”的拓扑结构组织，但使用者的思维是按”场景→目标→行动”的认知路径展开的。这两者之间的<strong>认知鸿沟</strong>，是现有知识图谱在生物医学领域落地难的根本原因。数据整合只是手段，弥合这种视角差异才是核心出发点。</p>
+<blockquote>
+<p><strong>思考对照</strong>：了解知识图谱在学术研究中的通用应用场景，帮助定位本项目的独特价值</p>
+</blockquote>
+<h4 id="学术研究的六大核心痛点">学术研究的六大核心痛点<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#学术研究的六大核心痛点" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>1. 文献发现与检索问题</strong></p>
+<ul>
+<li><strong>痛点</strong>：信息过载，关键词检索不精准，跨语言障碍</li>
+<li><strong>传统方法</strong>：手动检索，耗时数小时，易遗漏重要文献</li>
+<li><strong>知识图谱价值</strong>：语义检索，精准推荐，效率提升10-100倍</li>
+</ul>
+<p><strong>2. 研究趋势分析问题</strong></p>
+<ul>
+<li><strong>痛点</strong>：难以从海量文献中识别研究热点演变，预测困难</li>
+<li><strong>传统方法</strong>：专家主观判断，易受偏见影响</li>
+<li><strong>知识图谱价值</strong>：基于数据的客观分析，预测更准确</li>
+</ul>
+<p><strong>3. 科研合作网络问题</strong></p>
+<ul>
+<li><strong>痛点</strong>：合作机会难发现，团队构建困难，机构合作不透明</li>
+<li><strong>传统方法</strong>：手工整理，信息分散</li>
+<li><strong>知识图谱价值</strong>：自动构建合作网络，智能推荐合作者</li>
+</ul>
+<p><strong>4. 知识整合与发现问题</strong></p>
+<ul>
+<li><strong>痛点</strong>：知识碎片化，隐含关系难发现，跨领域融合困难</li>
+<li><strong>传统方法</strong>：人工对齐，耗时费力</li>
+<li><strong>知识图谱价值</strong>：自动实体对齐，关系发现，知识融合</li>
+</ul>
+<p><strong>5. 科研绩效评估问题</strong></p>
+<ul>
+<li><strong>痛点</strong>：评价指标单一，质量难以量化，影响力滞后</li>
+<li><strong>传统方法</strong>：仅看论文数量和引用次数</li>
+<li><strong>知识图谱价值</strong>：多维度评价体系，全面客观</li>
+</ul>
+<p><strong>6. 科研决策支持问题</strong></p>
+<ul>
+<li><strong>痛点</strong>：研究方向选择困难，资源分配不合理，重复研究</li>
+<li><strong>传统方法</strong>：凭经验决策，缺乏数据支持</li>
+<li><strong>知识图谱价值</strong>：基于趋势分析的智能推荐</li>
+</ul>
+<h4 id="学术知识图谱平台对比">学术知识图谱平台对比<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#学术知识图谱平台对比" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>平台</th><th>数据规模</th><th>开放程度</th><th>特色功能</th><th>适用场景</th></tr></thead><tbody><tr><td><strong>Semantic Scholar</strong></td><td>2亿+论文</td><td>部分开放</td><td>TL;DR摘要、引用上下文</td><td>文献综述、趋势分析</td></tr><tr><td><strong>Microsoft Academic Graph</strong></td><td>2亿+论文</td><td>商业服务</td><td>学科交叉分析、趋势预测</td><td>科研评估、政策制定</td></tr><tr><td><strong>PubMed</strong></td><td>3000万+文献</td><td>完全开放</td><td>MeSH术语、临床试验链接</td><td>生物医学研究</td></tr><tr><td><strong>OpenAlex</strong></td><td>2亿+论文</td><td>完全开放</td><td>开放数据、概念网络</td><td>开放科学研究</td></tr></tbody></table></div>
+<h4 id="对肝病项目的启示">对肝病项目的启示<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#对肝病项目的启示" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>可解决的具体问题</strong>：</p>
+<ol>
+<li><strong>文献综述自动化</strong>：自动收集肝病相关文献，智能提取关键信息</li>
+<li><strong>研究热点识别</strong>：分析肝病研究趋势，识别新兴研究方向</li>
+<li><strong>跨学科研究发现</strong>：整合肝病与免疫学、遗传学等领域的知识</li>
+<li><strong>临床决策支持</strong>：基于最新研究的诊疗建议，个性化治疗方案推荐</li>
+</ol>
+<p><strong>效率对比</strong>：</p>
+<ul>
+<li>文献检索：传统方法数小时 → 知识图谱几分钟（提升10-100倍）</li>
+<li>趋势分析：传统方法数周 → 知识图谱数小时（提升100-1000倍）</li>
+<li>知识整合：传统方法数天 → 知识图谱数小时（提升20-50倍）</li>
+</ul>
+<h3 id="14-三大核心方法贡献">1.4 三大核心方法贡献<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#14-三大核心方法贡献" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>本项目围绕”弥合认知鸿沟”这一核心命题，提出三大相互支撑的方法贡献：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>方法</th><th>解决的问题</th><th>状态</th></tr></thead><tbody><tr><td><strong>临床场景层</strong></td><td>构建者视角（实体-关系网络）与使用者视角（场景化思维）之间的鸿沟</td><td>✅ 设计完成</td></tr><tr><td><strong>跨模态语义对齐</strong></td><td>不同数据源（本体/文献/关联数据）的语义颗粒度差异导致的对齐困难</td><td>🚧 待实现</td></tr><tr><td><strong>证据链推理</strong></td><td>知识图谱”黑箱”输出与用户需要的可解释决策依据之间的鸿沟</td><td>🧪 概念设计</td></tr></tbody></table></div>
+<blockquote>
+<p><strong>三者关系</strong>：跨模态语义对齐为底层支撑，解决”数据怎么融”；临床场景层为中间桥梁，解决”需求怎么接”；证据链推理为上层输出，解决”结果怎么用”。</p>
+</blockquote>
+<p>详细说明：</p>
+<ul>
+<li><strong>临床场景层</strong>：见 <code>clinical_scenario_layer.md</code></li>
+<li><strong>跨模态语义对齐</strong>：见 share 空间 <code>docs/20_cross_modal_semantic_alignment.md</code></li>
+<li><strong>证据链推理</strong>：见 share 空间 <code>docs/21_evidence_chain_reasoning.md</code></li>
+</ul>
+<h3 id="15-两大核心场景">1.5 两大核心场景<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#15-两大核心场景" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>场景</th><th>目标用户</th><th>核心痛点</th><th>解决方案</th><th>价值主张</th></tr></thead><tbody><tr><td><strong>临床发现</strong></td><td>医生、临床研究员</td><td>信息过载，难以快速找到诊疗证据</td><td>智能知识图谱 + 证据链分析</td><td>让医生在5分钟内获得原本需要2小时才能找到的诊疗证据</td></tr><tr><td><strong>科研发现</strong></td><td>科研人员、博士生</td><td>数据碎片化，难以整合多源信息</td><td>统一知识平台 + 关系网络分析</td><td>让研究人员在几分钟内查询疾病相关的所有分子实体和文献证据</td></tr></tbody></table></div>
+<hr/>
+<h2 id="2--临床发现场景">2. 🏥 临床发现场景<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2--临床发现场景" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="21-问题场景">2.1 问题场景<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-问题场景" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote>
+<p>一位肝病专科医生面对一个复杂病例：</p>
+<ul>
+<li>患者有慢性乙肝病史，近期出现肝功能异常</li>
+<li>同时有糖尿病和高血压并发症</li>
+<li>需要制定个性化的治疗方案</li>
+</ul>
+<p><strong>传统方法</strong>：</p>
+<ol>
+<li>查阅HepatoOntology了解疾病分类（30分钟）</li>
+<li>搜索PubMed寻找类似病例的治疗方案（45分钟）</li>
+<li>检查ClinVar数据库查看基因变异信息（20分钟）</li>
+<li>参考临床指南制定治疗方案（25分钟）</li>
+</ol>
+<p><strong>耗时</strong>：2-3小时<br/>
+<strong>风险</strong>：可能遗漏重要关联信息</p>
+</blockquote>
+<h3 id="22-解决方案">2.2 解决方案<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-解决方案" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>我们的肝病知识图谱将所有这些信息整合到一个统一的智能系统中：</p>
+<p><strong>医生只需输入患者情况，系统就能</strong>：</p>
+<ol>
+<li>自动识别相关疾病、基因、蛋白、药物</li>
+<li>发现隐藏的医学关联（如特定基因变异与药物反应的关系）</li>
+<li>提供基于证据的治疗方案推荐</li>
+<li>实时更新最新研究成果</li>
+</ol>
+<p><strong>效果</strong>：</p>
+<ul>
+<li><strong>耗时</strong>：5分钟</li>
+<li><strong>价值</strong>：提高诊断准确性，节省医生时间</li>
+</ul>
+<h3 id="23-经典案例豪斯医生中的疑难诊断">2.3 经典案例：《豪斯医生》中的疑难诊断<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-经典案例豪斯医生中的疑难诊断" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote>
+<p><strong>背景</strong>：美剧《豪斯医生》(House M.D.) 第五季第9集 “Last Resort”</p>
+<p><strong>剧情</strong>：病人杰森长期呼吸困难、心悸，两年内看了16位医生无果，持枪劫持医院点名要豪斯诊断</p>
+<p><strong>诊断过程</strong>：</p>
+<ol>
+<li><strong>传统方法</strong>：每位医生都进行了常规检查，但无法找到病因</li>
+<li><strong>豪斯方法</strong>：通过详细病史询问、系统性排除法，最终发现类鼻疽感染</li>
+<li><strong>关键洞察</strong>：患者曾去过东南亚，有接触史，但被其他医生忽略</li>
+</ol>
+<p><strong>技术映射</strong>：</p>
+<ul>
+<li><strong>信息整合</strong>：豪斯团队整合了患者的旅行史、症状、检查结果</li>
+<li><strong>关系发现</strong>：发现”东南亚旅行”与”呼吸困难”之间的隐藏关联</li>
+<li><strong>证据链构建</strong>：通过微生物培养确认类鼻疽细菌感染</li>
+</ul>
+<p><strong>我们的知识图谱如何解决类似问题</strong>：</p>
+<ol>
+<li><strong>自动关联分析</strong>：系统自动识别患者旅行史与特定疾病的关系</li>
+<li><strong>罕见病提示</strong>：基于知识图谱的罕见病数据库，提示类鼻疽等罕见感染</li>
+<li><strong>证据链展示</strong>：提供完整的诊断证据链，避免遗漏关键信息</li>
+<li><strong>时间效率</strong>：将原本需要数月的诊断过程缩短到数小时</li>
+</ol>
+</blockquote>
+<h3 id="24-具体应用">2.4 具体应用<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#24-具体应用" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="场景1智能诊疗支持">场景1：智能诊疗支持<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#场景1智能诊疗支持" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>功能</strong>：基于患者情况推荐诊疗方案</li>
+<li><strong>实现</strong>：整合疾病、基因、药物、文献数据</li>
+<li><strong>价值</strong>：提高诊疗质量，减少误诊</li>
+</ul>
+<h4 id="场景2药物相互作用预警">场景2：药物相互作用预警<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#场景2药物相互作用预警" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>功能</strong>：检测药物之间的相互作用风险</li>
+<li><strong>实现</strong>：分析药物-靶点-通路关系</li>
+<li><strong>价值</strong>：避免药物不良反应</li>
+</ul>
+<h4 id="场景3预后预测">场景3：预后预测<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#场景3预后预测" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>功能</strong>：基于分子特征预测疾病进展</li>
+<li><strong>实现</strong>：整合基因变异、蛋白表达、临床数据</li>
+<li><strong>价值</strong>：制定个性化治疗方案</li>
+</ul>
+<h3 id="25-技术架构">2.5 技术架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#25-技术架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><code>┌─────────────────────────────────────────┐
+│           临床应用层                      │
+│  智能诊疗 · 药物预警 · 预后预测          │
+├─────────────────────────────────────────┤
+│         知识图谱层                        │
+│  疾病-基因-蛋白-药物关系网络             │
+├─────────────────────────────────────────┤
+│         证据链分析层                      │
+│  文献证据 · 临床数据 · 实验验证          │
+├─────────────────────────────────────────┤
+│         数据源层                          │
+│  HepatoOntology · PubMed · ClinVar      │
+└─────────────────────────────────────────┘
+</code></pre>
+<hr/>
+<h2 id="3--科研发现场景">3. 🔬 科研发现场景<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3--科研发现场景" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="31-问题场景">3.1 问题场景<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-问题场景" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote>
+<p>一位肝癌研究人员正在探索分子机制：</p>
+<ol>
+<li>需要在多个数据库中查找疾病-基因关联</li>
+<li>需要手动整理基因-蛋白-通路的关系</li>
+<li>需要查找相关文献作为证据</li>
+<li>需要理解分子路径和机制</li>
+</ol>
+<p><strong>传统方法</strong>：</p>
+<ul>
+<li>在多个数据库中手动查找关联</li>
+<li>耗时数天到数周</li>
+<li>容易遗漏重要关联</li>
+</ul>
+</blockquote>
+<h3 id="32-解决方案">3.2 解决方案<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-解决方案" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>我们的肝病知识图谱将所有这些信息整合到一个统一的网络中：</p>
+<p><strong>研究人员只需查询某个疾病，系统就能</strong>：</p>
+<ol>
+<li>自动显示相关的基因、蛋白、通路</li>
+<li>展示实体之间的关联关系</li>
+<li>提供相关的文献证据</li>
+<li>分析分子路径和机制</li>
+</ol>
+<p><strong>效果</strong>：</p>
+<ul>
+<li><strong>耗时</strong>：几分钟</li>
+<li><strong>价值</strong>：快速理解分子机制，发现研究线索</li>
+</ul>
+<h3 id="33-经典案例肝癌免疫治疗的突破性发现">3.3 经典案例：肝癌免疫治疗的突破性发现<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-经典案例肝癌免疫治疗的突破性发现" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote>
+<p><strong>背景</strong>：2017年《Nature》发表的肝癌免疫治疗研究</p>
+<p><strong>研究问题</strong>：为什么部分肝癌患者对免疫检查点抑制剂（PD-1/PD-L1抑制剂）反应良好，而另一部分患者无效？</p>
+<p><strong>传统研究方法</strong>：</p>
+<ol>
+<li><strong>文献调研</strong>：研究人员手动检索PubMed，花费数周时间收集相关文献</li>
+<li><strong>数据整合</strong>：从TCGA、ICGC等数据库下载肝癌基因组数据，手动分析</li>
+<li><strong>假设生成</strong>：基于文献和数据，提出”肿瘤突变负荷”与免疫治疗反应相关的假设</li>
+<li><strong>实验验证</strong>：设计实验验证假设，耗时数月</li>
+</ol>
+<p><strong>研究挑战</strong>：</p>
+<ul>
+<li><strong>数据碎片化</strong>：基因组数据、临床数据、文献数据分散在不同平台</li>
+<li><strong>关联复杂</strong>：免疫治疗涉及多个基因、通路、微环境因素</li>
+<li><strong>证据整合困难</strong>：需要手动整合多源证据，易遗漏重要关联</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>知识图谱解决方案</strong>：</p>
+<ol>
+<li><strong>一键查询</strong>：输入”肝癌免疫治疗”，系统自动显示：
+<ul>
+<li>相关基因：PD-L1、CTLA-4、TMB等</li>
+<li>信号通路：免疫检查点通路、抗原呈递通路</li>
+<li>临床数据：患者响应率、生存期数据</li>
+<li>文献证据：相关研究论文和临床试验</li>
+</ul>
+</li>
+<li><strong>关系发现</strong>：系统自动发现隐藏关联：
+<ul>
+<li><strong>肿瘤突变负荷(TMB)</strong> → <strong>新抗原数量</strong> → <strong>T细胞激活</strong> → <strong>免疫治疗响应</strong></li>
+<li><strong>PD-L1表达</strong> → <strong>免疫逃逸</strong> → <strong>治疗抵抗</strong></li>
+<li><strong>微环境特征</strong> → <strong>免疫细胞浸润</strong> → <strong>治疗效果</strong></li>
+</ul>
+</li>
+<li><strong>证据链构建</strong>：为每个关联提供文献支持：
+<ul>
+<li>TMB与免疫治疗响应：50+篇文献证据</li>
+<li>PD-L1表达预测价值：30+篇文献证据</li>
+<li>微环境特征重要性：20+篇文献证据</li>
+</ul>
+</li>
+<li><strong>研究加速</strong>：
+<ul>
+<li><strong>文献调研时间</strong>：从数周缩短到数小时</li>
+<li><strong>数据整合时间</strong>：从数天缩短到数分钟</li>
+<li><strong>假设生成速度</strong>：从数月缩短到数天</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>实际影响</strong>：</p>
+<ul>
+<li><strong>2017年突破</strong>：基于类似研究，PD-1抑制剂获批用于肝癌治疗</li>
+<li><strong>患者受益</strong>：晚期肝癌患者生存期显著延长</li>
+<li><strong>研究范式转变</strong>：从单一基因研究转向系统生物学研究</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>知识图谱的价值</strong>：</p>
+<ol>
+<li><strong>加速发现</strong>：将研究周期从数月缩短到数周</li>
+<li><strong>提高质量</strong>：基于完整证据链的研究假设</li>
+<li><strong>降低门槛</strong>：让研究人员快速掌握领域现状</li>
+<li><strong>促进合作</strong>：清晰展示研究网络，促进跨团队合作</li>
+</ol>
+</blockquote>
+<h3 id="34-具体应用">3.4 具体应用<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#34-具体应用" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="场景1文献智能分析">场景1：文献智能分析<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#场景1文献智能分析" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>功能</strong>：自动分析文献趋势，识别研究热点</li>
+<li><strong>实现</strong>：基于PubMed文献挖掘，分析关键词、作者网络、引用关系</li>
+<li><strong>产出</strong>：研究热点图、作者合作网络、文献时间线</li>
+<li><strong>价值</strong>：快速了解研究现状，避免重复研究</li>
+</ul>
+<h4 id="场景2分子机制探索">场景2：分子机制探索<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#场景2分子机制探索" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>功能</strong>：一键查询疾病相关的所有分子实体和关系</li>
+<li><strong>实现</strong>：整合疾病-基因-蛋白-通路的关联网络</li>
+<li><strong>产出</strong>：疾病分子机制网络图</li>
+<li><strong>价值</strong>：快速理解疾病分子机制，发现研究线索</li>
+</ul>
+<h4 id="场景3证据链构建">场景3：证据链构建<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#场景3证据链构建" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>功能</strong>：自动关联实体与相关文献</li>
+<li><strong>实现</strong>：基于文献挖掘的证据强度评估</li>
+<li><strong>产出</strong>：每个实体关联的文献列表和证据强度</li>
+<li><strong>价值</strong>：为研究假设提供文献支持</li>
+</ul>
+<h4 id="场景4路径分析">场景4：路径分析<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#场景4路径分析" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ul>
+<li><strong>功能</strong>：自动分析疾病到治疗靶点的分子路径</li>
+<li><strong>实现</strong>：基于知识图谱的路径分析算法</li>
+<li><strong>产出</strong>：疾病机制路径图、潜在治疗靶点</li>
+<li><strong>价值</strong>：发现新的治疗靶点和机制</li>
+</ul>
+<h3 id="35-技术架构">3.5 技术架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#35-技术架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><code>┌─────────────────────────────────────────┐
+│           临床应用层                      │
+│  智能诊疗 · 药物预警 · 预后预测          │
+├─────────────────────────────────────────┤
+│         临床场景层 ⭐ 新增                │
+│  场景化知识组织 · 临床工作流支持         │
+│  • 肝癌诊断场景                          │
+│  • 药物相互作用场景                      │
+│  • 预后预测场景                          │
+│  • 治疗方案推荐场景                      │
+├─────────────────────────────────────────┤
+│         知识图谱层                        │
+│  疾病-基因-蛋白-通路关系网络             │
+├─────────────────────────────────────────┤
+│         知识融合层                        │
+│  实体对齐 · 关系合并 · 冲突解决          │
+├─────────────────────────────────────────┤
+│         数据源层                          │
+│  HepatoOntology · PubMed · 多组学数据    │
+└─────────────────────────────────────────┘
+</code></pre>
+<h3 id="36-临床场景层设计">3.6 临床场景层设计<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#36-临床场景层设计" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="361-设计理念">3.6.1 设计理念<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#361-设计理念" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>核心问题</strong>：专业知识图谱与临床医生使用习惯之间的鸿沟</p>
+<ul>
+<li><strong>医生思维</strong>：基于症状、体征、检查结果的临床推理</li>
+<li><strong>知识图谱</strong>：基于实体、关系、属性的网络结构</li>
+<li><strong>gap</strong>：需要将网络结构转换为临床可理解的场景化知识</li>
+</ul>
+<h4 id="362-场景层架构">3.6.2 场景层架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#362-场景层架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<pre><code>临床场景层 = 场景定义 + 知识映射 + 工作流支持
+
+1. 场景定义模块
+   - 临床场景库：预定义常见临床场景
+   - 场景模板：标准化的场景描述结构
+   - 场景演化：基于新证据的场景更新
+
+2. 知识映射模块
+   - 实体映射：将知识图谱实体映射到临床概念
+   - 关系映射：将图谱关系映射到临床推理路径
+   - 证据映射：将文献证据映射到临床推荐等级
+
+3. 工作流支持模块
+   - 诊疗流程：标准化的临床工作流程
+   - 决策节点：关键决策点的知识支持
+   - 证据展示：循证医学证据的可视化呈现
+</code></pre>
+<h4 id="363-具体场景示例">3.6.3 具体场景示例<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#363-具体场景示例" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p><strong>场景1：肝癌诊断支持</strong></p>
+<ul>
+<li><strong>输入</strong>：患者症状、检查结果、病史</li>
+<li><strong>知识映射</strong>：
+<ul>
+<li>症状 → 疾病实体</li>
+<li>检查结果 → 分子标记物</li>
+<li>病史 → 风险因素</li>
+</ul>
+</li>
+<li><strong>输出</strong>：诊断建议、鉴别诊断、检查推荐</li>
+</ul>
+<p><strong>场景2：药物相互作用预警</strong></p>
+<ul>
+<li><strong>输入</strong>：患者用药清单</li>
+<li><strong>知识映射</strong>：
+<ul>
+<li>药物 → 药物实体</li>
+<li>相互作用 → 药物-靶点关系</li>
+</ul>
+</li>
+<li><strong>输出</strong>：相互作用风险等级、替代药物建议</li>
+</ul>
+<p><strong>场景3：治疗方案推荐</strong></p>
+<ul>
+<li><strong>输入</strong>：疾病诊断、患者特征</li>
+<li><strong>知识映射</strong>：
+<ul>
+<li>疾病 → 治疗靶点</li>
+<li>患者特征 → 个性化因素</li>
+</ul>
+</li>
+<li><strong>输出</strong>：治疗方案、预期效果、风险评估</li>
+</ul>
+<h4 id="364-技术实现">3.6.4 技术实现<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#364-技术实现" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<ol>
+<li><strong>场景知识库</strong>：基于临床指南和专家经验构建</li>
+<li><strong>映射规则引擎</strong>：将图谱知识转换为场景知识</li>
+<li><strong>推理引擎</strong>：基于场景的临床推理支持</li>
+<li><strong>用户界面</strong>：场景化的交互界面</li>
+</ol>
+<h3 id="38-技术架构">3.8 技术架构<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#38-技术架构" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<hr/>
+<h2 id="4--价值主张对比">4. 🎯 价值主张对比<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4--价值主张对比" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-临床发现-vs-科研发现">4.1 临床发现 vs 科研发现<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-临床发现-vs-科研发现" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>临床发现</th><th>科研发现</th></tr></thead><tbody><tr><td><strong>目标用户</strong></td><td>医生、临床研究员</td><td>科研人员、博士生</td></tr><tr><td><strong>核心痛点</strong></td><td>信息过载，诊疗证据难找</td><td>数据碎片化，整合困难</td></tr><tr><td><strong>解决方案</strong></td><td>智能诊疗支持系统</td><td>统一知识平台</td></tr><tr><td><strong>价值主张</strong></td><td>5分钟获得2小时的诊疗证据</td><td>几分钟查询完整的分子网络</td></tr><tr><td><strong>技术重点</strong></td><td>证据链分析、预后预测</td><td>关系发现、路径分析</td></tr><tr><td><strong>验证方式</strong></td><td>临床效果验证</td><td>文献分析验证</td></tr></tbody></table></div>
+<h3 id="42-共同价值">4.2 共同价值<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-共同价值" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>数据整合</strong>：打破数据孤岛，提供统一查询接口</li>
+<li><strong>关系发现</strong>：自动发现实体之间的关联关系</li>
+<li><strong>证据支持</strong>：为决策提供文献和数据证据</li>
+<li><strong>效率提升</strong>：大幅缩短信息检索和分析时间</li>
+</ol>
+<hr/>
+<h2 id="5--预期成果">5. 📊 预期成果<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5--预期成果" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-临床发现成果">5.1 临床发现成果<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-临床发现成果" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>诊疗效率提升</strong>：医生诊疗时间缩短80%</li>
+<li><strong>诊断准确性提高</strong>：基于完整证据链的决策支持</li>
+<li><strong>患者满意度提升</strong>：个性化治疗方案</li>
+</ul>
+<h3 id="52-科研发现成果">5.2 科研发现成果<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-科研发现成果" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>研究效率提升</strong>：文献分析时间缩短90%</li>
+<li><strong>研究质量提高</strong>：完整的分子机制理解</li>
+<li><strong>论文产出增加</strong>：更快的研究周期和发现</li>
+</ul>
+<hr/>
+<h2 id="6--与现有工作的关系">6. 🔗 与现有工作的关系<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6--与现有工作的关系" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="61-与hepatoontology的关系">6.1 与HepatoOntology的关系<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-与hepatoontology的关系" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>HepatoOntology</strong>：提供标准化的本体框架</li>
+<li><strong>知识图谱</strong>：基于本体构建实例化的关系网络</li>
+<li><strong>互补性</strong>：本体提供结构，图谱提供实例和关系</li>
+</ul>
+<h3 id="62-与llm-wiki的关系">6.2 与LLM Wiki的关系<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-与llm-wiki的关系" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>LLM Wiki</strong>：提供文档化知识</li>
+<li><strong>知识图谱</strong>：提供结构化知识</li>
+<li><strong>协同作用</strong>：文档解释概念，图谱提供关系</li>
+</ul>
+<hr/>
+<h2 id="7--发展路线图">7. 📈 发展路线图<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7--发展路线图" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="phase-1-基础构建已完成">Phase 1: 基础构建（已完成）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-1-基础构建已完成" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>✅ HepatoOntology本体设计</li>
+<li>✅ 核心实体数据录入</li>
+<li>✅ 基础关系抽取</li>
+</ul>
+<h3 id="phase-2-功能扩展进行中">Phase 2: 功能扩展（进行中）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-2-功能扩展进行中" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>🔄 文献智能分析功能</li>
+<li>🔄 关系查询接口</li>
+<li>🔄 证据链构建</li>
+</ul>
+<h3 id="phase-3-应用深化计划中">Phase 3: 应用深化（计划中）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-3-应用深化计划中" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>📋 临床决策支持系统</li>
+<li>📋 科研辅助平台</li>
+<li>📋 智能问答系统</li>
+</ul>
+<h3 id="phase-4-优化推广远期规划">Phase 4: 优化推广（远期规划）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#phase-4-优化推广远期规划" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>📋 性能优化</li>
+<li>📋 用户体验改进</li>
+<li>📋 社区推广</li>
+</ul>
+<hr/>
+<h2 id="8--参考文献">8. 📚 参考文献<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8--参考文献" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li>HepatoOntology本体设计文档</li>
+<li>PubMed文献挖掘方法</li>
+<li>知识图谱构建技术</li>
+<li>临床决策支持系统研究</li>
+</ol></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-61" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#项目动机---临床发现与科研发现" data-for="项目动机---临床发现与科研发现">项目动机 - 临床发现与科研发现</a></li><li class="depth-1"><a href="#1--核心动机框架" data-for="1--核心动机框架">1. 🎯 核心动机框架</a></li><li class="depth-2"><a href="#11-核心问题认知鸿沟" data-for="11-核心问题认知鸿沟">1.1 核心问题：认知鸿沟</a></li><li class="depth-2"><a href="#14-三大核心方法贡献" data-for="14-三大核心方法贡献">1.4 三大核心方法贡献</a></li><li class="depth-2"><a href="#15-两大核心场景" data-for="15-两大核心场景">1.5 两大核心场景</a></li><li class="depth-1"><a href="#2--临床发现场景" data-for="2--临床发现场景">2. 🏥 临床发现场景</a></li><li class="depth-2"><a href="#21-问题场景" data-for="21-问题场景">2.1 问题场景</a></li><li class="depth-2"><a href="#22-解决方案" data-for="22-解决方案">2.2 解决方案</a></li><li class="depth-2"><a href="#23-经典案例豪斯医生中的疑难诊断" data-for="23-经典案例豪斯医生中的疑难诊断">2.3 经典案例：《豪斯医生》中的疑难诊断</a></li><li class="depth-2"><a href="#24-具体应用" data-for="24-具体应用">2.4 具体应用</a></li><li class="depth-2"><a href="#25-技术架构" data-for="25-技术架构">2.5 技术架构</a></li><li class="depth-1"><a href="#3--科研发现场景" data-for="3--科研发现场景">3. 🔬 科研发现场景</a></li><li class="depth-2"><a href="#31-问题场景" data-for="31-问题场景">3.1 问题场景</a></li><li class="depth-2"><a href="#32-解决方案" data-for="32-解决方案">3.2 解决方案</a></li><li class="depth-2"><a href="#33-经典案例肝癌免疫治疗的突破性发现" data-for="33-经典案例肝癌免疫治疗的突破性发现">3.3 经典案例：肝癌免疫治疗的突破性发现</a></li><li class="depth-2"><a href="#34-具体应用" data-for="34-具体应用">3.4 具体应用</a></li><li class="depth-2"><a href="#35-技术架构" data-for="35-技术架构">3.5 技术架构</a></li><li class="depth-2"><a href="#36-临床场景层设计" data-for="36-临床场景层设计">3.6 临床场景层设计</a></li><li class="depth-2"><a href="#38-技术架构" data-for="38-技术架构">3.8 技术架构</a></li><li class="depth-1"><a href="#4--价值主张对比" data-for="4--价值主张对比">4. 🎯 价值主张对比</a></li><li class="depth-2"><a href="#41-临床发现-vs-科研发现" data-for="41-临床发现-vs-科研发现">4.1 临床发现 vs 科研发现</a></li><li class="depth-2"><a href="#42-共同价值" data-for="42-共同价值">4.2 共同价值</a></li><li class="depth-1"><a href="#5--预期成果" data-for="5--预期成果">5. 📊 预期成果</a></li><li class="depth-2"><a href="#51-临床发现成果" data-for="51-临床发现成果">5.1 临床发现成果</a></li><li class="depth-2"><a href="#52-科研发现成果" data-for="52-科研发现成果">5.2 科研发现成果</a></li><li class="depth-1"><a href="#6--与现有工作的关系" data-for="6--与现有工作的关系">6. 🔗 与现有工作的关系</a></li><li class="depth-2"><a href="#61-与hepatoontology的关系" data-for="61-与hepatoontology的关系">6.1 与HepatoOntology的关系</a></li><li class="depth-2"><a href="#62-与llm-wiki的关系" data-for="62-与llm-wiki的关系">6.2 与LLM Wiki的关系</a></li><li class="depth-1"><a href="#7--发展路线图" data-for="7--发展路线图">7. 📈 发展路线图</a></li><li class="depth-2"><a href="#phase-1-基础构建已完成" data-for="phase-1-基础构建已完成">Phase 1: 基础构建（已完成）</a></li><li class="depth-2"><a href="#phase-2-功能扩展进行中" data-for="phase-2-功能扩展进行中">Phase 2: 功能扩展（进行中）</a></li><li class="depth-2"><a href="#phase-3-应用深化计划中" data-for="phase-3-应用深化计划中">Phase 3: 应用深化（计划中）</a></li><li class="depth-2"><a href="#phase-4-优化推广远期规划" data-for="phase-4-优化推广远期规划">Phase 4: 优化推广（远期规划）</a></li><li class="depth-1"><a href="#8--参考文献" data-for="8--参考文献">8. 📚 参考文献</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="./" class="internal">肝病知识图谱 Wiki</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="./postscript.js" type="module" data-persist="true"></script></html>

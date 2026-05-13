@@ -1,0 +1,97 @@
+# liver_kg_wiki 状态报告
+
+> 生成时间: 2026-04-27 11:26:00
+> 检查版本: v1.0
+
+## 📊 Wiki 概览
+
+### 1. 目录结构
+```
+liver_kg_wiki/
+├── .git/                          # Git 仓库
+├── .gitignore                     # Git 忽略文件
+├── GITHUB_SETUP.md                # GitHub 配置说明
+├── GIT_USAGE.md                   # Git 使用指南
+├── PROJECT_CONTROL_PLAN.md        # 项目控制计划
+├── QUICK_AUTH.md                  # 快速认证指南
+├── README_EN.md                   # 英文 README
+├── SCHEMA.md                      # Wiki 架构 Schema
+├── comparisons/                   # 比较文档
+├── concepts/                      # 概念文档
+├── entities/                      # 实体文档
+├── index.md                       # 索引文件
+├── log.md                         # 日志文件
+├── methods/                       # 方法文档
+├── overview.md                    # 概览文件
+├── queries/                       # 查询文档
+├── raw/                           # 原始数据
+├── research/                      # 研究文档
+├── setup_ssh.sh                   # SSH 配置脚本
+└── sources/                       # 来源文档
+```
+
+### 2. 文件统计
+- **Markdown 文件**: 45 个
+- **总大小**: 5.6 MB
+- **Git 提交**: 5 次
+
+### 3. Git 状态
+- **分支**: main
+- **远程仓库**: git@github.com:zrt-980802/liver-kg-wiki.git
+- **推送状态**: ✅ 已推送
+
+## 📁 数据分类
+
+### 1. 原始数据 (raw/)
+- **llm_wiki_pattern.md**: LLM Wiki 模式文档
+- 其他原始数据文件
+
+### 2. 实体文档 (entities/)
+- 疾病、药物、症状等实体文档
+
+### 3. 概念文档 (concepts/)
+- 医学概念、理论等文档
+
+### 4. 比较文档 (comparisons/)
+- AliCoCo vs Liver Disease KG 比较
+
+### 5. 研究文档 (research/)
+- 学术研究相关文档
+
+## 🔧 Wiki 架构
+
+### 1. 三层架构
+1. **Raw sources**: 原始数据文件（不可修改）
+2. **The wiki**: LLM 生成的 Markdown 文件
+3. **The schema**: 架构配置文件
+
+### 2. 核心操作
+- **Ingest**: 数据摄入和处理
+- **Query**: 问题查询和答案生成
+- **Lint**: 健康检查和维护
+
+### 3. 索引和日志
+- **index.md**: 内容导向的索引
+- **log.md**: 时间顺序的日志
+
+## 🎯 下一步行动
+
+### 1. 数据更新
+- [ ] 补充新的医学数据
+- [ ] 更新实体文档
+- [ ] 维护概念文档
+
+### 2. Wiki 维护
+- [ ] 定期健康检查
+- [ ] 更新索引文件
+- [ ] 维护日志文件
+
+### 3. GitHub 同步
+- [ ] 定期推送更新
+- [ ] 检查远程仓库状态
+- [ ] 维护分支同步
+
+---
+
+> 📍 报告位置: `liver_kg_wiki/状态报告.md`
+> 由 Hermes Agent 生成 · 2026-04-27

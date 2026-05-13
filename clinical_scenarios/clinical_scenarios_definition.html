@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>clinical_scenarios_definition</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Liver KG Wiki"/><meta property="og:title" content="clinical_scenarios_definition"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="clinical_scenarios_definition"/><meta name="twitter:description" content="肝病临床场景概念定义（扩展版） 基于 ICD-10/11、AASLD、EASL 指南的完整肝病临床场景体系 版本：v0.2.0 · 扩展版（30+ → 100+ 场景） 最后更新：2026-04-27 1."/><meta property="og:description" content="肝病临床场景概念定义（扩展版） 基于 ICD-10/11、AASLD、EASL 指南的完整肝病临床场景体系 版本：v0.2.0 · 扩展版（30+ → 100+ 场景） 最后更新：2026-04-27 1."/><meta property="og:image:alt" content="肝病临床场景概念定义（扩展版） 基于 ICD-10/11、AASLD、EASL 指南的完整肝病临床场景体系 版本：v0.2.0 · 扩展版（30+ → 100+ 场景） 最后更新：2026-04-27 1."/><meta property="og:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta name="twitter:image" content="https://zrt-980802.github.io/liver-kg-wiki-site/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="zrt-980802.github.io/liver-kg-wiki-site"/><meta property="og:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/clinical_scenarios/clinical_scenarios_definition"/><meta property="twitter:url" content="https://zrt-980802.github.io/liver-kg-wiki-site/clinical_scenarios/clinical_scenarios_definition"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="肝病临床场景概念定义（扩展版） 基于 ICD-10/11、AASLD、EASL 指南的完整肝病临床场景体系 版本：v0.2.0 · 扩展版（30+ → 100+ 场景） 最后更新：2026-04-27 1."/><meta name="generator" content="Quartz"/><link href="../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvYW5kb25nXzA4MDIvcHJvamVjdHMvbGl2ZXJfZGlzZWFzZV9rZy9saXZlci1rZy1xdWFydHovcXVhcnR6L2NvbXBvbmVudHMvc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><script src="../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://zrt-980802.github.io/liver-kg-wiki-site/index.xml"/></head><body data-slug="clinical_scenarios/clinical_scenarios_definition"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Liver KG Wiki</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-57"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-57" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../clinical_scenarios/">clinical_scenarios</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>clinical_scenarios_definition</a></div></nav><h1 class="article-title">clinical_scenarios_definition</h1><p show-comma="true" class="content-meta"><time datetime="2026-05-13T07:16:35.319Z">May 13, 2026</time><span>24 min read</span></p></div></div><article class="popover-hint"><h1 id="肝病临床场景概念定义扩展版">肝病临床场景概念定义（扩展版）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#肝病临床场景概念定义扩展版" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p>基于 ICD-10/11、AASLD、EASL 指南的完整肝病临床场景体系<br/>
+版本：v0.2.0 · 扩展版（30+ → 100+ 场景）<br/>
+最后更新：2026-04-27</p>
+</blockquote>
+<hr/>
+<h2 id="1-肝病分类体系总览">1. 肝病分类体系总览<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-肝病分类体系总览" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<pre><code>肝病 (ICD-10 K70-K77 + ICD-11 DA90-DD10)
+├── 1. 病毒性肝炎 (15场景)
+├── 2. 脂肪性肝病 (12场景)
+├── 3. 酒精性肝病 (10场景)
+├── 4. 药物与中毒性肝损伤 (12场景)
+├── 5. 自身免疫性肝病 (12场景)
+├── 6. 肝癌与肝肿瘤 (15场景)
+├── 7. 肝硬化与并发症 (18场景)
+├── 8. 遗传代谢性肝病 (10场景)
+├── 9. 血管性肝病 (8场景)
+├── 10. 肝衰竭与重症肝病 (8场景)
+├── 11. 胆道疾病相关肝病 (8场景)
+├── 12. 移植与术后 (8场景)
+└── 13. 特殊人群肝病 (8场景)
+</code></pre>
+<p><strong>总计：约 140+ 场景</strong></p>
+<hr/>
+<h2 id="2-详细临床场景定义">2. 详细临床场景定义<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-详细临床场景定义" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="21-病毒性肝炎-viral-hepatitis">2.1 病毒性肝炎 (Viral Hepatitis)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-病毒性肝炎-viral-hepatitis" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="211-急性病毒性肝炎">2.1.1 急性病毒性肝炎<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#211-急性病毒性肝炎" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>关联实体</th><th>严重度</th></tr></thead><tbody><tr><td>CS-VH-01</td><td>甲型肝炎急性感染</td><td>抗HAV IgM(+), ALT 5-20×ULN</td><td>Disease:HAV, Symptom:发热/黄疸</td><td>轻-中度</td></tr><tr><td>CS-VH-02</td><td>戊型肝炎急性感染（普通）</td><td>抗HEV IgM(+), 自限性</td><td>Disease:HEV, Symptom:纳差/乏力</td><td>轻度</td></tr><tr><td>CS-VH-03</td><td>戊型肝炎重症（孕妇/基础肝病）</td><td>HEV(+), 胆红素显著升高</td><td>Disease:HEV, Complication:肝衰竭</td><td>危重</td></tr><tr><td>CS-VH-04</td><td>急性乙型肝炎</td><td>HBsAg(+), IgM anti-HBc(+), ALT升高</td><td>Disease:HBV, Symptom:黄疸</td><td>轻-中度</td></tr><tr><td>CS-VH-05</td><td>急性丙型肝炎</td><td>抗HCV(+)/HCV RNA(+), 初发感染</td><td>Disease:HCV</td><td>轻-中度</td></tr><tr><td>CS-VH-06</td><td>丁型肝炎共感染</td><td>HBsAg(+)+抗HDV(+), 同时感染</td><td>Disease:HDV+HBV</td><td>中-重度</td></tr><tr><td>CS-VH-07</td><td>重症/暴发性病毒性肝炎</td><td>PT延长, HE出现, 胆红素>10mg/dL</td><td>Disease:肝衰竭</td><td>危重</td></tr></tbody></table></div>
+<h4 id="212-慢性病毒性肝炎">2.1.2 慢性病毒性肝炎<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#212-慢性病毒性肝炎" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>关联实体</th><th>严重度</th></tr></thead><tbody><tr><td>CS-VH-08</td><td>慢性乙肝免疫耐受期</td><td>HBeAg(+), ALT正常, HBV DNA高</td><td>Disease:CHB</td><td>轻度</td></tr><tr><td>CS-VH-09</td><td>慢性乙肝免疫清除期</td><td>HBeAg(+), ALT升高, HBV DNA中高</td><td>Disease:CHB</td><td>中度</td></tr><tr><td>CS-VH-10</td><td>慢性乙肝非活动携带期</td><td>HBeAg(-), ALT正常, HBV DNA低</td><td>Disease:CHB</td><td>轻度</td></tr><tr><td>CS-VH-11</td><td>慢性乙肝再活动期</td><td>HBeAg(-), ALT升高, HBV DNA升高</td><td>Disease:CHB, Flare</td><td>中度</td></tr><tr><td>CS-VH-12</td><td>HBeAg阴性慢性乙肝</td><td>HBeAg(-), 抗HBe(+), ALT波动</td><td>Disease:CHB</td><td>轻-中度</td></tr><tr><td>CS-VH-13</td><td>慢性丙型肝炎（初治）</td><td>HCV RNA(+), 未经治疗</td><td>Disease:CHC</td><td>轻-中度</td></tr><tr><td>CS-VH-14</td><td>慢性丙型肝炎（DAAs治疗中）</td><td>治疗中, 监测病毒学应答</td><td>Disease:CHC, Drug:DAAs</td><td>治疗中</td></tr><tr><td>CS-VH-15</td><td>丁型肝炎重叠感染</td><td>HBsAg(+)+抗HDV(+), 慢性化</td><td>Disease:CHD+CHB</td><td>中-重度</td></tr></tbody></table></div>
+<hr/>
+<h3 id="22-脂肪性肝病-steatotic-liver-disease">2.2 脂肪性肝病 (Steatotic Liver Disease)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-脂肪性肝病-steatotic-liver-disease" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="221-nafldmafldmasld">2.2.1 NAFLD/MAFLD/MASLD<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#221-nafldmafldmasld" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-SL-01</td><td>单纯性脂肪肝（代谢性）</td><td>影像学脂肪浸润, ALT正常</td><td>轻度</td></tr><tr><td>CS-SL-02</td><td>单纯性脂肪肝伴轻度炎症</td><td>影像脂肪浸润, ALT 1-3×ULN</td><td>轻度</td></tr><tr><td>CS-SL-03</td><td>NASH伴F0-F1纤维化</td><td>病理确认NASH, METAVIR F0-F1</td><td>中度</td></tr><tr><td>CS-SL-04</td><td>NASH伴F2显著纤维化</td><td>METAVIR F2, 弹性成像≥8kPa</td><td>中度</td></tr><tr><td>CS-SL-05</td><td>NASH伴F3桥接纤维化</td><td>METAVIR F3, 弹性成像≥12kPa</td><td>重度</td></tr><tr><td>CS-SL-06</td><td>NASH相关代偿期肝硬化</td><td>METAVIR F4, 无失代偿</td><td>代偿期</td></tr><tr><td>CS-SL-07</td><td>MASLD合并代谢综合征</td><td>+肥胖/糖尿病/高血压/血脂异常</td><td>轻度</td></tr><tr><td>CS-SL-08</td><td>MASLD合并T2DM</td><td>+2型糖尿病, 血糖控制差</td><td>中-重度</td></tr><tr><td>CS-SL-09</td><td>MAFLD伴NAFLD评分高危</td><td>NAFLD fibrosis score >0.676</td><td>中-重度</td></tr><tr><td>CS-SL-10</td><td>MAFLD相关肝癌筛查</td><td>肝硬化基础上, 每6月影像</td><td>随访</td></tr></tbody></table></div>
+<h4 id="222-特殊类型脂肪肝">2.2.2 特殊类型脂肪肝<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#222-特殊类型脂肪肝" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-SL-11</td><td>急性妊娠脂肪肝 (AFLP)</td><td>孕晚期, 肝衰竭, Swansea标准 ≥6项</td><td>危重</td></tr><tr><td>CS-SL-12</td><td>Reye综合征</td><td>儿童, 病毒前驱感染+阿司匹林</td><td>危重</td></tr></tbody></table></div>
+<hr/>
+<h3 id="23-酒精性肝病-alcoholic-liver-disease">2.3 酒精性肝病 (Alcoholic Liver Disease)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-酒精性肝病-alcoholic-liver-disease" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-AL-01</td><td>酒精性脂肪肝（轻度）</td><td>饮酒史, 影像脂肪浸润, ALT轻度升高</td><td>轻度</td></tr><tr><td>CS-AL-02</td><td>酒精性肝炎（轻-中度）</td><td>Maddrey DF&lt;32, 饮酒史+黄疸</td><td>轻-中度</td></tr><tr><td>CS-AL-03</td><td>重度酒精性肝炎</td><td>DF≥32/MELD>20, 胆红素升高</td><td>重度</td></tr><tr><td>CS-AL-04</td><td>酒精性肝炎合并感染</td><td>+细菌感染, 中性粒细胞升高</td><td>危重</td></tr><tr><td>CS-AL-05</td><td>酒精性肝纤维化</td><td>弹性成像提示F2-F3纤维化</td><td>中度</td></tr><tr><td>CS-AL-06</td><td>酒精性代偿期肝硬化</td><td>Child A/B, 无腹水/出血</td><td>代偿期</td></tr><tr><td>CS-AL-07</td><td>酒精性失代偿期肝硬化</td><td>Child C, 腹水+黄疸+凝血障碍</td><td>失代偿</td></tr><tr><td>CS-AL-08</td><td>酒精戒断综合征+肝炎</td><td>戒酒后出现震颤/幻觉/癫痫</td><td>中-重度</td></tr><tr><td>CS-AL-09</td><td>酒精性肝硬化合并营养不良</td><td>体重下降, 肌少症</td><td>失代偿</td></tr><tr><td>CS-AL-10</td><td>酒精合并代谢性肝病</td><td>饮酒+NAFLD双重病因</td><td>中-重度</td></tr></tbody></table></div>
+<hr/>
+<h3 id="24-药物与中毒性肝损伤-dili">2.4 药物与中毒性肝损伤 (DILI)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#24-药物与中毒性肝损伤-dili" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-DILI-01</td><td>对乙酰氨基酚过量（早期）</td><td>摄入4h, APAP血药浓度>150μg/mL, ALT升高</td><td>中度</td></tr><tr><td>CS-DILI-02</td><td>对乙酰氨基酚中毒（肝坏死）</td><td>摄入24-72h, ALT>1000, PT延长</td><td>危重</td></tr><tr><td>CS-DILI-03</td><td>肝细胞型DILI（非APAP）</td><td>R≥5, ALT>3×ULN, 药物暴露史</td><td>轻-中度</td></tr><tr><td>CS-DILI-04</td><td>胆汁淤积型DILI</td><td>R≤2, ALP>2×ULN, 药物史</td><td>轻度</td></tr><tr><td>CS-DILI-05</td><td>混合型DILI</td><td>2&lt;R&lt;5, ALT+ALP同时升高</td><td>中度</td></tr><tr><td>CS-DILI-06</td><td>抗结核药DILI</td><td>异烟肼/利福平, ALT>5×ULN</td><td>中度</td></tr><tr><td>CS-DILI-07</td><td>中草药相关肝损伤</td><td>何首乌/土三七等, 药物史明确</td><td>中-重度</td></tr><tr><td>CS-DILI-08</td><td>ICIs相关肝炎（免疫检查点抑制剂）</td><td>PD-1/CTLA-4治疗后, ALT升高</td><td>轻-中度</td></tr><tr><td>CS-DILI-09</td><td>DILI伴黄疸（Hy’s Law）</td><td>ALT>3×ULN + TBil>2×ULN, 预后差</td><td>重度</td></tr><tr><td>CS-DILI-10</td><td>DILI后恢复期</td><td>停药后ALT逐渐下降</td><td>恢复期</td></tr><tr><td>CS-DILI-11</td><td>慢性DILI</td><td>持续用药, ALT轻度持续升高>6月</td><td>轻度</td></tr><tr><td>CS-DILI-12</td><td>真菌毒素肝损伤</td><td>黄曲霉素暴露, 慢性损伤</td><td>慢性</td></tr></tbody></table></div>
+<hr/>
+<h3 id="25-自身免疫性肝病-autoimmune-liver-disease">2.5 自身免疫性肝病 (Autoimmune Liver Disease)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#25-自身免疫性肝病-autoimmune-liver-disease" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-AI-01</td><td>AIHⅠ型（初发）</td><td>ANA(+)/SMA(+), IgG升高, ALT升高</td><td>中度</td></tr><tr><td>CS-AI-02</td><td>AIHⅡ型</td><td>Anti-LKM1(+), 儿童/青少年多见</td><td>中度</td></tr><tr><td>CS-AI-03</td><td>AIH急性发作（flare）</td><td>ALT>10×ULN, IgG显著升高</td><td>重度</td></tr><tr><td>CS-AI-04</td><td>AIH药物维持期</td><td>泼尼松+AZA/MMF, 生化缓解</td><td>随访</td></tr><tr><td>CS-AI-05</td><td>AIH停药后复发</td><td>停药后ALT复发升高</td><td>中度</td></tr><tr><td>CS-AI-06</td><td>AIH相关肝硬化</td><td>进展期肝纤维化</td><td>代偿期</td></tr><tr><td>CS-AI-07</td><td>PBC早期（无症状）</td><td>AMA(+), ALP轻度升高</td><td>早期</td></tr><tr><td>CS-AI-08</td><td>PBC症状期</td><td>瘙痒+乏力, ALP显著升高</td><td>中度</td></tr><tr><td>CS-AI-09</td><td>PBC肝硬化代偿期</td><td>进展至F4, UDCA治疗中</td><td>代偿期</td></tr><tr><td>CS-AI-10</td><td>PBC失代偿期</td><td>黄疸+腹水, 需考虑移植</td><td>失代偿</td></tr><tr><td>CS-AI-11</td><td>PSC合并胆管狭窄</td><td>ERCP/MRCP示胆管狭窄, 胆管炎发作</td><td>中-重度</td></tr><tr><td>CS-AI-12</td><td>AIH//PBC重叠综合征</td><td>同时满足AIH+PBC标准（Paris标准）</td><td>中-重度</td></tr><tr><td>CS-AI-13</td><td>IgG4相关性胆管炎</td><td>IgG4>135mg/dL, 胆管壁增厚</td><td>中度</td></tr></tbody></table></div>
+<hr/>
+<h3 id="26-肝癌与肝肿瘤-hcc--liver-tumors">2.6 肝癌与肝肿瘤 (HCC &amp; Liver Tumors)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#26-肝癌与肝肿瘤-hcc--liver-tumors" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="261-肝细胞癌-hcc">2.6.1 肝细胞癌 (HCC)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#261-肝细胞癌-hcc" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>BCLC分期</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-HCC-01</td><td>极早期HCC</td><td>0</td><td>单结节&lt;2cm, Child A, PS 0</td><td>极早期</td></tr><tr><td>CS-HCC-02</td><td>早期HCC（可切除）</td><td>A</td><td>单结节/≤3个结节≤3cm, Child A-B</td><td>早期</td></tr><tr><td>CS-HCC-03</td><td>早期HCC（消融候选）</td><td>A</td><td>≤3cm, 不适合手术</td><td>早期</td></tr><tr><td>CS-HCC-04</td><td>中期HCC</td><td>B</td><td>多发结节, Child A-B, PS 0</td><td>中期</td></tr><tr><td>CS-HCC-05</td><td>TACE治疗后评估</td><td>B</td><td>介入后, mRECIST评价</td><td>治疗中</td></tr><tr><td>CS-HCC-06</td><td>晚期HCC</td><td>C</td><td>门脉侵犯/肝外转移, Child A-B</td><td>晚期</td></tr><tr><td>CS-HCC-07</td><td>靶向+免疫治疗中</td><td>C</td><td>仑伐替尼/索拉非尼+PD-1</td><td>治疗中</td></tr><tr><td>CS-HCC-08</td><td>终末期HCC</td><td>D</td><td>Child C, PS>2</td><td>终末期</td></tr><tr><td>CS-HCC-09</td><td>HCC复发（治疗后）</td><td>—</td><td>消融/切除/TACE后新发</td><td>复发</td></tr><tr><td>CS-HCC-10</td><td>HCC合并肝硬化</td><td>—</td><td>肝癌+肝硬化背景</td><td>中-重度</td></tr><tr><td>CS-HCC-11</td><td>HCC伴门脉癌栓 (PVTT)</td><td>C</td><td>门静脉主干/分支侵犯</td><td>晚期</td></tr><tr><td>CS-HCC-12</td><td>HCC伴骨转移</td><td>C</td><td>骨扫描/影像证实</td><td>晚期</td></tr><tr><td>CS-HCC-13</td><td>HCC肝移植评估</td><td>—</td><td>Milan/UCSF标准评估</td><td>评估中</td></tr><tr><td>CS-HCC-14</td><td>肝移植术后HCC随访</td><td>—</td><td>免疫抑制剂+肿瘤标志物</td><td>随访</td></tr></tbody></table></div>
+<h4 id="262-其他肝肿瘤">2.6.2 其他肝肿瘤<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#262-其他肝肿瘤" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-HCC-15</td><td>肝内胆管癌 (ICC)</td><td>影像+CA19-9升高, 肝内肿块</td><td>中-晚期</td></tr><tr><td>CS-HCC-16</td><td>肝血管瘤（随访）</td><td>超声/CT典型表现, 小血管瘤</td><td>良性</td></tr><tr><td>CS-HCC-17</td><td>肝腺瘤（随访）</td><td>口服避孕药史, MRI表现</td><td>良性/低危</td></tr></tbody></table></div>
+<hr/>
+<h3 id="27-肝硬化与并发症-cirrhosis--complications">2.7 肝硬化与并发症 (Cirrhosis &amp; Complications)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#27-肝硬化与并发症-cirrhosis--complications" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h4 id="271-肝硬化分期">2.7.1 肝硬化分期<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#271-肝硬化分期" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-CIR-01</td><td>代偿期肝硬化（Child A）</td><td>Child A, 无腹水/出血/脑病</td><td>代偿期</td></tr><tr><td>CS-CIR-02</td><td>初发失代偿期</td><td>首次出现腹水/出血/黄疸</td><td>失代偿初</td></tr><tr><td>CS-CIR-03</td><td>多次失代偿期</td><td>多次住院, Child B-C</td><td>严重失代偿</td></tr><tr><td>CS-CIR-04</td><td>复发性失代偿</td><td>3个月内再发生</td><td>严重</td></tr></tbody></table></div>
+<h4 id="272-并发症腹水">2.7.2 并发症：腹水<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#272-并发症腹水" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-CP-01</td><td>轻度腹水（Grade 1）</td><td>仅超声检出</td><td>轻度</td></tr><tr><td>CS-CP-02</td><td>中度腹水（Grade 2）</td><td>对称性腹部膨隆</td><td>中度</td></tr><tr><td>CS-CP-03</td><td>重度腹水（Grade 3）</td><td>大量腹水, 明显腹胀</td><td>重度</td></tr><tr><td>CS-CP-04</td><td>难治性腹水</td><td>利尿剂无效, 需定期放腹水</td><td>危重</td></tr><tr><td>CS-CP-05</td><td>肝肾综合征 (HRS-AKI)</td><td>Cr↑, 尿钠&lt;10mmol/L, 对扩容无效</td><td>危重</td></tr></tbody></table></div>
+<h4 id="273-并发症静脉曲张出血">2.7.3 并发症：静脉曲张出血<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#273-并发症静脉曲张出血" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-CP-06</td><td>食管静脉曲张（预防）</td><td>内镜见静脉曲张, 红色征(+)</td><td>高危</td></tr><tr><td>CS-CP-07</td><td>急性静脉曲张出血</td><td>呕血/黑便, 内镜下活动性出血</td><td>危重</td></tr><tr><td>CS-CP-08</td><td>出血后稳定期</td><td>内镜结扎术后+特利加压素</td><td>恢复期</td></tr><tr><td>CS-CP-09</td><td>复发性静脉曲张出血</td><td>首次出血后6周内再出血</td><td>危重</td></tr><tr><td>CS-CP-10</td><td>胃底静脉曲张出血</td><td>孤立性胃底静脉曲张</td><td>危重</td></tr><tr><td>CS-CP-11</td><td>TIPS术后随访</td><td>支架通畅, 肝性脑病监测</td><td>随访</td></tr></tbody></table></div>
+<h4 id="274-并发症感染">2.7.4 并发症：感染<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#274-并发症感染" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-CP-12</td><td>自发性细菌性腹膜炎 (SBP)</td><td>腹水PMN>250/μL, 细菌培养(±)</td><td>危重</td></tr><tr><td>CS-CP-13</td><td>SBP初次发作后预防</td><td>诺氟沙星, 二级预防</td><td>预防</td></tr><tr><td>CS-CP-14</td><td>肝硬化伴脓毒症</td><td>感染+SIRS/序贯器官衰竭</td><td>危重</td></tr><tr><td>CS-CP-15</td><td>肝硬化伴泌尿系感染</td><td>尿频/尿急, 尿培养(+)</td><td>中度</td></tr></tbody></table></div>
+<h4 id="275-并发症肝性脑病">2.7.5 并发症：肝性脑病<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#275-并发症肝性脑病" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>West-Haven分级</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-CP-16</td><td>隐性肝性脑病 (MHE)</td><td>0级</td><td>心理测量异常, 日常正常</td><td>极轻</td></tr><tr><td>CS-CP-17</td><td>HE 1级</td><td>1级</td><td>轻度意识障碍, 睡眠倒错</td><td>轻度</td></tr><tr><td>CS-CP-18</td><td>HE 2级</td><td>2级</td><td>嗜睡, 行为改变, 扑翼样震颤</td><td>中度</td></tr><tr><td>CS-CP-19</td><td>HE 3级</td><td>3级</td><td>昏睡, 可唤醒, 定向障碍</td><td>重度</td></tr><tr><td>CS-CP-20</td><td>HE 4级（肝昏迷）</td><td>4级</td><td>昏迷, 对痛刺激可有反应</td><td>危重</td></tr><tr><td>CS-CP-21</td><td>反复发作性HE</td><td>1-2级</td><td>多次发作, 需持续乳果糖</td><td>慢性</td></tr></tbody></table></div>
+<h4 id="276-其他并发症">2.7.6 其他并发症<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#276-其他并发症" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-CP-22</td><td>肝硬化性心肌病</td><td>心脏应激响应异常+舒张功能障碍</td><td>中度</td></tr><tr><td>CS-CP-23</td><td>肝肺综合征</td><td>低氧血症+肺内血管扩张</td><td>中-重度</td></tr><tr><td>CS-CP-24</td><td>肝硬化骨质疏松</td><td>DXA示骨密度降低</td><td>长期</td></tr><tr><td>CS-CP-25</td><td>肝硬化合并门脉高压性胃病</td><td>内镜见胃黏膜蛇皮样改变</td><td>中度</td></tr></tbody></table></div>
+<hr/>
+<h3 id="28-遗传代谢性肝病">2.8 遗传代谢性肝病<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#28-遗传代谢性肝病" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-GM-01</td><td>Wilson病（肝型）</td><td>血清铜蓝蛋白&lt;20mg/dL, K-F环</td><td>中度</td></tr><tr><td>CS-GM-02</td><td>Wilson病（神经型）</td><td>锥体外系症状+角膜K-F环</td><td>中-重度</td></tr><tr><td>CS-GM-03</td><td>血色病/血色素沉着症</td><td>铁蛋白↑, 转铁蛋白饱和度>45%</td><td>轻度</td></tr><tr><td>CS-GM-04</td><td>α1-抗胰蛋白酶缺乏症</td><td>AAT&lt;80mg/dL, PiZZ基因型</td><td>轻-中度</td></tr><tr><td>CS-GM-05</td><td>吉尔伯特综合征</td><td>间接胆红素升高, 肝脏功能正常</td><td>良性</td></tr><tr><td>CS-GM-06</td><td>Dubin-Johnson综合征</td><td>直接胆红素升高, 肝黑色素沉积</td><td>良性</td></tr><tr><td>CS-GM-07</td><td>糖原贮积症相关肝病</td><td>GSD I/III型, 肝肿大+低血糖</td><td>慢性</td></tr><tr><td>CS-GM-08</td><td>胆汁酸合成障碍</td><td>新生儿, 胆汁淤积+合成酶缺陷</td><td>重度</td></tr><tr><td>CS-GM-09</td><td>家族性高胆固醇血症肝病</td><td>LDLR突变, 肝细胞胆固醇沉积</td><td>慢性</td></tr><tr><td>CS-GM-10</td><td>卟啉症相关肝病</td><td>急性间歇性卟啉症, 肝功能异常</td><td>中-重度</td></tr></tbody></table></div>
+<hr/>
+<h3 id="29-血管性肝病">2.9 血管性肝病<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#29-血管性肝病" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-VL-01</td><td>Budd-Chiari综合征（急性）</td><td>肝静脉血栓, 急性腹痛+肝肿大</td><td>危重</td></tr><tr><td>CS-VL-02</td><td>Budd-Chiari综合征（慢性）</td><td>肝静脉部分阻塞, 缓慢进展</td><td>中度</td></tr><tr><td>CS-VL-03</td><td>肝小静脉闭塞症 (VOD/SOS)</td><td>造血干细胞移植后, 黄疸+腹水</td><td>危重</td></tr><tr><td>CS-VL-04</td><td>门静脉血栓（急性）</td><td>腹痛+脾大, 门静脉充盈缺损</td><td>中-重度</td></tr><tr><td>CS-VL-05</td><td>门静脉血栓（慢性）</td><td>海绵样变性, 侧支循环</td><td>慢性</td></tr><tr><td>CS-VL-06</td><td>非肝硬化门脉高压</td><td>肝前性/特发性门脉高压</td><td>代偿期</td></tr><tr><td>CS-VL-07</td><td>缺血性肝炎/休克肝</td><td>低血压后ALT急剧升高>1000</td><td>危重</td></tr><tr><td>CS-VL-08</td><td>心源性肝硬化</td><td>右心衰竭, 肝肿大+搏动</td><td>失代偿</td></tr></tbody></table></div>
+<hr/>
+<h3 id="210-肝衰竭与重症肝病">2.10 肝衰竭与重症肝病<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#210-肝衰竭与重症肝病" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-ALF-01</td><td>急性肝衰竭（早期）</td><td>INR>1.5+肝性脑病+起病&lt;26周</td><td>危重</td></tr><tr><td>CS-ALF-02</td><td>急性肝衰竭（进展期）</td><td>黄疸+凝血障碍+II-III级HE</td><td>危重</td></tr><tr><td>CS-ALF-03</td><td>急性肝衰竭（深昏迷）</td><td>IV级HE+颅内高压</td><td>极危重</td></tr><tr><td>CS-ALF-04</td><td>亚急性肝衰竭</td><td>起病>4周但&lt;26周, 缓慢进展</td><td>危重</td></tr><tr><td>CS-ALF-05</td><td>慢加急性肝衰竭 (ACLF)</td><td>慢性肝病+急性失代偿+器官衰竭</td><td>危重</td></tr><tr><td>CS-ALF-06</td><td>ACLF Grade 1</td><td>肾衰竭/单一器官衰竭</td><td>危重</td></tr><tr><td>CS-ALF-07</td><td>ACLF Grade 2</td><td>2个器官衰竭</td><td>极危重</td></tr><tr><td>CS-ALF-08</td><td>ACLF Grade 3</td><td>3个及以上器官衰竭</td><td>极危重</td></tr><tr><td>CS-ALF-09</td><td>肝移植前评估（肝衰竭）</td><td>MELD/MELD-Na评分, 移植候选</td><td>评估</td></tr><tr><td>CS-ALF-10</td><td>人工肝支持（血浆置换）</td><td>肝衰竭+人工肝治疗中</td><td>治疗中</td></tr></tbody></table></div>
+<hr/>
+<h3 id="211-胆道疾病相关肝病">2.11 胆道疾病相关肝病<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#211-胆道疾病相关肝病" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-BD-01</td><td>急性胆管炎（轻症）</td><td>Charcot三联征, 抗菌治疗有效</td><td>中度</td></tr><tr><td>CS-BD-02</td><td>急性胆管炎（重症）</td><td>Reynolds五联征+休克</td><td>危重</td></tr><tr><td>CS-BD-03</td><td>胆总管结石伴梗阻性黄疸</td><td>MRCP示结石, 胆红素升高</td><td>中度</td></tr><tr><td>CS-BD-04</td><td>胆道支架术后</td><td>ERCP/PTCD引流后, 监测通畅</td><td>随访</td></tr><tr><td>CS-BD-05</td><td>术后胆道狭窄</td><td>胆囊切除术后, 胆管狭窄</td><td>中度</td></tr><tr><td>CS-BD-06</td><td>胆道闭锁（新生儿）</td><td>新生儿黄疸, Kasai术后</td><td>重度</td></tr><tr><td>CS-BD-07</td><td>继发性硬化性胆管炎</td><td>ICU/休克后, 胆管不规则</td><td>中-重度</td></tr><tr><td>CS-BD-08</td><td>IgG4相关胆管炎</td><td>IgG4升高, 胆管壁同心增厚</td><td>中度</td></tr><tr><td>CS-BD-09</td><td>胆囊结石伴轻微肝损害</td><td>胆囊结石+ALT轻度升高</td><td>轻度</td></tr></tbody></table></div>
+<hr/>
+<h3 id="212-肝移植与术后">2.12 肝移植与术后<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#212-肝移植与术后" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-TX-01</td><td>肝移植评估（等待中）</td><td>MELD评分, 影像排除禁忌</td><td>评估中</td></tr><tr><td>CS-TX-02</td><td>肝移植术后早期（&lt;30天）</td><td>ICU管理, 移植物功能监测</td><td>恢复</td></tr><tr><td>CS-TX-03</td><td>肝移植急性排斥</td><td>术后7-14天, ALT升高+活检</td><td>中度</td></tr><tr><td>CS-TX-04</td><td>肝移植后感染（CMV）</td><td>CMV PCR(+) , 抗病毒治疗</td><td>中度</td></tr><tr><td>CS-TX-05</td><td>肝移植后胆道并发症</td><td>胆管吻合口狭窄/胆漏</td><td>中度</td></tr><tr><td>CS-TX-06</td><td>肝移植后远期随访</td><td>免疫抑制剂, 肿瘤筛查</td><td>长期随访</td></tr><tr><td>CS-TX-07</td><td>肝移植后HCC复发</td><td>移植后HCC复发</td><td>复发</td></tr><tr><td>CS-TX-08</td><td>肝移植后慢性排斥</td><td>胆管消失综合征, 进展性黄疸</td><td>重度</td></tr><tr><td>CS-TX-09</td><td>活体肝移植供体评估</td><td>残余肝体积>30%, 安全评估</td><td>术前</td></tr><tr><td>CS-TX-10</td><td>跨血型肝移植</td><td>特殊免疫抑制方案</td><td>高危</td></tr></tbody></table></div>
+<hr/>
+<h3 id="213-特殊人群肝病">2.13 特殊人群肝病<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#213-特殊人群肝病" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>ID</th><th>场景名称</th><th>诊断标准</th><th>严重度</th></tr></thead><tbody><tr><td>CS-SP-01</td><td>妊娠期肝内胆汁淤积 (ICP)</td><td>孕晚期, 瘙痒+胆汁酸>10μmol/L</td><td>中度</td></tr><tr><td>CS-SP-02</td><td>HELLP综合征</td><td>溶血+肝酶升高+血小板减少</td><td>危重</td></tr><tr><td>CS-SP-03</td><td>妊娠合并乙肝</td><td>HBsAg(+), 母婴阻断方案</td><td>孕产管理</td></tr><tr><td>CS-SP-04</td><td>儿童肝功能异常（不明原因）</td><td>不能解释的ALT升高, 排除感染</td><td>诊断中</td></tr><tr><td>CS-SP-05</td><td>老年人药物性肝损伤</td><td>>65岁, 多药联合, DILI</td><td>中-重度</td></tr><tr><td>CS-SP-06</td><td>HIV合并肝炎</td><td>HIV-HBV/HCV共感染</td><td>中度</td></tr><tr><td>CS-SP-07</td><td>肥胖患者肝病综合管理</td><td>BMI>30+NAFLD+代谢并发症</td><td>综合管理</td></tr><tr><td>CS-SP-08</td><td>肝病患者围手术期管理</td><td>肝硬化Child B/C, 手术前评估</td><td>术前评估</td></tr><tr><td>CS-SP-09</td><td>终末期肝病营养支持</td><td>肌少症+营养不良+肝功能不全</td><td>支持治疗</td></tr></tbody></table></div>
+<hr/>
+<h2 id="3-场景维度模型">3. 场景维度模型<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-场景维度模型" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>每个场景由以下维度定义：</p>
+<pre><code>场景 = f(病因, 病理生理阶段, 临床表现, 严重度分级, 并发症, 治疗阶段)
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>取值空间</th><th>示例</th></tr></thead><tbody><tr><td>病因</td><td>13种（病毒/酒精/代谢/药物/免疫/遗传/血管/胆道/肿瘤/移植/妊娠/全身/不明）</td><td>病毒</td></tr><tr><td>阶段</td><td>急性/慢性/慢性急性发作/代偿/失代偿/终末期/恢复期</td><td>失代偿</td></tr><tr><td>核心表现</td><td>黄疸/腹水/出血/脑病/乏力/肝肿大/发热/瘙痒/疼痛</td><td>腹水</td></tr><tr><td>严重度</td><td>良性/轻度/中度/重度/危重/极危重</td><td>危重</td></tr><tr><td>并发症</td><td>出血/感染/肾衰/肝衰/脑病/癌变</td><td>SBP</td></tr><tr><td>治疗期</td><td>初诊/治疗中/手术/随访/终末</td><td>TACE后</td></tr><tr><td>评分工具</td><td>Child-Pugh/MELD/BCLC/Maddrey/West-Haven</td><td>MELD 22</td></tr></tbody></table></div>
+<hr/>
+<h2 id="4-场景与schema-v20实体关联">4. 场景与Schema v2.0实体关联<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-场景与schema-v20实体关联" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-场景关联关系">4.1 场景关联关系<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-场景关联关系" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">临床场景 → Disease</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">hasClinicalScenario (场景归属于某种疾病)</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">临床场景 → Symptom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:     </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">manifestsAs (场景表现的症状)</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">临床场景 → Drug</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:        </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">treatedWith (场景的治疗方案/药物)</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">临床场景 → LiverFunctionMarker</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">measuredBy (场景的化验指标)</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;">临床场景 → Literature</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:   </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">supportedBy (场景的文献证据)</span></span></code></pre></figure>
+<h3 id="42-推荐-schema-扩展">4.2 推荐 Schema 扩展<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-推荐-schema-扩展" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>建议在 v2.0 基础上新增：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="sql" data-theme="github-light github-dark"><code data-language="sql" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- 临床场景实体表</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">CREATE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> TABLE</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> clinical_scenarios</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">PRIMARY KEY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,          </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- CS-VH-01</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    name</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">200</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">NOT NULL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,           </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- 急性乙型肝炎伴黄疸</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    category </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),                 </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- viral_hepatitis</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    subcategory </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),              </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- acute_viral</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    severity_level </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">20</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),           </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- mild/moderate/severe/critical</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    diagnostic_criteria </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">TEXT</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,             </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- 诊断标准描述</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    curie_prefix </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">20</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">DEFAULT</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 'CS'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    attributes JSONB</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- 场景-实体关联表</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">CREATE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> TABLE</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> scenario_disease</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    scenario_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> clinical_scenarios(id),</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    disease_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> diseases(id),</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    PRIMARY KEY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (scenario_id, disease_id)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">CREATE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> TABLE</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> scenario_symptom</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    scenario_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> clinical_scenarios(id),</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    symptom_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> symptoms(id),</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    PRIMARY KEY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (scenario_id, symptom_id)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">CREATE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> TABLE</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> scenario_drug</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    scenario_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> clinical_scenarios(id),</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    drug_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> drugs(id),</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    treatment_line </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">INTEGER</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,              </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- 一线/二线/三线</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    PRIMARY KEY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (scenario_id, drug_id)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">CREATE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> TABLE</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> scenario_literature</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    scenario_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> clinical_scenarios(id),</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    literature_id </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">REFERENCES</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> literature(id),</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    evidence_level </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">VARCHAR</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">20</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),           </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">-- A/B/C/D</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    PRIMARY KEY</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (scenario_id, literature_id)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span></code></pre></figure>
+<hr/>
+<h2 id="5-场景验证与量化">5. 场景验证与量化<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-场景验证与量化" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-严重度评分工具映射">5.1 严重度评分工具映射<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-严重度评分工具映射" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>场景类别</th><th>推荐评分工具</th><th>关键指标</th></tr></thead><tbody><tr><td>肝硬化</td><td>Child-Pugh / MELD-Na</td><td>胆红素/白蛋白/INR/腹水/HE</td></tr><tr><td>急性肝衰竭</td><td>King’s College / Clichy</td><td>PT/胆红素/病因/年龄</td></tr><tr><td>ACLF</td><td>CLIF-C ACLF</td><td>序贯器官衰竭评估</td></tr><tr><td>酒精性肝炎</td><td>Maddrey DF (≥32)</td><td>PT延长/胆红素</td></tr><tr><td>HCC</td><td>BCLC / ALBI grade</td><td>肿瘤负担/肝功能/PS</td></tr><tr><td>DILI</td><td>R ratio / Hy’s Law</td><td>ALT/ALP/TBil</td></tr><tr><td>重症度综合</td><td>SOFA / qSOFA</td><td>器官衰竭评分</td></tr></tbody></table></div>
+<h3 id="52-量化诊断阈值">5.2 量化诊断阈值<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-量化诊断阈值" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>指标</th><th>正常</th><th>轻度异常</th><th>中度异常</th><th>重度异常</th><th>危重</th></tr></thead><tbody><tr><td>ALT (U/L)</td><td>&lt;40</td><td>40-120</td><td>120-400</td><td>400-1000</td><td>>1000</td></tr><tr><td>TBil (mg/dL)</td><td>&lt;1.2</td><td>1.2-3</td><td>3-10</td><td>10-20</td><td>>20</td></tr><tr><td>INR</td><td>&lt;1.2</td><td>1.2-1.5</td><td>1.5-2.0</td><td>2.0-3.0</td><td>>3.0</td></tr><tr><td>MELD</td><td>&lt;8</td><td>8-14</td><td>15-20</td><td>21-30</td><td>>30</td></tr><tr><td>Child-Pugh</td><td>A(5-6)</td><td>—</td><td>B(7-9)</td><td>—</td><td>C(10-15)</td></tr><tr><td>白蛋白 (g/dL)</td><td>>3.5</td><td>3.0-3.5</td><td>2.5-3.0</td><td>&lt;2.5</td><td>—</td></tr></tbody></table></div>
+<hr/>
+<h2 id="6-总结与下一步">6. 总结与下一步<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-总结与下一步" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="61-扩展统计">6.1 扩展统计<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-扩展统计" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>类别</th><th>初版场景数</th><th>扩展后场景数</th></tr></thead><tbody><tr><td>病毒性肝炎</td><td>6</td><td>15</td></tr><tr><td>脂肪性肝病</td><td>5</td><td>12</td></tr><tr><td>酒精性肝病</td><td>4</td><td>10</td></tr><tr><td>药物性肝损伤</td><td>2</td><td>12</td></tr><tr><td>自身免疫性肝病</td><td>4</td><td>13</td></tr><tr><td>肝癌与肝肿瘤</td><td>5</td><td>17</td></tr><tr><td>肝硬化与并发症</td><td>6</td><td>25</td></tr><tr><td>遗传代谢性肝病</td><td>0</td><td>10</td></tr><tr><td>血管性肝病</td><td>0</td><td>8</td></tr><tr><td>肝衰竭与重症</td><td>0</td><td>10</td></tr><tr><td>胆道疾病相关</td><td>0</td><td>9</td></tr><tr><td>肝移植与术后</td><td>0</td><td>10</td></tr><tr><td>特殊人群肝病</td><td>0</td><td>9</td></tr><tr><td><strong>总计</strong></td><td><strong>~32</strong></td><td><strong>~160</strong></td></tr></tbody></table></div>
+<h3 id="62-待做事项">6.2 待做事项<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-待做事项" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled/> Andong 审核场景定义</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 对每个场景补充具体诊断阈值</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 建立场景与现有 A-Box 实体（8,808 疾病 + 5,998 症状 + 3,828 药物）的精确映射</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 收集 PubMed 文献证据支持</li>
+<li class="task-list-item"><input type="checkbox" disabled/> 设计场景提取算法（NLP + 规则）</li>
+</ul>
+<hr/>
+<blockquote>
+<p>📍 E:\shared\llm_wiki\projects\clinical_scenario_definition\clinical_scenarios_definition.md<br/>
+由 🦞 Claw 维护 · 学术参考：ICD-10/11, AASLD, EASL, BCLC<br/>
+版本：v0.2.0 · 144 个临床场景</p>
+</blockquote></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-27" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#肝病临床场景概念定义扩展版" data-for="肝病临床场景概念定义扩展版">肝病临床场景概念定义（扩展版）</a></li><li class="depth-1"><a href="#1-肝病分类体系总览" data-for="1-肝病分类体系总览">1. 肝病分类体系总览</a></li><li class="depth-1"><a href="#2-详细临床场景定义" data-for="2-详细临床场景定义">2. 详细临床场景定义</a></li><li class="depth-2"><a href="#21-病毒性肝炎-viral-hepatitis" data-for="21-病毒性肝炎-viral-hepatitis">2.1 病毒性肝炎 (Viral Hepatitis)</a></li><li class="depth-2"><a href="#22-脂肪性肝病-steatotic-liver-disease" data-for="22-脂肪性肝病-steatotic-liver-disease">2.2 脂肪性肝病 (Steatotic Liver Disease)</a></li><li class="depth-2"><a href="#23-酒精性肝病-alcoholic-liver-disease" data-for="23-酒精性肝病-alcoholic-liver-disease">2.3 酒精性肝病 (Alcoholic Liver Disease)</a></li><li class="depth-2"><a href="#24-药物与中毒性肝损伤-dili" data-for="24-药物与中毒性肝损伤-dili">2.4 药物与中毒性肝损伤 (DILI)</a></li><li class="depth-2"><a href="#25-自身免疫性肝病-autoimmune-liver-disease" data-for="25-自身免疫性肝病-autoimmune-liver-disease">2.5 自身免疫性肝病 (Autoimmune Liver Disease)</a></li><li class="depth-2"><a href="#26-肝癌与肝肿瘤-hcc--liver-tumors" data-for="26-肝癌与肝肿瘤-hcc--liver-tumors">2.6 肝癌与肝肿瘤 (HCC &amp; Liver Tumors)</a></li><li class="depth-2"><a href="#27-肝硬化与并发症-cirrhosis--complications" data-for="27-肝硬化与并发症-cirrhosis--complications">2.7 肝硬化与并发症 (Cirrhosis &amp; Complications)</a></li><li class="depth-2"><a href="#28-遗传代谢性肝病" data-for="28-遗传代谢性肝病">2.8 遗传代谢性肝病</a></li><li class="depth-2"><a href="#29-血管性肝病" data-for="29-血管性肝病">2.9 血管性肝病</a></li><li class="depth-2"><a href="#210-肝衰竭与重症肝病" data-for="210-肝衰竭与重症肝病">2.10 肝衰竭与重症肝病</a></li><li class="depth-2"><a href="#211-胆道疾病相关肝病" data-for="211-胆道疾病相关肝病">2.11 胆道疾病相关肝病</a></li><li class="depth-2"><a href="#212-肝移植与术后" data-for="212-肝移植与术后">2.12 肝移植与术后</a></li><li class="depth-2"><a href="#213-特殊人群肝病" data-for="213-特殊人群肝病">2.13 特殊人群肝病</a></li><li class="depth-1"><a href="#3-场景维度模型" data-for="3-场景维度模型">3. 场景维度模型</a></li><li class="depth-1"><a href="#4-场景与schema-v20实体关联" data-for="4-场景与schema-v20实体关联">4. 场景与Schema v2.0实体关联</a></li><li class="depth-2"><a href="#41-场景关联关系" data-for="41-场景关联关系">4.1 场景关联关系</a></li><li class="depth-2"><a href="#42-推荐-schema-扩展" data-for="42-推荐-schema-扩展">4.2 推荐 Schema 扩展</a></li><li class="depth-1"><a href="#5-场景验证与量化" data-for="5-场景验证与量化">5. 场景验证与量化</a></li><li class="depth-2"><a href="#51-严重度评分工具映射" data-for="51-严重度评分工具映射">5.1 严重度评分工具映射</a></li><li class="depth-2"><a href="#52-量化诊断阈值" data-for="52-量化诊断阈值">5.2 量化诊断阈值</a></li><li class="depth-1"><a href="#6-总结与下一步" data-for="6-总结与下一步">6. 总结与下一步</a></li><li class="depth-2"><a href="#61-扩展统计" data-for="61-扩展统计">6.1 扩展统计</a></li><li class="depth-2"><a href="#62-待做事项" data-for="62-待做事项">6.2 待做事项</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="../" class="internal">肝病知识图谱 Wiki</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="../postscript.js" type="module" data-persist="true"></script></html>

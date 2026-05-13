@@ -1,0 +1,427 @@
+# Domain Profile Schema v1.0
+# 通用结构定义，不含具体疾病配置
+# 适配 Meta-Template: DiagnosticAbduction_v1.0
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://hepatokg.org/schemas/domain_profile_schema_v1.0.yaml"
+title: "Domain Profile Schema for DiagnosticAbduction_v1.0"
+description: "Layer 2 configuration format for liver disease diagnostic reasoning"
+
+definitions:
+
+  # 元信息
+  MetaInfo:
+    type: object
+    required: [id, name, version, applicable_meta_template, domain]
+    properties:
+      id:
+        type: string
+        pattern: "^[A-Za-z_][A-Za-z0-9_]*_v\\d+\\.\\d+$"
+      name:
+        type: string
+      version:
+        type: string
+        pattern: "^\\d+\\.\\d+\\.\\d+$"
+      applicable_meta_template:
+        type: string
+        enum: ["DiagnosticAbduction_v1.0"]
+      domain:
+        type: string
+      disease_focus:
+        type: string
+        format: "curie"
+      extends:
+        type: ["string", "null"]
+      overrides:
+        type: object
+
+  # 插件配置
+  PluginConfig:
+    type: object
+    required: [enabled, implementation, config]
+    properties:
+      enabled:
+        type: boolean
+      implementation:
+        type: string
+        enum: ["rule_based", "ml_model", "hybrid", "template_engine", "weighted_sum"]
+      config:
+        type: object
+      fallback:
+        type: object
+        required: [mode]
+        properties:
+          mode:
+            type: string
+
+  # 观察定义
+  ObservationDefinition:
+    type: object
+    required: [id, name, entity_type, curie_prefix, trigger_conditions, output_template]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      entity_type:
+        type: string
+      curie_prefix:
+        type: string
+      trigger_conditions:
+        type: array
+        items:
+          type: object
+          required: [field, operator, value]
+          properties:
+            field:
+              type: string
+            operator:
+              type: string
+              enum: ["eq", "gt", "lt", "gte", "lte", "regex", "in", "exists"]
+            value: {}
+            unit:
+              type: ["string", "null"]
+      output_template:
+        type: object
+        required: [observation_id, entity_id, confidence]
+        properties:
+          observation_id:
+            type: string
+          entity_id:
+            type: string
+          value: {}
+          unit:
+            type: ["string", "null"]
+          confidence:
+            type: number
+            minimum: 0
+            maximum: 1
+
+  # 触发逻辑
+  TriggerLogic:
+    type: object
+    required: [mode]
+    properties:
+      mode:
+        type: string
+        enum: ["any", "all", "weighted_sum"]
+      threshold:
+        type: number
+      weights:
+        type: object
+        additionalProperties:
+          type: number
+
+  # 候选规则
+  CandidateRule:
+    type: object
+    required: [id, name, observations, candidate_disease, base_probability]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      observations:
+        type: array
+        items:
+          type: string
+      candidate_disease:
+        type: string
+        format: "curie"
+      base_probability:
+        type: number
+        minimum: 0
+        maximum: 1
+      probability_source:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: ["static", "kg_query", "literature"]
+          query:
+            type: ["string", "null"]
+          fallback_value:
+            type: number
+
+  # 鉴别诊断矩阵
+  DifferentialMatrix:
+    type: object
+    required: [disease_a, disease_b, differentiators]
+    properties:
+      disease_a:
+        type: string
+        format: "curie"
+      disease_b:
+        type: string
+        format: "curie"
+      differentiators:
+        type: array
+        items:
+          type: object
+          required: [feature, direction, weight]
+          properties:
+            feature:
+              type: string
+            direction:
+              type: string
+              enum: ["favors_a", "favors_b", "neutral"]
+            weight:
+              type: number
+              minimum: 0
+              maximum: 1
+            evidence_query:
+              type: object
+              properties:
+                type:
+                  type: string
+                query:
+                  type: string
+
+  # 证据维度
+  EvidenceDimension:
+    type: object
+    required: [id, name, source_db, kg_mapping, query_params]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      source_db:
+        type: string
+      kg_mapping:
+        type: object
+        required: [entity_query, relation_query, attribute_mapping]
+        properties:
+          entity_query:
+            type: string
+          relation_query:
+            type: string
+          attribute_mapping:
+            type: array
+            items:
+              type: object
+              required: [db_field, std_field]
+              properties:
+                db_field:
+                  type: string
+                std_field:
+                  type: string
+                transform:
+                  type: ["string", "null"]
+      tesg_dimension_id:
+        type: ["string", "null"]
+      query_params:
+        type: object
+        required: [max_results, min_confidence, temporal_filter]
+        properties:
+          max_results:
+            type: integer
+          min_confidence:
+            type: number
+          temporal_filter:
+            type: boolean
+
+  # 质量维度
+  QualityDimension:
+    type: object
+    required: [id, name, weight, evaluator]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      weight:
+        type: number
+      evaluator:
+        type: object
+        required: [type]
+        properties:
+          type:
+            type: string
+            enum: ["threshold", "range", "formula", "comparison"]
+          formula:
+            type: ["string", "null"]
+          data_source:
+            type: object
+            properties:
+              table:
+                type: string
+              fields:
+                type: array
+                items:
+                  type: string
+          mapping:
+            type: object
+
+  # 冲突类型
+  ConflictType:
+    type: object
+    required: [id, name, detection_rule, resolution_strategy]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      detection_rule:
+        type: object
+        required: [type, condition]
+        properties:
+          type:
+            type: string
+          condition:
+            type: string
+      tesg_detection:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+          query_template:
+            type: ["string", "null"]
+      resolution_strategy:
+        type: object
+        required: [type]
+        properties:
+          type:
+            type: string
+            enum: ["flag_for_human", "stage_stratified", "confidence_decay"]
+          parameters:
+            type: object
+            properties:
+              confidence_decay:
+                type: number
+              preserve_both:
+                type: boolean
+
+  # 数据源映射
+  DataSourceMapping:
+    type: object
+    required: [available_sources, field_mappings]
+    properties:
+      available_sources:
+        type: array
+        items:
+          type: object
+          required: [id, type, path, tables]
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum: ["sqlite", "postgresql", "api", "file"]
+            path:
+              type: string
+            tables:
+              type: array
+              items:
+                type: object
+                required: [name, fields]
+                properties:
+                  name:
+                    type: string
+                  fields:
+                    type: array
+                    items:
+                      type: string
+      field_mappings:
+        type: array
+        items:
+          type: object
+          required: [profile_field, db_source, db_table, db_field]
+          properties:
+            profile_field:
+              type: string
+            db_source:
+              type: string
+            db_table:
+              type: string
+            db_field:
+              type: string
+            status:
+              type: string
+              enum: ["active", "pending_schema_extension"]
+
+  # 主结构
+  DomainProfile:
+    type: object
+    required: [domain_profile]
+    properties:
+      domain_profile:
+        type: object
+        required: [id, name, version, applicable_meta_template, domain, plugins]
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          version:
+            type: string
+          applicable_meta_template:
+            type: string
+          domain:
+            type: string
+          disease_focus:
+            type: string
+          extends:
+            type: ["string", "null"]
+          overrides:
+            type: object
+
+          plugins:
+            type: object
+            required: [observation_extractor, candidate_generator, ranking_strategy, evidence_query_builder, evaluation_criteria, fusion_weights, conflict_rules, conclusion_formatter, report_generator]
+            properties:
+              observation_extractor:
+                $ref: "#/definitions/PluginConfig"
+              candidate_generator:
+                $ref: "#/definitions/PluginConfig"
+              ranking_strategy:
+                $ref: "#/definitions/PluginConfig"
+              evidence_query_builder:
+                $ref: "#/definitions/PluginConfig"
+              evaluation_criteria:
+                $ref: "#/definitions/PluginConfig"
+              fusion_weights:
+                $ref: "#/definitions/PluginConfig"
+              conflict_rules:
+                $ref: "#/definitions/PluginConfig"
+              conclusion_formatter:
+                $ref: "#/definitions/PluginConfig"
+              report_generator:
+                $ref: "#/definitions/PluginConfig"
+
+          tesg_interface:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+              endpoint:
+                type: ["string", "null"]
+              timeout_ms:
+                type: integer
+              retry_count:
+                type: integer
+              fallback:
+                type: object
+                properties:
+                  mode:
+                    type: string
+                  semantic_tag_library:
+                    type: ["string", "null"]
+
+          data_source_mapping:
+            $ref: "#/definitions/DataSourceMapping"
+
+          runtime:
+            type: object
+            properties:
+              max_reasoning_time_ms:
+                type: integer
+              max_candidates:
+                type: integer
+              log_level:
+                type: string
+                enum: ["DEBUG", "INFO", "WARN", "ERROR"]
+              enable_provenance:
+                type: boolean
+              enable_uncertainty_quantification:
+                type: boolean
